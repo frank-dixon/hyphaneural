@@ -5,50 +5,471 @@
       "slug": "bakers-yeast",
       "common_name": "Baker's yeast",
       "scientific_name": "Saccharomyces cerevisiae",
-      "short_blurb": "The classic lab fungus. A compact genome where gene \u2192 trait stories are unusually readable.",
+      "short_blurb": "The classic lab fungus. A compact genome where gene → trait stories are unusually readable.",
       "note": "",
       "glow": "#3d9e8f",
       "genes": [
-        "SUC2",
-        "ACT1",
+        "PYK1",
+        "SSA1",
+        "CDC28",
+        "GAL1",
+        "GAL10",
+        "TEF2",
+        "LEU2",
+        "PGK1",
         "HO",
-        "TEF1"
+        "TRP1",
+        "SIR2",
+        "URA3",
+        "ACT1",
+        "STE2",
+        "TDH3",
+        "ENO2",
+        "SUC2",
+        "FLO11",
+        "RPS5",
+        "ATP2",
+        "TUB1",
+        "HIS3",
+        "ADE2",
+        "RPL25",
+        "RAD51",
+        "TEF1",
+        "MFA1",
+        "HSP82",
+        "COX1"
       ],
       "shared_genes": [
+        "PYK1",
+        "SSA1",
+        "CDC28",
+        "TEF2",
+        "LEU2",
+        "PGK1",
+        "SIR2",
+        "URA3",
         "ACT1",
+        "TDH3",
+        "ENO2",
+        "RPS5",
+        "ATP2",
+        "TUB1",
+        "HIS3",
+        "ADE2",
+        "RPL25",
+        "RAD51",
         "TEF1",
-        "EF1A"
+        "HSP82",
+        "COX1"
       ],
       "unique_genes": [
+        "GAL1",
+        "GAL10",
         "HO",
-        "SUC2"
+        "TRP1",
+        "STE2",
+        "SUC2",
+        "FLO11",
+        "MFA1"
       ],
       "genome_source": "mock-public",
       "is_public_genome": true,
-      "default": true
+      "default": true,
+      "linear": [
+        {
+          "id": "PYK1",
+          "chr": "I",
+          "pos": 0.15,
+          "category": "metabolism",
+          "family": "pyk"
+        },
+        {
+          "id": "SSA1",
+          "chr": "I",
+          "pos": 0.55,
+          "category": "stress",
+          "family": "hsp70"
+        },
+        {
+          "id": "CDC28",
+          "chr": "II",
+          "pos": 0.12,
+          "category": "cell-cycle",
+          "family": "cdk"
+        },
+        {
+          "id": "GAL1",
+          "chr": "II",
+          "pos": 0.35,
+          "category": "metabolism",
+          "family": "gal"
+        },
+        {
+          "id": "GAL10",
+          "chr": "II",
+          "pos": 0.42,
+          "category": "metabolism",
+          "family": "gal"
+        },
+        {
+          "id": "TEF2",
+          "chr": "II",
+          "pos": 0.7,
+          "category": "translation",
+          "family": "tef"
+        },
+        {
+          "id": "LEU2",
+          "chr": "III",
+          "pos": 0.2,
+          "category": "marker",
+          "family": "leu"
+        },
+        {
+          "id": "PGK1",
+          "chr": "III",
+          "pos": 0.55,
+          "category": "metabolism",
+          "family": "pgk"
+        },
+        {
+          "id": "HO",
+          "chr": "IV",
+          "pos": 0.25,
+          "category": "mating",
+          "family": "HO"
+        },
+        {
+          "id": "TRP1",
+          "chr": "IV",
+          "pos": 0.45,
+          "category": "marker",
+          "family": "trp"
+        },
+        {
+          "id": "SIR2",
+          "chr": "IV",
+          "pos": 0.72,
+          "category": "chromatin",
+          "family": "sirtuin"
+        },
+        {
+          "id": "URA3",
+          "chr": "V",
+          "pos": 0.4,
+          "category": "marker",
+          "family": "ura"
+        },
+        {
+          "id": "ACT1",
+          "chr": "VI",
+          "pos": 0.3,
+          "category": "cytoskeleton",
+          "family": "actin"
+        },
+        {
+          "id": "STE2",
+          "chr": "VI",
+          "pos": 0.65,
+          "category": "mating",
+          "family": "ste2"
+        },
+        {
+          "id": "TDH3",
+          "chr": "VII",
+          "pos": 0.4,
+          "category": "metabolism",
+          "family": "gapdh"
+        },
+        {
+          "id": "ENO2",
+          "chr": "VIII",
+          "pos": 0.35,
+          "category": "metabolism",
+          "family": "eno"
+        },
+        {
+          "id": "SUC2",
+          "chr": "IX",
+          "pos": 0.25,
+          "category": "metabolism",
+          "family": "SUC2"
+        },
+        {
+          "id": "FLO11",
+          "chr": "IX",
+          "pos": 0.7,
+          "category": "adhesion",
+          "family": "flo"
+        },
+        {
+          "id": "RPS5",
+          "chr": "X",
+          "pos": 0.3,
+          "category": "ribosome",
+          "family": "rps"
+        },
+        {
+          "id": "ATP2",
+          "chr": "X",
+          "pos": 0.6,
+          "category": "respiration",
+          "family": "atp"
+        },
+        {
+          "id": "TUB1",
+          "chr": "XIII",
+          "pos": 0.4,
+          "category": "cytoskeleton",
+          "family": "tubulin"
+        },
+        {
+          "id": "HIS3",
+          "chr": "XV",
+          "pos": 0.2,
+          "category": "marker",
+          "family": "his"
+        },
+        {
+          "id": "ADE2",
+          "chr": "XV",
+          "pos": 0.45,
+          "category": "marker",
+          "family": "ade"
+        },
+        {
+          "id": "RPL25",
+          "chr": "XV",
+          "pos": 0.7,
+          "category": "ribosome",
+          "family": "rpl"
+        },
+        {
+          "id": "RAD51",
+          "chr": "XV",
+          "pos": 0.85,
+          "category": "repair",
+          "family": "rad51"
+        },
+        {
+          "id": "TEF1",
+          "chr": "XVI",
+          "pos": 0.25,
+          "category": "translation",
+          "family": "tef"
+        },
+        {
+          "id": "MFA1",
+          "chr": "XVI",
+          "pos": 0.5,
+          "category": "mating",
+          "family": "mfa"
+        },
+        {
+          "id": "HSP82",
+          "chr": "XVI",
+          "pos": 0.75,
+          "category": "stress",
+          "family": "hsp90"
+        },
+        {
+          "id": "COX1",
+          "chr": "mt",
+          "pos": 0.4,
+          "category": "respiration",
+          "family": "cox"
+        }
+      ]
     },
     {
       "id": 6,
       "slug": "schizosaccharomyces",
       "common_name": "Fission yeast",
       "scientific_name": "Schizosaccharomyces pombe",
-      "short_blurb": "Cell-cycle genetics in a yeast that divides by fission \u2014 a different silhouette of the same story.",
+      "short_blurb": "Cell-cycle genetics in a yeast that divides by fission — a different silhouette of the same story.",
       "note": "",
       "glow": "#3d9e8f",
       "genes": [
+        "CDC2",
         "ACT1",
-        "TEF1"
+        "STE11",
+        "BYR1",
+        "TEF1",
+        "TUB1",
+        "HIS3",
+        "URA3",
+        "RPL25",
+        "SSA1",
+        "HSP82",
+        "RAD51",
+        "ADE2",
+        "SIR2",
+        "MAT1",
+        "RPS5",
+        "ATP2",
+        "TDH3",
+        "COX1"
       ],
       "shared_genes": [
+        "CDC2",
         "ACT1",
         "TEF1",
-        "EF1A"
+        "TUB1",
+        "HIS3",
+        "URA3",
+        "RPL25",
+        "SSA1",
+        "HSP82",
+        "RAD51",
+        "ADE2",
+        "SIR2",
+        "RPS5",
+        "ATP2",
+        "TDH3",
+        "COX1"
       ],
       "unique_genes": [
-        "STE11"
+        "STE11",
+        "BYR1",
+        "MAT1"
       ],
       "genome_source": "mock-public",
-      "is_public_genome": true
+      "is_public_genome": true,
+      "linear": [
+        {
+          "id": "CDC2",
+          "chr": "I",
+          "pos": 0.18,
+          "category": "cell-cycle",
+          "family": "cdk"
+        },
+        {
+          "id": "ACT1",
+          "chr": "I",
+          "pos": 0.4,
+          "category": "cytoskeleton",
+          "family": "actin"
+        },
+        {
+          "id": "STE11",
+          "chr": "I",
+          "pos": 0.62,
+          "category": "mating",
+          "family": "ste11"
+        },
+        {
+          "id": "BYR1",
+          "chr": "I",
+          "pos": 0.78,
+          "category": "mating",
+          "family": "byr"
+        },
+        {
+          "id": "TEF1",
+          "chr": "II",
+          "pos": 0.22,
+          "category": "translation",
+          "family": "tef"
+        },
+        {
+          "id": "TUB1",
+          "chr": "II",
+          "pos": 0.4,
+          "category": "cytoskeleton",
+          "family": "tubulin"
+        },
+        {
+          "id": "HIS3",
+          "chr": "II",
+          "pos": 0.55,
+          "category": "marker",
+          "family": "his"
+        },
+        {
+          "id": "URA3",
+          "chr": "II",
+          "pos": 0.7,
+          "category": "marker",
+          "family": "ura"
+        },
+        {
+          "id": "RPL25",
+          "chr": "II",
+          "pos": 0.85,
+          "category": "ribosome",
+          "family": "rpl"
+        },
+        {
+          "id": "SSA1",
+          "chr": "III",
+          "pos": 0.2,
+          "category": "stress",
+          "family": "hsp70"
+        },
+        {
+          "id": "HSP82",
+          "chr": "III",
+          "pos": 0.4,
+          "category": "stress",
+          "family": "hsp90"
+        },
+        {
+          "id": "RAD51",
+          "chr": "III",
+          "pos": 0.55,
+          "category": "repair",
+          "family": "rad51"
+        },
+        {
+          "id": "ADE2",
+          "chr": "III",
+          "pos": 0.68,
+          "category": "marker",
+          "family": "ade"
+        },
+        {
+          "id": "SIR2",
+          "chr": "III",
+          "pos": 0.8,
+          "category": "chromatin",
+          "family": "sirtuin"
+        },
+        {
+          "id": "MAT1",
+          "chr": "mat",
+          "pos": 0.5,
+          "category": "mating",
+          "family": "mat"
+        },
+        {
+          "id": "RPS5",
+          "chr": "I",
+          "pos": 0.88,
+          "category": "ribosome",
+          "family": "rps"
+        },
+        {
+          "id": "ATP2",
+          "chr": "II",
+          "pos": 0.3,
+          "category": "respiration",
+          "family": "atp"
+        },
+        {
+          "id": "TDH3",
+          "chr": "I",
+          "pos": 0.5,
+          "category": "metabolism",
+          "family": "gapdh"
+        },
+        {
+          "id": "COX1",
+          "chr": "mt",
+          "pos": 0.4,
+          "category": "respiration",
+          "family": "cox"
+        }
+      ]
     },
     {
       "id": 4,
@@ -60,19 +481,176 @@
       "glow": "#2a8f82",
       "genes": [
         "ACT1",
-        "TEF1"
+        "TEF1",
+        "FRQ",
+        "WC1",
+        "WC2",
+        "TUB1",
+        "CDC28",
+        "RPL25",
+        "RPS5",
+        "TDH3",
+        "ENO2",
+        "HIS3",
+        "ATP2",
+        "HSP82",
+        "SSA1",
+        "RAD51",
+        "AL1",
+        "COX1"
       ],
       "shared_genes": [
         "ACT1",
         "TEF1",
-        "EF1A"
+        "TUB1",
+        "CDC28",
+        "RPL25",
+        "RPS5",
+        "TDH3",
+        "ENO2",
+        "HIS3",
+        "ATP2",
+        "HSP82",
+        "SSA1",
+        "RAD51",
+        "COX1"
       ],
       "unique_genes": [
         "FRQ",
-        "WC2"
+        "WC1",
+        "WC2",
+        "AL1"
       ],
       "genome_source": "mock-public",
-      "is_public_genome": true
+      "is_public_genome": true,
+      "linear": [
+        {
+          "id": "ACT1",
+          "chr": "I",
+          "pos": 0.2,
+          "category": "cytoskeleton",
+          "family": "actin"
+        },
+        {
+          "id": "TEF1",
+          "chr": "I",
+          "pos": 0.35,
+          "category": "translation",
+          "family": "tef"
+        },
+        {
+          "id": "FRQ",
+          "chr": "VII",
+          "pos": 0.4,
+          "category": "clock",
+          "family": "frq"
+        },
+        {
+          "id": "WC1",
+          "chr": "VII",
+          "pos": 0.55,
+          "category": "clock",
+          "family": "wc"
+        },
+        {
+          "id": "WC2",
+          "chr": "VII",
+          "pos": 0.68,
+          "category": "clock",
+          "family": "wc"
+        },
+        {
+          "id": "TUB1",
+          "chr": "II",
+          "pos": 0.3,
+          "category": "cytoskeleton",
+          "family": "tubulin"
+        },
+        {
+          "id": "CDC28",
+          "chr": "II",
+          "pos": 0.5,
+          "category": "cell-cycle",
+          "family": "cdk"
+        },
+        {
+          "id": "RPL25",
+          "chr": "III",
+          "pos": 0.25,
+          "category": "ribosome",
+          "family": "rpl"
+        },
+        {
+          "id": "RPS5",
+          "chr": "III",
+          "pos": 0.45,
+          "category": "ribosome",
+          "family": "rps"
+        },
+        {
+          "id": "TDH3",
+          "chr": "IV",
+          "pos": 0.3,
+          "category": "metabolism",
+          "family": "gapdh"
+        },
+        {
+          "id": "ENO2",
+          "chr": "IV",
+          "pos": 0.55,
+          "category": "metabolism",
+          "family": "eno"
+        },
+        {
+          "id": "HIS3",
+          "chr": "V",
+          "pos": 0.4,
+          "category": "marker",
+          "family": "his"
+        },
+        {
+          "id": "ATP2",
+          "chr": "V",
+          "pos": 0.65,
+          "category": "respiration",
+          "family": "atp"
+        },
+        {
+          "id": "HSP82",
+          "chr": "VI",
+          "pos": 0.3,
+          "category": "stress",
+          "family": "hsp90"
+        },
+        {
+          "id": "SSA1",
+          "chr": "VI",
+          "pos": 0.55,
+          "category": "stress",
+          "family": "hsp70"
+        },
+        {
+          "id": "RAD51",
+          "chr": "I",
+          "pos": 0.7,
+          "category": "repair",
+          "family": "rad51"
+        },
+        {
+          "id": "AL1",
+          "chr": "II",
+          "pos": 0.75,
+          "category": "pigment",
+          "family": "al"
+        },
+        {
+          "id": "COX1",
+          "chr": "mt",
+          "pos": 0.4,
+          "category": "respiration",
+          "family": "cox"
+        }
+      ]
     },
     {
       "id": 2,
@@ -84,17 +662,149 @@
       "glow": "#2a8f82",
       "genes": [
         "ACT1",
-        "TEF1"
+        "TEF1",
+        "TUB1",
+        "RPL25",
+        "RPS5",
+        "ATP2",
+        "HSP82",
+        "POX1",
+        "CEL1",
+        "HYD1",
+        "TDH3",
+        "RAD51",
+        "SSA1",
+        "PGK1",
+        "ENO2"
       ],
       "shared_genes": [
         "ACT1",
-        "TEF1"
+        "TEF1",
+        "TUB1",
+        "RPL25",
+        "RPS5",
+        "ATP2",
+        "HSP82",
+        "TDH3",
+        "RAD51",
+        "SSA1",
+        "PGK1",
+        "ENO2"
       ],
       "unique_genes": [
-        "POX1"
+        "POX1",
+        "CEL1",
+        "HYD1"
       ],
       "genome_source": "mock-public",
-      "is_public_genome": true
+      "is_public_genome": true,
+      "linear": [
+        {
+          "id": "ACT1",
+          "chr": "A",
+          "pos": 0.2,
+          "category": "cytoskeleton",
+          "family": "actin"
+        },
+        {
+          "id": "TEF1",
+          "chr": "A",
+          "pos": 0.4,
+          "category": "translation",
+          "family": "tef"
+        },
+        {
+          "id": "TUB1",
+          "chr": "A",
+          "pos": 0.6,
+          "category": "cytoskeleton",
+          "family": "tubulin"
+        },
+        {
+          "id": "RPL25",
+          "chr": "B",
+          "pos": 0.25,
+          "category": "ribosome",
+          "family": "rpl"
+        },
+        {
+          "id": "RPS5",
+          "chr": "B",
+          "pos": 0.45,
+          "category": "ribosome",
+          "family": "rps"
+        },
+        {
+          "id": "ATP2",
+          "chr": "B",
+          "pos": 0.7,
+          "category": "respiration",
+          "family": "atp"
+        },
+        {
+          "id": "HSP82",
+          "chr": "C",
+          "pos": 0.3,
+          "category": "stress",
+          "family": "hsp90"
+        },
+        {
+          "id": "POX1",
+          "chr": "C",
+          "pos": 0.5,
+          "category": "decay",
+          "family": "pox"
+        },
+        {
+          "id": "CEL1",
+          "chr": "C",
+          "pos": 0.7,
+          "category": "decay",
+          "family": "cel"
+        },
+        {
+          "id": "HYD1",
+          "chr": "D",
+          "pos": 0.4,
+          "category": "surface",
+          "family": "hyd"
+        },
+        {
+          "id": "TDH3",
+          "chr": "A",
+          "pos": 0.75,
+          "category": "metabolism",
+          "family": "gapdh"
+        },
+        {
+          "id": "RAD51",
+          "chr": "B",
+          "pos": 0.85,
+          "category": "repair",
+          "family": "rad51"
+        },
+        {
+          "id": "SSA1",
+          "chr": "D",
+          "pos": 0.6,
+          "category": "stress",
+          "family": "hsp70"
+        },
+        {
+          "id": "PGK1",
+          "chr": "D",
+          "pos": 0.25,
+          "category": "metabolism",
+          "family": "pgk"
+        },
+        {
+          "id": "ENO2",
+          "chr": "A",
+          "pos": 0.88,
+          "category": "metabolism",
+          "family": "eno"
+        }
+      ]
     },
     {
       "id": 5,
@@ -106,17 +816,158 @@
       "glow": "#2f8a7c",
       "genes": [
         "ACT1",
-        "TEF1"
+        "TEF1",
+        "TUB1",
+        "CDC28",
+        "BRLE",
+        "WETA",
+        "STCA",
+        "RPL25",
+        "RPS5",
+        "PGK1",
+        "ATP2",
+        "HSP82",
+        "RAD51",
+        "HIS3",
+        "SSA1",
+        "ENO2"
       ],
       "shared_genes": [
         "ACT1",
-        "TEF1"
+        "TEF1",
+        "TUB1",
+        "CDC28",
+        "RPL25",
+        "RPS5",
+        "PGK1",
+        "ATP2",
+        "HSP82",
+        "RAD51",
+        "HIS3",
+        "SSA1",
+        "ENO2"
       ],
       "unique_genes": [
-        "BRLE"
+        "BRLE",
+        "WETA",
+        "STCA"
       ],
       "genome_source": "mock-public",
-      "is_public_genome": true
+      "is_public_genome": true,
+      "linear": [
+        {
+          "id": "ACT1",
+          "chr": "I",
+          "pos": 0.2,
+          "category": "cytoskeleton",
+          "family": "actin"
+        },
+        {
+          "id": "TEF1",
+          "chr": "I",
+          "pos": 0.4,
+          "category": "translation",
+          "family": "tef"
+        },
+        {
+          "id": "TUB1",
+          "chr": "I",
+          "pos": 0.6,
+          "category": "cytoskeleton",
+          "family": "tubulin"
+        },
+        {
+          "id": "CDC28",
+          "chr": "II",
+          "pos": 0.25,
+          "category": "cell-cycle",
+          "family": "cdk"
+        },
+        {
+          "id": "BRLE",
+          "chr": "II",
+          "pos": 0.5,
+          "category": "development",
+          "family": "brl"
+        },
+        {
+          "id": "WETA",
+          "chr": "II",
+          "pos": 0.7,
+          "category": "development",
+          "family": "wet"
+        },
+        {
+          "id": "STCA",
+          "chr": "III",
+          "pos": 0.4,
+          "category": "secondary",
+          "family": "stc"
+        },
+        {
+          "id": "RPL25",
+          "chr": "III",
+          "pos": 0.6,
+          "category": "ribosome",
+          "family": "rpl"
+        },
+        {
+          "id": "RPS5",
+          "chr": "IV",
+          "pos": 0.3,
+          "category": "ribosome",
+          "family": "rps"
+        },
+        {
+          "id": "PGK1",
+          "chr": "IV",
+          "pos": 0.55,
+          "category": "metabolism",
+          "family": "pgk"
+        },
+        {
+          "id": "ATP2",
+          "chr": "V",
+          "pos": 0.35,
+          "category": "respiration",
+          "family": "atp"
+        },
+        {
+          "id": "HSP82",
+          "chr": "V",
+          "pos": 0.6,
+          "category": "stress",
+          "family": "hsp90"
+        },
+        {
+          "id": "RAD51",
+          "chr": "I",
+          "pos": 0.8,
+          "category": "repair",
+          "family": "rad51"
+        },
+        {
+          "id": "HIS3",
+          "chr": "III",
+          "pos": 0.25,
+          "category": "marker",
+          "family": "his"
+        },
+        {
+          "id": "SSA1",
+          "chr": "IV",
+          "pos": 0.75,
+          "category": "stress",
+          "family": "hsp70"
+        },
+        {
+          "id": "ENO2",
+          "chr": "V",
+          "pos": 0.8,
+          "category": "metabolism",
+          "family": "eno"
+        }
+      ]
     },
     {
       "id": 7,
@@ -128,17 +979,194 @@
       "glow": "#358f82",
       "genes": [
         "ACT1",
-        "TEF1"
+        "TEF1",
+        "TUB1",
+        "CDC28",
+        "EFG1",
+        "HWP1",
+        "ALS3",
+        "URA3",
+        "LEU2",
+        "RPL25",
+        "RPS5",
+        "TDH3",
+        "PGK1",
+        "PYK1",
+        "ATP2",
+        "HSP82",
+        "SSA1",
+        "SIR2",
+        "RAD51",
+        "ENO2"
       ],
       "shared_genes": [
         "ACT1",
-        "TEF1"
+        "TEF1",
+        "TUB1",
+        "CDC28",
+        "URA3",
+        "LEU2",
+        "RPL25",
+        "RPS5",
+        "TDH3",
+        "PGK1",
+        "PYK1",
+        "ATP2",
+        "HSP82",
+        "SSA1",
+        "SIR2",
+        "RAD51",
+        "ENO2"
       ],
       "unique_genes": [
-        "EFG1"
+        "EFG1",
+        "HWP1",
+        "ALS3"
       ],
       "genome_source": "mock-public",
-      "is_public_genome": true
+      "is_public_genome": true,
+      "linear": [
+        {
+          "id": "ACT1",
+          "chr": "R1",
+          "pos": 0.2,
+          "category": "cytoskeleton",
+          "family": "actin"
+        },
+        {
+          "id": "TEF1",
+          "chr": "R1",
+          "pos": 0.4,
+          "category": "translation",
+          "family": "tef"
+        },
+        {
+          "id": "TUB1",
+          "chr": "R1",
+          "pos": 0.6,
+          "category": "cytoskeleton",
+          "family": "tubulin"
+        },
+        {
+          "id": "CDC28",
+          "chr": "R2",
+          "pos": 0.25,
+          "category": "cell-cycle",
+          "family": "cdk"
+        },
+        {
+          "id": "EFG1",
+          "chr": "R2",
+          "pos": 0.5,
+          "category": "morphogenesis",
+          "family": "efg"
+        },
+        {
+          "id": "HWP1",
+          "chr": "R2",
+          "pos": 0.7,
+          "category": "adhesion",
+          "family": "hwp"
+        },
+        {
+          "id": "ALS3",
+          "chr": "R3",
+          "pos": 0.3,
+          "category": "adhesion",
+          "family": "als"
+        },
+        {
+          "id": "URA3",
+          "chr": "R3",
+          "pos": 0.55,
+          "category": "marker",
+          "family": "ura"
+        },
+        {
+          "id": "LEU2",
+          "chr": "R3",
+          "pos": 0.75,
+          "category": "marker",
+          "family": "leu"
+        },
+        {
+          "id": "RPL25",
+          "chr": "R4",
+          "pos": 0.25,
+          "category": "ribosome",
+          "family": "rpl"
+        },
+        {
+          "id": "RPS5",
+          "chr": "R4",
+          "pos": 0.45,
+          "category": "ribosome",
+          "family": "rps"
+        },
+        {
+          "id": "TDH3",
+          "chr": "R4",
+          "pos": 0.65,
+          "category": "metabolism",
+          "family": "gapdh"
+        },
+        {
+          "id": "PGK1",
+          "chr": "R5",
+          "pos": 0.3,
+          "category": "metabolism",
+          "family": "pgk"
+        },
+        {
+          "id": "PYK1",
+          "chr": "R5",
+          "pos": 0.55,
+          "category": "metabolism",
+          "family": "pyk"
+        },
+        {
+          "id": "ATP2",
+          "chr": "R5",
+          "pos": 0.75,
+          "category": "respiration",
+          "family": "atp"
+        },
+        {
+          "id": "HSP82",
+          "chr": "R6",
+          "pos": 0.35,
+          "category": "stress",
+          "family": "hsp90"
+        },
+        {
+          "id": "SSA1",
+          "chr": "R6",
+          "pos": 0.55,
+          "category": "stress",
+          "family": "hsp70"
+        },
+        {
+          "id": "SIR2",
+          "chr": "R6",
+          "pos": 0.75,
+          "category": "chromatin",
+          "family": "sirtuin"
+        },
+        {
+          "id": "RAD51",
+          "chr": "R1",
+          "pos": 0.8,
+          "category": "repair",
+          "family": "rad51"
+        },
+        {
+          "id": "ENO2",
+          "chr": "R4",
+          "pos": 0.85,
+          "category": "metabolism",
+          "family": "eno"
+        }
+      ]
     }
   ],
   "source": "static-seed",
@@ -147,5 +1175,13 @@
     "a": "bakers-yeast",
     "b": "schizosaccharomyces",
     "gene": "ACT1"
+  },
+  "panel_defaults": {
+    "selected": [
+      "bakers-yeast",
+      "schizosaccharomyces"
+    ],
+    "reference": "bakers-yeast",
+    "filter": "all"
   }
 }

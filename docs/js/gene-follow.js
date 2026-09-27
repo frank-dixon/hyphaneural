@@ -31,7 +31,8 @@
   GeneFollow.prototype.show = function (gene) {
     this._gene = gene;
     this.panel.hidden = false;
-    this.els.id.textContent = gene.id;
+    this.panel.classList.toggle('is-stub', !!gene.stub);
+    this.els.id.textContent = gene.id + (gene.stub ? ' · stub' : '');
     this.els.name.textContent = gene.name;
     this.els.role.textContent = gene.role;
     this.els.takeaway.classList.remove('visible');
@@ -45,6 +46,9 @@
     if (gene.id === 'SUC2' || gene.guided) {
       this.els.takeaway.textContent =
         'This gene is a recipe for invertase — the enzyme that lets yeast break table sugar into fuel.';
+    } else if (gene.stub) {
+      this.els.takeaway.textContent =
+        'Mock / limited annotation — this linear-panel slot is a simplified placeholder. Open SUC2, ACT1, HO, or TEF1 for a full DNA → mRNA → protein story.';
     }
 
     this.els.compare.style.display =

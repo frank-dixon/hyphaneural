@@ -1,5 +1,5 @@
 /**
- * Hyphaneural Pages demo — chamber · gene follow · compare · guided tour
+ * Hyphaneural Pages demo — chamber · genome panel · gene follow · compare · tour
  */
 (function () {
   'use strict';
@@ -12,21 +12,24 @@
     b: 'schizosaccharomyces',
     gene: 'ACT1',
   };
+  const panelDefaults = (window.HYPHA_ORG && window.HYPHA_ORG.panel_defaults) || {
+    selected: ['bakers-yeast', 'schizosaccharomyces'],
+    reference: 'bakers-yeast',
+    filter: 'all',
+  };
 
   const yeast = orgs.find((o) => o.slug === 'bakers-yeast') || orgs[0];
   const appEl = document.getElementById('app');
   const canvas = document.getElementById('chamber-canvas');
+  const locLabel = document.getElementById('loc-label');
 
-  // Gene list for yeast chamber — rich nodes with guided flag
-  const yeastGeneIds = (yeast && yeast.genes) || ['SUC2', 'ACT1', 'HO', 'TEF1'];
-  const chamberGenes = yeastGeneIds
-    .map((id) => genes[id])
-    .filter(Boolean);
+  // Chamber uses a focused subset so the mycelial view stays readable
+  const chamberIds = ['SUC2', 'ACT1', 'HO', 'TEF1'].filter((id) => genes[id]);
+  const chamberGenes = chamberIds.map((id) => genes[id]).filter(Boolean);
 
   const chamber = new window.HyphaChamber(canvas, {
     onGeneClick: function (g) {
       if (tour.active) {
-        // During "Follow SUC2" step, a click advances the tour
         if (tour.step === 1 && g.id === 'SUC2') {
           nextTour();
           return;
@@ -54,6 +57,16 @@
   const cmpA = document.getElementById('cmp-a');
   const cmpB = document.getElementById('cmp-b');
   const cmpGene = document.getElementById('cmp-gene');
+  const genomePanelEl = document.getElementById('genome-panel');
+
+  const genomePanel = new window.HyphaGenomePanel(genomePanelEl, {
+    orgs: orgs,
+    genes: genes,
+    defaults: panelDefaults,
+    onGeneClick: function (gid) {
+      openGene(gid);
+    },
+  });
 
   // Populate compare selects
   orgs.forEach((o) => {
@@ -66,14 +79,19 @@
     optB.textContent = o.common_name;
     cmpB.appendChild(optB);
   });
-  // Gene families that appear in >1 organism
   const familyIds = Object.keys(genes).filter((id) => {
     const g = genes[id];
-    return g.organisms && g.organisms.length > 1 && !g.alias_of;
+    return g.organisms && g.organisms.length > 1 && !g.alias_of && !g.stub;
   });
-  // Always include ACT1 / TEF1
   ['ACT1', 'TEF1'].forEach((id) => {
     if (genes[id] && !familyIds.includes(id)) familyIds.unshift(id);
+  });
+  // Also allow stub families with multi-org for compare
+  Object.keys(genes).forEach((id) => {
+    const g = genes[id];
+    if (g.organisms && g.organisms.length > 1 && !g.alias_of && !familyIds.includes(id)) {
+      familyIds.push(id);
+    }
   });
   familyIds.forEach((id) => {
     const opt = document.createElement('option');
@@ -110,7 +128,9 @@
     const g = genes[id];
     if (!g) return;
     closeCompare();
-    chamber.setHighlight(id);
+    if (appEl.classList.contains('mode-strand')) {
+      chamber.setHighlight(id);
+    }
     geneFollow.show(g);
   }
 
@@ -130,13 +150,40 @@
     comparePanel.hidden = true;
   }
 
+  // ——— View modes: Strand (chamber) | Genome panel ———
+  const btnStrand = document.getElementById('btn-mode-strand');
+  const btnPanel = document.getElementById('btn-mode-panel');
+
+  function setMode(mode) {
+    const panel = mode === 'panel';
+    appEl.classList.toggle('mode-panel', panel);
+    appEl.classList.toggle('mode-strand', !panel);
+    btnStrand.classList.toggle('on', !panel);
+    btnPanel.classList.toggle('on', panel);
+    btnStrand.setAttribute('aria-pressed', panel ? 'false' : 'true');
+    btnPanel.setAttribute('aria-pressed', panel ? 'true' : 'false');
+    genomePanel.setVisible(panel);
+    if (panel) {
+      if (tour.active) finishTour();
+      geneFollow.hide();
+      closeCompare();
+      chamber.setHighlight(null);
+      if (locLabel) locLabel.textContent = 'Genome panel · multi-organism';
+    } else {
+      if (locLabel) locLabel.textContent = "Inside Baker's yeast";
+    }
+  }
+
+  btnStrand.addEventListener('click', () => setMode('strand'));
+  btnPanel.addEventListener('click', () => setMode('panel'));
+
   document.getElementById('btn-close-compare').addEventListener('click', closeCompare);
   document.getElementById('btn-compare').addEventListener('click', () => openCompare('ACT1'));
   document.getElementById('btn-calm').addEventListener('click', () => {
     appEl.classList.toggle('calm');
   });
 
-  // ——— Guided tour ———
+  // ——— Guided tour (Chamber only) ———
   const tour = {
     active: false,
     step: 0,
@@ -180,7 +227,6 @@
         title: 'Leave with this',
         body: 'This gene is a recipe for invertase — the enzyme that lets yeast break table sugar into fuel. That\'s genetics you can see, not a table you memorize.',
         action: function () {
-          // Keep gene panel open with takeaway
           if (!geneFollow.isOpen()) openGene('SUC2');
         },
         nextLabel: 'Done',
@@ -225,6 +271,7 @@
   }
 
   function startTour() {
+    if (appEl.classList.contains('mode-panel')) setMode('strand');
     tour.active = true;
     tour.step = 0;
     tour.el.hidden = false;
@@ -249,7 +296,6 @@
   tour.skipBtn.addEventListener('click', finishTour);
   document.getElementById('btn-tour').addEventListener('click', startTour);
 
-  // Keyboard
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (tour.active) {
@@ -262,14 +308,11 @@
     }
   });
 
-  // Auto-start tour on first visit
   let seen = false;
   try { seen = localStorage.getItem(TOUR_KEY) === '1'; } catch (e) { /* ignore */ }
   if (!seen) {
-    // slight delay so chamber paints first
     setTimeout(startTour, 700);
   }
 
-  // Expose for debugging
-  window.HyphaApp = { openGene, openCompare, startTour, chamber };
+  window.HyphaApp = { openGene, openCompare, startTour, chamber, setMode, genomePanel };
 })();

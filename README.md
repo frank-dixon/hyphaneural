@@ -2,7 +2,7 @@
 
 See the strand, not the spreadsheet.
 
-Quiet Protomol: a fungal genetics demo where you land **inside baker's yeast**, follow a gene DNA → mRNA → protein, and compare conserved families across organisms — genetics as living hyphae, not a paper dump or cultivation guide.
+Quiet Protomol: a fungal genetics demo where you land **inside baker's yeast**, follow a gene DNA → mRNA → protein, compare conserved families, and open a **Genome panel** linear master visualizer to scan multi-organism catalogs — genetics as living hyphae, not a paper dump or cultivation guide.
 
 ## Live demo
 
@@ -10,7 +10,7 @@ Quiet Protomol: a fungal genetics demo where you land **inside baker's yeast**, 
 
 **https://frank-dixon.github.io/hyphaneural/**
 
-Start here → follow **SUC2** (invertase) → watch the recipe become the enzyme. Compare ACT1 across yeasts. Seed data is embedded (Django is not required for the demo).
+Start here → follow **SUC2** (invertase) → watch the recipe become the enzyme. Toggle **Genome panel** for linear chromosome tracks and multi-organism ortholog compare. Seed data is embedded (Django is not required for the demo).
 
 ## Stack
 
@@ -41,6 +41,7 @@ Static Pages demo (no server): open `docs/index.html` via any static file server
 |--------|--------|
 | Pages chamber inside baker's yeast | Working |
 | Gene follow DNA→mRNA→protein (SUC2, ACT1, HO, TEF1) | Working |
+| Genome panel — linear multi-organism tracks | Working |
 | Guided “Start here” tour (~60s) | Working |
 | Compare dual-strand (shared teal / divergent ember) | Working |
 | Login / Django map app | Working (local) |

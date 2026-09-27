@@ -3,7 +3,9 @@
     "id": "SUC2",
     "name": "Invertase",
     "role": "Cleaves sucrose into glucose and fructose — the classic yeast sugar story.",
-    "organisms": ["bakers-yeast"],
+    "organisms": [
+      "bakers-yeast"
+    ],
     "phenotype": "Lets yeast break table sugar into fuel it can burn.",
     "guided": true,
     "steps": [
@@ -25,13 +27,22 @@
         "plain_english": "Ribosomes assemble amino acids into invertase. The finished enzyme cleaves sucrose → glucose + fructose — fuel yeast can actually use.",
         "seq_hint": "MTI… (mock / simplified)"
       }
-    ]
+    ],
+    "stub": false,
+    "annotated": true
   },
   "ACT1": {
     "id": "ACT1",
     "name": "Actin",
     "role": "Builds the cytoskeleton — the cell's internal scaffolding. Highly conserved across fungi.",
-    "organisms": ["bakers-yeast", "schizosaccharomyces", "neurospora", "oyster-mushroom", "aspergillus-nidulans", "candida-albicans"],
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "neurospora",
+      "oyster-mushroom",
+      "aspergillus-nidulans",
+      "candida-albicans"
+    ],
     "phenotype": "Same job in every fungus: shape, movement, and division scaffolding.",
     "family": "actin",
     "compare_default": true,
@@ -71,13 +82,17 @@
         "similarity": 0.85,
         "note": "Filamentous mold — conserved core, divergent tips."
       }
-    }
+    },
+    "stub": false,
+    "annotated": true
   },
   "HO": {
     "id": "HO",
     "name": "Homothallic endonuclease",
     "role": "Cuts mating-type DNA so yeast can switch mating type — a yeast-specific story.",
-    "organisms": ["bakers-yeast"],
+    "organisms": [
+      "bakers-yeast"
+    ],
     "phenotype": "Enables mating-type switching; not found the same way in fission yeast or molds.",
     "steps": [
       {
@@ -98,15 +113,27 @@
         "plain_english": "The enzyme nicks mating-type DNA, triggering gene conversion. Result: a cell can change which mating partner it seeks.",
         "seq_hint": "MLS… (mock / simplified)"
       }
-    ]
+    ],
+    "stub": false,
+    "annotated": true
   },
   "TEF1": {
     "id": "TEF1",
     "name": "Translation elongation factor 1-α",
     "role": "Helps ribosomes add amino acids during protein building. Conserved across fungi (also called EF1A).",
-    "organisms": ["bakers-yeast", "schizosaccharomyces", "neurospora", "oyster-mushroom"],
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "neurospora",
+      "oyster-mushroom",
+      "aspergillus-nidulans",
+      "candida-albicans"
+    ],
     "phenotype": "Without it, protein synthesis stalls — every cell needs this machinery.",
-    "aliases": ["EF1A", "eEF1A"],
+    "aliases": [
+      "EF1A",
+      "eEF1A"
+    ],
     "steps": [
       {
         "stage": "DNA",
@@ -126,13 +153,20 @@
         "plain_english": "Shuttles aminoacyl-tRNAs into the ribosome. Same core job from yeast to humans — evolutionary handwriting with a shared ink.",
         "seq_hint": "MGKE… (mock / simplified)"
       }
-    ]
+    ],
+    "stub": false,
+    "annotated": true,
+    "family": "tef"
   },
   "EF1A": {
     "id": "EF1A",
     "name": "Elongation factor 1-α",
     "role": "Alias family for TEF1 — translation machinery; highly conserved.",
-    "organisms": ["bakers-yeast", "schizosaccharomyces", "neurospora"],
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "neurospora"
+    ],
     "phenotype": "Same translation job under a different name in some annotations.",
     "alias_of": "TEF1",
     "steps": [
@@ -154,6 +188,1416 @@
         "plain_english": "The finished elongation factor — shared core across fungi.",
         "seq_hint": "MGKE… (mock / simplified)"
       }
-    ]
+    ],
+    "stub": false,
+    "annotated": true
+  },
+  "TUB1": {
+    "id": "TUB1",
+    "name": "α-tubulin",
+    "role": "Microtubule subunit — spindle and cytoskeleton.",
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "neurospora",
+      "oyster-mushroom",
+      "aspergillus-nidulans",
+      "candida-albicans"
+    ],
+    "phenotype": "cytoskeleton",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "TUB1 locus",
+        "plain_english": "Mock / limited annotation for TUB1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "TUB1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "α-tubulin",
+        "plain_english": "cytoskeleton",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "tubulin"
+  },
+  "CDC28": {
+    "id": "CDC28",
+    "name": "Cyclin-dependent kinase",
+    "role": "Master cell-cycle kinase (CDC2 ortholog in fission yeast).",
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "neurospora",
+      "aspergillus-nidulans",
+      "candida-albicans",
+      "oyster-mushroom"
+    ],
+    "phenotype": "cell cycle control",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "CDC28 locus",
+        "plain_english": "Mock / limited annotation for CDC28. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "CDC28 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Cyclin-dependent kinase",
+        "plain_english": "cell cycle control",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "cdk"
+  },
+  "RPL25": {
+    "id": "RPL25",
+    "name": "Ribosomal protein L25",
+    "role": "Large-subunit ribosomal protein.",
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "neurospora",
+      "oyster-mushroom",
+      "aspergillus-nidulans",
+      "candida-albicans"
+    ],
+    "phenotype": "ribosome biogenesis",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "RPL25 locus",
+        "plain_english": "Mock / limited annotation for RPL25. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "RPL25 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Ribosomal protein L25",
+        "plain_english": "ribosome biogenesis",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "rpl"
+  },
+  "RPS5": {
+    "id": "RPS5",
+    "name": "Ribosomal protein S5",
+    "role": "Small-subunit ribosomal protein.",
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "neurospora",
+      "oyster-mushroom",
+      "aspergillus-nidulans",
+      "candida-albicans"
+    ],
+    "phenotype": "ribosome biogenesis",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "RPS5 locus",
+        "plain_english": "Mock / limited annotation for RPS5. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "RPS5 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Ribosomal protein S5",
+        "plain_english": "ribosome biogenesis",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "rps"
+  },
+  "TDH3": {
+    "id": "TDH3",
+    "name": "Glyceraldehyde-3-P dehydrogenase",
+    "role": "Glycolysis housekeeping enzyme (GAPDH).",
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "candida-albicans",
+      "neurospora",
+      "oyster-mushroom"
+    ],
+    "phenotype": "central metabolism",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "TDH3 locus",
+        "plain_english": "Mock / limited annotation for TDH3. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "TDH3 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Glyceraldehyde-3-P dehydrogenase",
+        "plain_english": "central metabolism",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "gapdh"
+  },
+  "PGK1": {
+    "id": "PGK1",
+    "name": "Phosphoglycerate kinase",
+    "role": "ATP-generating step in glycolysis.",
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "candida-albicans",
+      "aspergillus-nidulans",
+      "oyster-mushroom"
+    ],
+    "phenotype": "central metabolism",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "PGK1 locus",
+        "plain_english": "Mock / limited annotation for PGK1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "PGK1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Phosphoglycerate kinase",
+        "plain_english": "central metabolism",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "pgk"
+  },
+  "ENO2": {
+    "id": "ENO2",
+    "name": "Enolase II",
+    "role": "Glycolytic enolase isoform.",
+    "organisms": [
+      "bakers-yeast",
+      "candida-albicans",
+      "neurospora",
+      "oyster-mushroom",
+      "aspergillus-nidulans"
+    ],
+    "phenotype": "central metabolism",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "ENO2 locus",
+        "plain_english": "Mock / limited annotation for ENO2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "ENO2 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Enolase II",
+        "plain_english": "central metabolism",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "eno"
+  },
+  "HIS3": {
+    "id": "HIS3",
+    "name": "Imidazoleglycerol-phosphate dehydratase",
+    "role": "Histidine biosynthesis marker.",
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "neurospora",
+      "aspergillus-nidulans"
+    ],
+    "phenotype": "amino-acid biosynthesis",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "HIS3 locus",
+        "plain_english": "Mock / limited annotation for HIS3. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "HIS3 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Imidazoleglycerol-phosphate dehydratase",
+        "plain_english": "amino-acid biosynthesis",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "his"
+  },
+  "URA3": {
+    "id": "URA3",
+    "name": "Orotidine-5′-phosphate decarboxylase",
+    "role": "Uracil biosynthesis — classic selectable marker.",
+    "organisms": [
+      "bakers-yeast",
+      "candida-albicans",
+      "schizosaccharomyces"
+    ],
+    "phenotype": "nucleotide biosynthesis",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "URA3 locus",
+        "plain_english": "Mock / limited annotation for URA3. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "URA3 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Orotidine-5′-phosphate decarboxylase",
+        "plain_english": "nucleotide biosynthesis",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "ura"
+  },
+  "LEU2": {
+    "id": "LEU2",
+    "name": "β-isopropylmalate dehydrogenase",
+    "role": "Leucine biosynthesis marker.",
+    "organisms": [
+      "bakers-yeast",
+      "candida-albicans"
+    ],
+    "phenotype": "amino-acid biosynthesis",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "LEU2 locus",
+        "plain_english": "Mock / limited annotation for LEU2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "LEU2 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "β-isopropylmalate dehydrogenase",
+        "plain_english": "amino-acid biosynthesis",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "leu"
+  },
+  "ATP2": {
+    "id": "ATP2",
+    "name": "ATP synthase β",
+    "role": "Mitochondrial ATP synthase subunit.",
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "neurospora",
+      "oyster-mushroom",
+      "aspergillus-nidulans",
+      "candida-albicans"
+    ],
+    "phenotype": "oxidative phosphorylation",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "ATP2 locus",
+        "plain_english": "Mock / limited annotation for ATP2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "ATP2 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "ATP synthase β",
+        "plain_english": "oxidative phosphorylation",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "atp"
+  },
+  "HSP82": {
+    "id": "HSP82",
+    "name": "Hsp90 chaperone",
+    "role": "Stress-response molecular chaperone.",
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "neurospora",
+      "aspergillus-nidulans",
+      "candida-albicans",
+      "oyster-mushroom"
+    ],
+    "phenotype": "proteostasis",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "HSP82 locus",
+        "plain_english": "Mock / limited annotation for HSP82. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "HSP82 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Hsp90 chaperone",
+        "plain_english": "proteostasis",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "hsp90"
+  },
+  "RAD51": {
+    "id": "RAD51",
+    "name": "DNA repair recombinase",
+    "role": "Homologous recombination repair.",
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "neurospora",
+      "aspergillus-nidulans",
+      "candida-albicans",
+      "oyster-mushroom"
+    ],
+    "phenotype": "DNA repair",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "RAD51 locus",
+        "plain_english": "Mock / limited annotation for RAD51. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "RAD51 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "DNA repair recombinase",
+        "plain_english": "DNA repair",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "rad51"
+  },
+  "SSA1": {
+    "id": "SSA1",
+    "name": "Hsp70 chaperone",
+    "role": "Cytosolic Hsp70 — folding and stress.",
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "candida-albicans",
+      "neurospora",
+      "oyster-mushroom",
+      "aspergillus-nidulans"
+    ],
+    "phenotype": "proteostasis",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "SSA1 locus",
+        "plain_english": "Mock / limited annotation for SSA1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "SSA1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Hsp70 chaperone",
+        "plain_english": "proteostasis",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "hsp70"
+  },
+  "SIR2": {
+    "id": "SIR2",
+    "name": "NAD+-dependent deacetylase",
+    "role": "Chromatin silencing / aging genetics.",
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "candida-albicans"
+    ],
+    "phenotype": "chromatin",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "SIR2 locus",
+        "plain_english": "Mock / limited annotation for SIR2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "SIR2 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "NAD+-dependent deacetylase",
+        "plain_english": "chromatin",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "sirtuin"
+  },
+  "GAL1": {
+    "id": "GAL1",
+    "name": "Galactokinase",
+    "role": "First step of galactose utilization.",
+    "organisms": [
+      "bakers-yeast"
+    ],
+    "phenotype": "GAL network sugar switch",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "GAL1 locus",
+        "plain_english": "Mock / limited annotation for GAL1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "GAL1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Galactokinase",
+        "plain_english": "GAL network sugar switch",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "gal"
+  },
+  "GAL10": {
+    "id": "GAL10",
+    "name": "UDP-epimerase",
+    "role": "Galactose metabolism epimerase.",
+    "organisms": [
+      "bakers-yeast"
+    ],
+    "phenotype": "GAL network",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "GAL10 locus",
+        "plain_english": "Mock / limited annotation for GAL10. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "GAL10 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "UDP-epimerase",
+        "plain_english": "GAL network",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "gal"
+  },
+  "MFA1": {
+    "id": "MFA1",
+    "name": "a-factor mating pheromone",
+    "role": "Mating pheromone for MATa cells.",
+    "organisms": [
+      "bakers-yeast"
+    ],
+    "phenotype": "mating pheromone",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "MFA1 locus",
+        "plain_english": "Mock / limited annotation for MFA1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "MFA1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "a-factor mating pheromone",
+        "plain_english": "mating pheromone",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "mfa"
+  },
+  "STE2": {
+    "id": "STE2",
+    "name": "α-factor receptor",
+    "role": "GPCR for mating pheromone response.",
+    "organisms": [
+      "bakers-yeast"
+    ],
+    "phenotype": "mating signal",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "STE2 locus",
+        "plain_english": "Mock / limited annotation for STE2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "STE2 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "α-factor receptor",
+        "plain_english": "mating signal",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "ste2"
+  },
+  "FLO11": {
+    "id": "FLO11",
+    "name": "Flocculin",
+    "role": "Cell-surface adhesin; biofilm / invasive growth.",
+    "organisms": [
+      "bakers-yeast"
+    ],
+    "phenotype": "adhesion",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "FLO11 locus",
+        "plain_english": "Mock / limited annotation for FLO11. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "FLO11 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Flocculin",
+        "plain_english": "adhesion",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "flo"
+  },
+  "PYK1": {
+    "id": "PYK1",
+    "name": "Pyruvate kinase",
+    "role": "Final glycolytic ATP step.",
+    "organisms": [
+      "bakers-yeast",
+      "candida-albicans"
+    ],
+    "phenotype": "central metabolism",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "PYK1 locus",
+        "plain_english": "Mock / limited annotation for PYK1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "PYK1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Pyruvate kinase",
+        "plain_english": "central metabolism",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "pyk"
+  },
+  "TRP1": {
+    "id": "TRP1",
+    "name": "Phosphoribosylanthranilate isomerase",
+    "role": "Tryptophan biosynthesis marker.",
+    "organisms": [
+      "bakers-yeast"
+    ],
+    "phenotype": "amino-acid biosynthesis",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "TRP1 locus",
+        "plain_english": "Mock / limited annotation for TRP1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "TRP1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Phosphoribosylanthranilate isomerase",
+        "plain_english": "amino-acid biosynthesis",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "trp"
+  },
+  "ADE2": {
+    "id": "ADE2",
+    "name": "Phosphoribosylaminoimidazole carboxylase",
+    "role": "Adenine biosynthesis; red colony marker.",
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces"
+    ],
+    "phenotype": "nucleotide biosynthesis",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "ADE2 locus",
+        "plain_english": "Mock / limited annotation for ADE2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "ADE2 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Phosphoribosylaminoimidazole carboxylase",
+        "plain_english": "nucleotide biosynthesis",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "ade"
+  },
+  "COX1": {
+    "id": "COX1",
+    "name": "Cytochrome c oxidase I",
+    "role": "mtDNA-encoded respiratory chain subunit.",
+    "organisms": [
+      "bakers-yeast",
+      "schizosaccharomyces",
+      "neurospora"
+    ],
+    "phenotype": "respiration",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "COX1 locus",
+        "plain_english": "Mock / limited annotation for COX1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "COX1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Cytochrome c oxidase I",
+        "plain_english": "respiration",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "cox"
+  },
+  "STE11": {
+    "id": "STE11",
+    "name": "MAPKKK Ste11",
+    "role": "Mating / meiosis MAPK cascade kinase.",
+    "organisms": [
+      "schizosaccharomyces"
+    ],
+    "phenotype": "sexual differentiation",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "STE11 locus",
+        "plain_english": "Mock / limited annotation for STE11. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "STE11 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "MAPKKK Ste11",
+        "plain_english": "sexual differentiation",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "ste11"
+  },
+  "CDC2": {
+    "id": "CDC2",
+    "name": "Cyclin-dependent kinase Cdc2",
+    "role": "Fission-yeast CDK (CDC28 ortholog).",
+    "organisms": [
+      "schizosaccharomyces"
+    ],
+    "phenotype": "cell cycle control",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "CDC2 locus",
+        "plain_english": "Mock / limited annotation for CDC2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "CDC2 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Cyclin-dependent kinase Cdc2",
+        "plain_english": "cell cycle control",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "cdk"
+  },
+  "MAT1": {
+    "id": "MAT1",
+    "name": "Mating-type locus region",
+    "role": "Fission yeast mating-type cassette region (mock).",
+    "organisms": [
+      "schizosaccharomyces"
+    ],
+    "phenotype": "mating type",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "MAT1 locus",
+        "plain_english": "Mock / limited annotation for MAT1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "MAT1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Mating-type locus region",
+        "plain_english": "mating type",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "mat"
+  },
+  "BYR1": {
+    "id": "BYR1",
+    "name": "MAP kinase kinase",
+    "role": "Mating pheromone pathway.",
+    "organisms": [
+      "schizosaccharomyces"
+    ],
+    "phenotype": "mating signal",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "BYR1 locus",
+        "plain_english": "Mock / limited annotation for BYR1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "BYR1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "MAP kinase kinase",
+        "plain_english": "mating signal",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "byr"
+  },
+  "FRQ": {
+    "id": "FRQ",
+    "name": "Frequency",
+    "role": "Core circadian clock gene.",
+    "organisms": [
+      "neurospora"
+    ],
+    "phenotype": "circadian oscillator",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "FRQ locus",
+        "plain_english": "Mock / limited annotation for FRQ. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "FRQ transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Frequency",
+        "plain_english": "circadian oscillator",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "frq"
+  },
+  "WC1": {
+    "id": "WC1",
+    "name": "White Collar-1",
+    "role": "Blue-light photoreceptor / clock input.",
+    "organisms": [
+      "neurospora"
+    ],
+    "phenotype": "circadian / light",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "WC1 locus",
+        "plain_english": "Mock / limited annotation for WC1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "WC1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "White Collar-1",
+        "plain_english": "circadian / light",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "wc"
+  },
+  "WC2": {
+    "id": "WC2",
+    "name": "White Collar-2",
+    "role": "Clock transcription partner.",
+    "organisms": [
+      "neurospora"
+    ],
+    "phenotype": "circadian oscillator",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "WC2 locus",
+        "plain_english": "Mock / limited annotation for WC2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "WC2 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "White Collar-2",
+        "plain_english": "circadian oscillator",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "wc"
+  },
+  "AL1": {
+    "id": "AL1",
+    "name": "Albino-1",
+    "role": "Carotenoid biosynthesis.",
+    "organisms": [
+      "neurospora"
+    ],
+    "phenotype": "pigment",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "AL1 locus",
+        "plain_english": "Mock / limited annotation for AL1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "AL1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Albino-1",
+        "plain_english": "pigment",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "al"
+  },
+  "POX1": {
+    "id": "POX1",
+    "name": "Laccase / peroxidase",
+    "role": "Lignin-modifying enzyme (mock symbol).",
+    "organisms": [
+      "oyster-mushroom"
+    ],
+    "phenotype": "wood decay",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "POX1 locus",
+        "plain_english": "Mock / limited annotation for POX1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "POX1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Laccase / peroxidase",
+        "plain_english": "wood decay",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "pox"
+  },
+  "HYD1": {
+    "id": "HYD1",
+    "name": "Hydrophobin",
+    "role": "Aerial hypha surface protein (mock).",
+    "organisms": [
+      "oyster-mushroom"
+    ],
+    "phenotype": "surface coat",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "HYD1 locus",
+        "plain_english": "Mock / limited annotation for HYD1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "HYD1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Hydrophobin",
+        "plain_english": "surface coat",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "hyd"
+  },
+  "CEL1": {
+    "id": "CEL1",
+    "name": "Cellulase",
+    "role": "Cellulose-degrading enzyme (mock).",
+    "organisms": [
+      "oyster-mushroom"
+    ],
+    "phenotype": "wood decay",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "CEL1 locus",
+        "plain_english": "Mock / limited annotation for CEL1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "CEL1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Cellulase",
+        "plain_english": "wood decay",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "cel"
+  },
+  "BRLE": {
+    "id": "BRLE",
+    "name": "BrlA",
+    "role": "Conidiation transcription factor.",
+    "organisms": [
+      "aspergillus-nidulans"
+    ],
+    "phenotype": "development",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "BRLE locus",
+        "plain_english": "Mock / limited annotation for BRLE. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "BRLE transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "BrlA",
+        "plain_english": "development",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "brl"
+  },
+  "STCA": {
+    "id": "STCA",
+    "name": "Sterigmatocystin cluster stub",
+    "role": "Secondary metabolism cluster marker (mock).",
+    "organisms": [
+      "aspergillus-nidulans"
+    ],
+    "phenotype": "secondary metabolism",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "STCA locus",
+        "plain_english": "Mock / limited annotation for STCA. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "STCA transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Sterigmatocystin cluster stub",
+        "plain_english": "secondary metabolism",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "stc"
+  },
+  "WETA": {
+    "id": "WETA",
+    "name": "WetA",
+    "role": "Conidiation regulator.",
+    "organisms": [
+      "aspergillus-nidulans"
+    ],
+    "phenotype": "development",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "WETA locus",
+        "plain_english": "Mock / limited annotation for WETA. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "WETA transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "WetA",
+        "plain_english": "development",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "wet"
+  },
+  "EFG1": {
+    "id": "EFG1",
+    "name": "Enhanced filamentous growth",
+    "role": "Morphogenesis transcription factor.",
+    "organisms": [
+      "candida-albicans"
+    ],
+    "phenotype": "dimorphism",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "EFG1 locus",
+        "plain_english": "Mock / limited annotation for EFG1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "EFG1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Enhanced filamentous growth",
+        "plain_english": "dimorphism",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "efg"
+  },
+  "HWP1": {
+    "id": "HWP1",
+    "name": "Hyphal wall protein",
+    "role": "Hyphal adhesin.",
+    "organisms": [
+      "candida-albicans"
+    ],
+    "phenotype": "adhesion",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "HWP1 locus",
+        "plain_english": "Mock / limited annotation for HWP1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "HWP1 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Hyphal wall protein",
+        "plain_english": "adhesion",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "hwp"
+  },
+  "ALS3": {
+    "id": "ALS3",
+    "name": "Agglutinin-like sequence",
+    "role": "Adhesin family member.",
+    "organisms": [
+      "candida-albicans"
+    ],
+    "phenotype": "adhesion",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "ALS3 locus",
+        "plain_english": "Mock / limited annotation for ALS3. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "ALS3 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Agglutinin-like sequence",
+        "plain_english": "adhesion",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "als"
+  },
+  "TEF2": {
+    "id": "TEF2",
+    "name": "Translation elongation factor 1-α (copy 2)",
+    "role": "Second TEF1-family copy in budding yeast.",
+    "organisms": [
+      "bakers-yeast"
+    ],
+    "phenotype": "translation redundancy",
+    "stub": true,
+    "mock": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "TEF2 locus",
+        "plain_english": "Mock / limited annotation for TEF2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "TEF2 transcript",
+        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Translation elongation factor 1-α (copy 2)",
+        "plain_english": "translation redundancy",
+        "seq_hint": "M… (mock / simplified)"
+      }
+    ],
+    "family": "tef"
   }
 }
