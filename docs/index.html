@@ -3,45 +3,176 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hyphaneural — map demo</title>
-  <meta name="description" content="Quiet Protomol mycelial organism map — pan, zoom, see the strand.">
+  <title>Hyphaneural — see the strand</title>
+  <meta name="description" content="Understand fungal genetics visually inside baker's yeast. Gene follow DNA→mRNA→protein. Quiet Protomol.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/hyphaneural.css">
 </head>
 <body>
-<div class="map-app" id="map-app">
-  <canvas id="hypha-canvas"></canvas>
+<div class="app" id="app">
+  <canvas id="chamber-canvas" aria-hidden="true"></canvas>
 
-  <div class="chrome top-bar">
-    <div class="brand">Hyphaneural</div>
-    <div class="chrome-actions">
-      <button type="button" id="btn-compare" title="Select two organisms">Compare</button>
+  <!-- Top chrome -->
+  <header class="chrome top-bar">
+    <div class="brand">
+      <span class="brand-mark">Hyphaneural</span>
+      <span class="brand-sub" id="loc-label">Inside Baker's yeast</span>
+    </div>
+    <nav class="chrome-actions" aria-label="Modes">
+      <button type="button" class="btn-primary" id="btn-tour" title="Guided path (~60s)">Start here</button>
+      <button type="button" id="btn-compare" title="Compare gene families">Compare</button>
       <button type="button" id="btn-calm" title="Hide chrome">Calm</button>
-      <a href="https://github.com/frank-dixon/hyphaneural" title="Source on GitHub">Source</a>
+      <a class="src-link" href="https://github.com/frank-dixon/hyphaneural" target="_blank" rel="noopener">Source</a>
+    </nav>
+  </header>
+
+  <!-- Chamber caption -->
+  <div class="chamber-caption" id="chamber-caption">
+    <div class="cap-sci" id="cap-sci">Saccharomyces cerevisiae</div>
+    <div class="cap-hint">Curved hyphae are genes. Tap one to follow DNA → mRNA → protein.</div>
+  </div>
+
+  <!-- Gene follow panel -->
+  <aside class="panel gene-panel" id="gene-panel" hidden aria-label="Gene follow">
+    <button type="button" class="panel-close" id="btn-close-gene" aria-label="Close">×</button>
+    <div class="gene-head">
+      <div class="gene-id" id="gene-id"></div>
+      <h2 id="gene-name"></h2>
+      <p class="gene-role" id="gene-role"></p>
+    </div>
+    <div class="steps" id="gene-steps" role="list"></div>
+    <div class="gene-takeaway" id="gene-takeaway"></div>
+    <div class="gene-actions">
+      <button type="button" class="btn-ghost" id="btn-replay-steps">Replay steps</button>
+      <button type="button" class="btn-ghost" id="btn-compare-from-gene">Compare family</button>
+    </div>
+  </aside>
+
+  <!-- Compare panel -->
+  <aside class="panel compare-panel" id="compare-panel" hidden aria-label="Compare">
+    <button type="button" class="panel-close" id="btn-close-compare" aria-label="Close">×</button>
+    <h2>Compare strands</h2>
+    <p class="compare-lead">Same gene family, two organisms — shared core in teal, divergent tips in ember.</p>
+    <div class="compare-controls">
+      <label>
+        <span>Organism A</span>
+        <select id="cmp-a"></select>
+      </label>
+      <label>
+        <span>Organism B</span>
+        <select id="cmp-b"></select>
+      </label>
+      <label>
+        <span>Gene family</span>
+        <select id="cmp-gene"></select>
+      </label>
+    </div>
+    <canvas id="compare-canvas" width="640" height="220" aria-label="Strand similarity"></canvas>
+    <p class="compare-insight" id="compare-insight">Same job, different evolutionary handwriting.</p>
+  </aside>
+
+  <!-- Tour overlay -->
+  <div class="tour" id="tour" hidden>
+    <div class="tour-card" role="dialog" aria-labelledby="tour-title">
+      <div class="tour-step-dots" id="tour-dots"></div>
+      <h2 id="tour-title"></h2>
+      <p id="tour-body"></p>
+      <div class="tour-actions">
+        <button type="button" class="btn-ghost" id="btn-tour-skip">Skip</button>
+        <button type="button" class="btn-primary" id="btn-tour-next">Next</button>
+      </div>
     </div>
   </div>
 
-  <div class="compare-banner" id="compare-banner"></div>
-
-  <div class="chrome readout" id="readout">x 0  y 0  ×1.00</div>
-  <div class="chrome hint">Pan · scroll to zoom · hyphae reach outward · static demo</div>
-
-  <aside class="chamber" id="chamber" aria-label="Organism chamber">
-    <button type="button" class="chamber-close" id="btn-close-chamber" aria-label="Close">×</button>
-    <div class="chamber-head">
-      <h2 id="chamber-title"></h2>
-      <div class="sci" id="chamber-sci"></div>
-    </div>
-    <div class="chamber-body" id="chamber-body"></div>
-  </aside>
+  <footer class="chrome footer-hint" id="footer-hint">
+    Esc closes panels · no login · mock / simplified sequences
+  </footer>
 </div>
+
 <script>
-  /* Embedded seed — no login / Django required for GitHub Pages demo */
-  window.HYPHA_SEED = [{"id": 1, "slug": "bakers-yeast", "common_name": "Baker's yeast", "scientific_name": "Saccharomyces cerevisiae", "short_blurb": "The classic lab fungus. A compact genome where gene \u2192 trait stories are unusually readable.", "note": "", "x": 0, "y": 0, "glow": "#3d9e8f", "shared_genes": ["ACT1", "EF1A", "TUB1"], "unique_genes": ["HO", "SUC2"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 2, "slug": "oyster-mushroom", "common_name": "Oyster mushroom", "scientific_name": "Pleurotus ostreatus", "short_blurb": "A wood-decay basidiomycete. Hyphal networks and fruiting bodies make structure visible at human scale.", "note": "", "x": 420, "y": -180, "glow": "#2a8f82", "shared_genes": ["ACT1", "EF1A", "LAC1"], "unique_genes": ["POX1", "VEL1"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 3, "slug": "psilocybe-cubensis-annotation", "common_name": "Psilocybe (public genome)", "scientific_name": "Psilocybe cubensis (annotation)", "short_blurb": "Public sequence annotation of a medicinal/psilocybe-type genome. Explore shared fungal architecture \u2014 not cultivation.", "note": "Data is public sequence annotation only. No cultivation content.", "x": -380, "y": 260, "glow": "#c4784a", "shared_genes": ["ACT1", "EF1A", "PSI"], "unique_genes": ["PSI_CLUSTER_STUB"], "genome_source": "mock-public-annotation", "is_public_genome": true}, {"id": 4, "slug": "neurospora", "common_name": "Bread mold", "scientific_name": "Neurospora crassa", "short_blurb": "A genetic workhorse for circadian rhythms and gene silencing. Threads of regulation made measurable.", "note": "", "x": 200, "y": 340, "glow": "#3d9e8f", "shared_genes": ["ACT1", "EF1A", "WC1"], "unique_genes": ["FRQ", "WC2"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 5, "slug": "aspergillus-nidulans", "common_name": "A. nidulans", "scientific_name": "Aspergillus nidulans", "short_blurb": "Model ascomycete for secondary metabolism and developmental genetics.", "note": "", "x": -520, "y": -120, "glow": "#2f8a7c", "shared_genes": ["ACT1", "EF1A", "VEA"], "unique_genes": ["BRLE", "ABAB"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 6, "slug": "schizosaccharomyces", "common_name": "Fission yeast", "scientific_name": "Schizosaccharomyces pombe", "short_blurb": "Cell-cycle genetics in a yeast that divides by fission \u2014 a different silhouette of the same story.", "note": "", "x": 120, "y": -420, "glow": "#3d9e8f", "shared_genes": ["ACT1", "EF1A", "CDC2"], "unique_genes": ["STE11"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 7, "slug": "candida-albicans", "common_name": "C. albicans", "scientific_name": "Candida albicans", "short_blurb": "Dimorphic yeast; morphology switches illuminate how genotype meets environment.", "note": "Research / public-genome framing only.", "x": -200, "y": -300, "glow": "#358f82", "shared_genes": ["ACT1", "EF1A", "HWP1"], "unique_genes": ["EFG1"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 8, "slug": "cryptococcus", "common_name": "Cryptococcus", "scientific_name": "Cryptococcus neoformans", "short_blurb": "Basidiomycete yeast with a well-mapped virulence and mating genetics literature.", "note": "Public annotation focus.", "x": 560, "y": 200, "glow": "#2a8f82", "shared_genes": ["ACT1", "EF1A", "CAP59"], "unique_genes": ["STE12a"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 9, "slug": "ustilago", "common_name": "Corn smut", "scientific_name": "Ustilago maydis", "short_blurb": "A plant-associated basidiomycete whose mating-type loci are textbook genetics.", "note": "", "x": -100, "y": 480, "glow": "#3d9e8f", "shared_genes": ["ACT1", "EF1A", "B_LOCUS"], "unique_genes": ["PRA1"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 10, "slug": "coprinopsis", "common_name": "Ink cap model", "scientific_name": "Coprinopsis cinerea", "short_blurb": "Mushroom development genetics \u2014 fruiting as a readout of developmental programs.", "note": "", "x": 680, "y": -80, "glow": "#2f8a7c", "shared_genes": ["ACT1", "EF1A", "DST1"], "unique_genes": ["CC1"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 11, "slug": "magnaporthe", "common_name": "Rice blast fungus", "scientific_name": "Magnaporthe oryzae", "short_blurb": "Plant-pathogen genetics with clear morphological infection structures in the literature.", "note": "Public genome / research framing.", "x": -640, "y": 140, "glow": "#358f82", "shared_genes": ["ACT1", "EF1A", "PMK1"], "unique_genes": ["MPG1"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 12, "slug": "trichoderma", "common_name": "Trichoderma", "scientific_name": "Trichoderma reesei", "short_blurb": "Industrial cellulase genetics \u2014 enzymes as the visible tip of a regulatory network.", "note": "", "x": 320, "y": 520, "glow": "#3d9e8f", "shared_genes": ["ACT1", "EF1A", "XYR1"], "unique_genes": ["CBH1"], "genome_source": "mock-public", "is_public_genome": true}];
-  window.HYPHA_GENES = {"ACT1": {"id": "ACT1", "name": "Actin", "role": "Cytoskeleton filament; shared across fungi", "steps": [{"stage": "DNA", "label": "ACT1 locus", "seq_hint": "ATGTGTGAC\u2026"}, {"stage": "RNA", "label": "actin mRNA", "seq_hint": "AUGUGUGAC\u2026"}, {"stage": "Protein", "label": "actin monomer", "seq_hint": "MCDD\u2026"}]}, "EF1A": {"id": "EF1A", "name": "Elongation factor 1-\u03b1", "role": "Translation machinery; highly conserved", "steps": [{"stage": "DNA", "label": "EF1A locus", "seq_hint": "ATGGGTAAA\u2026"}, {"stage": "RNA", "label": "EF1A mRNA", "seq_hint": "AUGGGUAAA\u2026"}, {"stage": "Protein", "label": "EF-1\u03b1", "seq_hint": "MGKE\u2026"}]}, "PSI": {"id": "PSI", "name": "Public annotation marker (stub)", "role": "Placeholder for public-genome annotation only \u2014 no cultivation content", "steps": [{"stage": "DNA", "label": "annotated locus", "seq_hint": "public\u2026"}, {"stage": "RNA", "label": "transcript stub", "seq_hint": "public\u2026"}, {"stage": "Protein", "label": "product stub", "seq_hint": "\u2026"}]}};
+/* Embedded seed — GitHub Pages needs no fetch / no Django */
+window.HYPHA_ORG = {
+  "organisms": [
+    {"id":1,"slug":"bakers-yeast","common_name":"Baker's yeast","scientific_name":"Saccharomyces cerevisiae","short_blurb":"The classic lab fungus. A compact genome where gene → trait stories are unusually readable.","glow":"#3d9e8f","genes":["SUC2","ACT1","HO","TEF1"],"shared_genes":["ACT1","TEF1","EF1A"],"unique_genes":["HO","SUC2"],"default":true},
+    {"id":6,"slug":"schizosaccharomyces","common_name":"Fission yeast","scientific_name":"Schizosaccharomyces pombe","short_blurb":"Cell-cycle genetics in a yeast that divides by fission.","glow":"#3d9e8f","genes":["ACT1","TEF1"],"shared_genes":["ACT1","TEF1","EF1A"],"unique_genes":["STE11"]},
+    {"id":4,"slug":"neurospora","common_name":"Bread mold","scientific_name":"Neurospora crassa","short_blurb":"Genetic workhorse for circadian rhythms and gene silencing.","glow":"#2a8f82","genes":["ACT1","TEF1"],"shared_genes":["ACT1","TEF1","EF1A"],"unique_genes":["FRQ","WC2"]},
+    {"id":2,"slug":"oyster-mushroom","common_name":"Oyster mushroom","scientific_name":"Pleurotus ostreatus","short_blurb":"Wood-decay basidiomycete.","glow":"#2a8f82","genes":["ACT1","TEF1"],"shared_genes":["ACT1","TEF1"],"unique_genes":["POX1"]},
+    {"id":5,"slug":"aspergillus-nidulans","common_name":"A. nidulans","scientific_name":"Aspergillus nidulans","short_blurb":"Model ascomycete.","glow":"#2f8a7c","genes":["ACT1","TEF1"],"shared_genes":["ACT1","TEF1"],"unique_genes":["BRLE"]},
+    {"id":7,"slug":"candida-albicans","common_name":"C. albicans","scientific_name":"Candida albicans","short_blurb":"Dimorphic yeast.","glow":"#358f82","genes":["ACT1","TEF1"],"shared_genes":["ACT1","TEF1"],"unique_genes":["EFG1"]}
+  ],
+  "default_organism": "bakers-yeast",
+  "compare_defaults": {"a":"bakers-yeast","b":"schizosaccharomyces","gene":"ACT1"}
+};
+window.HYPHA_GENES = {
+  "SUC2": {
+    "id":"SUC2","name":"Invertase",
+    "role":"Cleaves sucrose into glucose and fructose — the classic yeast sugar story.",
+    "organisms":["bakers-yeast"],
+    "phenotype":"Lets yeast break table sugar into fuel it can burn.",
+    "guided":true,
+    "steps":[
+      {"stage":"DNA","label":"SUC2 locus","plain_english":"On chromosome IX sits a stretch of DNA that encodes invertase. This is the recipe — not the enzyme yet.","seq_hint":"ATGACGATT… (mock / simplified)"},
+      {"stage":"mRNA","label":"SUC2 transcript","plain_english":"The cell copies that DNA into messenger RNA — a working draft the ribosome can read. DNA stays in the nucleus; mRNA carries the message out.","seq_hint":"AUGACGAUU… (mock / simplified)"},
+      {"stage":"Protein","label":"Invertase enzyme","plain_english":"Ribosomes assemble amino acids into invertase. The finished enzyme cleaves sucrose → glucose + fructose — fuel yeast can actually use.","seq_hint":"MTI… (mock / simplified)"}
+    ]
+  },
+  "ACT1": {
+    "id":"ACT1","name":"Actin",
+    "role":"Builds the cytoskeleton — the cell's internal scaffolding. Highly conserved across fungi.",
+    "organisms":["bakers-yeast","schizosaccharomyces","neurospora","oyster-mushroom","aspergillus-nidulans","candida-albicans"],
+    "phenotype":"Same job in every fungus: shape, movement, and division scaffolding.",
+    "family":"actin","compare_default":true,
+    "steps":[
+      {"stage":"DNA","label":"ACT1 locus","plain_english":"Actin is one of the most conserved genes in eukaryotes. The DNA sequence is almost a family signature across fungi.","seq_hint":"ATGTCTGAC… (mock / simplified)"},
+      {"stage":"mRNA","label":"actin mRNA","plain_english":"Transcribed constantly — cells need a steady supply of actin monomers to rebuild filaments as they grow and divide.","seq_hint":"AUGUCUGAC… (mock / simplified)"},
+      {"stage":"Protein","label":"actin monomer","plain_english":"Monomers polymerize into filaments that push, pull, and hold the cell together.","seq_hint":"MSDD… (mock / simplified)"}
+    ],
+    "compare":{
+      "bakers-yeast":{"label":"S. cerevisiae ACT1","similarity":0.92,"note":"Budding yeast actin — classic lab reference."},
+      "schizosaccharomyces":{"label":"S. pombe act1","similarity":0.88,"note":"Fission yeast — same protein job, slightly different sequence handwriting."},
+      "neurospora":{"label":"N. crassa act","similarity":0.85,"note":"Filamentous mold — conserved core, divergent tips."}
+    }
+  },
+  "HO": {
+    "id":"HO","name":"Homothallic endonuclease",
+    "role":"Cuts mating-type DNA so yeast can switch mating type — a yeast-specific story.",
+    "organisms":["bakers-yeast"],
+    "phenotype":"Enables mating-type switching; not found the same way in fission yeast or molds.",
+    "steps":[
+      {"stage":"DNA","label":"HO endonuclease gene","plain_english":"HO encodes a site-specific DNA cutter. Only budding yeast tells this particular mating-type switch story.","seq_hint":"ATGCTTTCT… (mock / simplified)"},
+      {"stage":"mRNA","label":"HO transcript","plain_english":"Expressed in a tight window of the cell cycle — timing matters as much as the sequence.","seq_hint":"AUGCUUUCU… (mock / simplified)"},
+      {"stage":"Protein","label":"HO endonuclease","plain_english":"The enzyme nicks mating-type DNA, triggering gene conversion. Result: a cell can change which mating partner it seeks.","seq_hint":"MLS… (mock / simplified)"}
+    ]
+  },
+  "TEF1": {
+    "id":"TEF1","name":"Translation elongation factor 1-α",
+    "role":"Helps ribosomes add amino acids during protein building. Conserved across fungi (also called EF1A).",
+    "organisms":["bakers-yeast","schizosaccharomyces","neurospora","oyster-mushroom"],
+    "phenotype":"Without it, protein synthesis stalls — every cell needs this machinery.",
+    "aliases":["EF1A","eEF1A"],
+    "steps":[
+      {"stage":"DNA","label":"TEF1 / EF1A locus","plain_english":"A housekeeping gene for translation. Yeast keeps redundant copies because the cell cannot afford to run out.","seq_hint":"ATGGGTAAA… (mock / simplified)"},
+      {"stage":"mRNA","label":"TEF1 mRNA","plain_english":"Abundant transcript — translation factors are among the most expressed messages in a growing cell.","seq_hint":"AUGGGUAAA… (mock / simplified)"},
+      {"stage":"Protein","label":"eEF1A","plain_english":"Shuttles aminoacyl-tRNAs into the ribosome. Same core job from yeast to humans.","seq_hint":"MGKE… (mock / simplified)"}
+    ]
+  },
+  "EF1A": {
+    "id":"EF1A","name":"Elongation factor 1-α","alias_of":"TEF1",
+    "role":"Alias family for TEF1 — translation machinery; highly conserved.",
+    "organisms":["bakers-yeast","schizosaccharomyces","neurospora"],
+    "phenotype":"Same translation job under a different name in some annotations.",
+    "steps":[
+      {"stage":"DNA","label":"EF1A locus","plain_english":"Annotation alias for the elongation-factor family. See TEF1 for the baker's-yeast story.","seq_hint":"ATGGGTAAA… (mock / simplified)"},
+      {"stage":"mRNA","label":"EF1A mRNA","plain_english":"The message that keeps protein synthesis moving.","seq_hint":"AUGGGUAAA… (mock / simplified)"},
+      {"stage":"Protein","label":"EF-1α","plain_english":"The finished elongation factor — shared core across fungi.","seq_hint":"MGKE… (mock / simplified)"}
+    ]
+  }
+};
 </script>
-<script src="js/map.js"></script>
+<script src="js/canvas.js"></script>
+<script src="js/gene-follow.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

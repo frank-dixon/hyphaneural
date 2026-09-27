@@ -7,62 +7,47 @@
       "scientific_name": "Saccharomyces cerevisiae",
       "short_blurb": "The classic lab fungus. A compact genome where gene \u2192 trait stories are unusually readable.",
       "note": "",
-      "x": 0,
-      "y": 0,
       "glow": "#3d9e8f",
+      "genes": [
+        "SUC2",
+        "ACT1",
+        "HO",
+        "TEF1"
+      ],
       "shared_genes": [
         "ACT1",
-        "EF1A",
-        "TUB1"
+        "TEF1",
+        "EF1A"
       ],
       "unique_genes": [
         "HO",
         "SUC2"
       ],
       "genome_source": "mock-public",
-      "is_public_genome": true
+      "is_public_genome": true,
+      "default": true
     },
     {
-      "id": 2,
-      "slug": "oyster-mushroom",
-      "common_name": "Oyster mushroom",
-      "scientific_name": "Pleurotus ostreatus",
-      "short_blurb": "A wood-decay basidiomycete. Hyphal networks and fruiting bodies make structure visible at human scale.",
+      "id": 6,
+      "slug": "schizosaccharomyces",
+      "common_name": "Fission yeast",
+      "scientific_name": "Schizosaccharomyces pombe",
+      "short_blurb": "Cell-cycle genetics in a yeast that divides by fission \u2014 a different silhouette of the same story.",
       "note": "",
-      "x": 420,
-      "y": -180,
-      "glow": "#2a8f82",
+      "glow": "#3d9e8f",
+      "genes": [
+        "ACT1",
+        "TEF1"
+      ],
       "shared_genes": [
         "ACT1",
-        "EF1A",
-        "LAC1"
+        "TEF1",
+        "EF1A"
       ],
       "unique_genes": [
-        "POX1",
-        "VEL1"
+        "STE11"
       ],
       "genome_source": "mock-public",
-      "is_public_genome": true
-    },
-    {
-      "id": 3,
-      "slug": "psilocybe-cubensis-annotation",
-      "common_name": "Psilocybe (public genome)",
-      "scientific_name": "Psilocybe cubensis (annotation)",
-      "short_blurb": "Public sequence annotation of a medicinal/psilocybe-type genome. Explore shared fungal architecture \u2014 not cultivation.",
-      "note": "Data is public sequence annotation only. No cultivation content.",
-      "x": -380,
-      "y": 260,
-      "glow": "#c4784a",
-      "shared_genes": [
-        "ACT1",
-        "EF1A",
-        "PSI"
-      ],
-      "unique_genes": [
-        "PSI_CLUSTER_STUB"
-      ],
-      "genome_source": "mock-public-annotation",
       "is_public_genome": true
     },
     {
@@ -72,17 +57,41 @@
       "scientific_name": "Neurospora crassa",
       "short_blurb": "A genetic workhorse for circadian rhythms and gene silencing. Threads of regulation made measurable.",
       "note": "",
-      "x": 200,
-      "y": 340,
-      "glow": "#3d9e8f",
+      "glow": "#2a8f82",
+      "genes": [
+        "ACT1",
+        "TEF1"
+      ],
       "shared_genes": [
         "ACT1",
-        "EF1A",
-        "WC1"
+        "TEF1",
+        "EF1A"
       ],
       "unique_genes": [
         "FRQ",
         "WC2"
+      ],
+      "genome_source": "mock-public",
+      "is_public_genome": true
+    },
+    {
+      "id": 2,
+      "slug": "oyster-mushroom",
+      "common_name": "Oyster mushroom",
+      "scientific_name": "Pleurotus ostreatus",
+      "short_blurb": "A wood-decay basidiomycete. Hyphal networks make structure visible at human scale.",
+      "note": "",
+      "glow": "#2a8f82",
+      "genes": [
+        "ACT1",
+        "TEF1"
+      ],
+      "shared_genes": [
+        "ACT1",
+        "TEF1"
+      ],
+      "unique_genes": [
+        "POX1"
       ],
       "genome_source": "mock-public",
       "is_public_genome": true
@@ -94,38 +103,17 @@
       "scientific_name": "Aspergillus nidulans",
       "short_blurb": "Model ascomycete for secondary metabolism and developmental genetics.",
       "note": "",
-      "x": -520,
-      "y": -120,
       "glow": "#2f8a7c",
+      "genes": [
+        "ACT1",
+        "TEF1"
+      ],
       "shared_genes": [
         "ACT1",
-        "EF1A",
-        "VEA"
+        "TEF1"
       ],
       "unique_genes": [
-        "BRLE",
-        "ABAB"
-      ],
-      "genome_source": "mock-public",
-      "is_public_genome": true
-    },
-    {
-      "id": 6,
-      "slug": "schizosaccharomyces",
-      "common_name": "Fission yeast",
-      "scientific_name": "Schizosaccharomyces pombe",
-      "short_blurb": "Cell-cycle genetics in a yeast that divides by fission \u2014 a different silhouette of the same story.",
-      "note": "",
-      "x": 120,
-      "y": -420,
-      "glow": "#3d9e8f",
-      "shared_genes": [
-        "ACT1",
-        "EF1A",
-        "CDC2"
-      ],
-      "unique_genes": [
-        "STE11"
+        "BRLE"
       ],
       "genome_source": "mock-public",
       "is_public_genome": true
@@ -137,125 +125,27 @@
       "scientific_name": "Candida albicans",
       "short_blurb": "Dimorphic yeast; morphology switches illuminate how genotype meets environment.",
       "note": "Research / public-genome framing only.",
-      "x": -200,
-      "y": -300,
       "glow": "#358f82",
+      "genes": [
+        "ACT1",
+        "TEF1"
+      ],
       "shared_genes": [
         "ACT1",
-        "EF1A",
-        "HWP1"
+        "TEF1"
       ],
       "unique_genes": [
         "EFG1"
       ],
       "genome_source": "mock-public",
       "is_public_genome": true
-    },
-    {
-      "id": 8,
-      "slug": "cryptococcus",
-      "common_name": "Cryptococcus",
-      "scientific_name": "Cryptococcus neoformans",
-      "short_blurb": "Basidiomycete yeast with a well-mapped virulence and mating genetics literature.",
-      "note": "Public annotation focus.",
-      "x": 560,
-      "y": 200,
-      "glow": "#2a8f82",
-      "shared_genes": [
-        "ACT1",
-        "EF1A",
-        "CAP59"
-      ],
-      "unique_genes": [
-        "STE12a"
-      ],
-      "genome_source": "mock-public",
-      "is_public_genome": true
-    },
-    {
-      "id": 9,
-      "slug": "ustilago",
-      "common_name": "Corn smut",
-      "scientific_name": "Ustilago maydis",
-      "short_blurb": "A plant-associated basidiomycete whose mating-type loci are textbook genetics.",
-      "note": "",
-      "x": -100,
-      "y": 480,
-      "glow": "#3d9e8f",
-      "shared_genes": [
-        "ACT1",
-        "EF1A",
-        "B_LOCUS"
-      ],
-      "unique_genes": [
-        "PRA1"
-      ],
-      "genome_source": "mock-public",
-      "is_public_genome": true
-    },
-    {
-      "id": 10,
-      "slug": "coprinopsis",
-      "common_name": "Ink cap model",
-      "scientific_name": "Coprinopsis cinerea",
-      "short_blurb": "Mushroom development genetics \u2014 fruiting as a readout of developmental programs.",
-      "note": "",
-      "x": 680,
-      "y": -80,
-      "glow": "#2f8a7c",
-      "shared_genes": [
-        "ACT1",
-        "EF1A",
-        "DST1"
-      ],
-      "unique_genes": [
-        "CC1"
-      ],
-      "genome_source": "mock-public",
-      "is_public_genome": true
-    },
-    {
-      "id": 11,
-      "slug": "magnaporthe",
-      "common_name": "Rice blast fungus",
-      "scientific_name": "Magnaporthe oryzae",
-      "short_blurb": "Plant-pathogen genetics with clear morphological infection structures in the literature.",
-      "note": "Public genome / research framing.",
-      "x": -640,
-      "y": 140,
-      "glow": "#358f82",
-      "shared_genes": [
-        "ACT1",
-        "EF1A",
-        "PMK1"
-      ],
-      "unique_genes": [
-        "MPG1"
-      ],
-      "genome_source": "mock-public",
-      "is_public_genome": true
-    },
-    {
-      "id": 12,
-      "slug": "trichoderma",
-      "common_name": "Trichoderma",
-      "scientific_name": "Trichoderma reesei",
-      "short_blurb": "Industrial cellulase genetics \u2014 enzymes as the visible tip of a regulatory network.",
-      "note": "",
-      "x": 320,
-      "y": 520,
-      "glow": "#3d9e8f",
-      "shared_genes": [
-        "ACT1",
-        "EF1A",
-        "XYR1"
-      ],
-      "unique_genes": [
-        "CBH1"
-      ],
-      "genome_source": "mock-public",
-      "is_public_genome": true
     }
   ],
-  "source": "static-seed"
+  "source": "static-seed",
+  "default_organism": "bakers-yeast",
+  "compare_defaults": {
+    "a": "bakers-yeast",
+    "b": "schizosaccharomyces",
+    "gene": "ACT1"
+  }
 }

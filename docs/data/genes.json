@@ -1,67 +1,158 @@
 {
+  "SUC2": {
+    "id": "SUC2",
+    "name": "Invertase",
+    "role": "Cleaves sucrose into glucose and fructose — the classic yeast sugar story.",
+    "organisms": ["bakers-yeast"],
+    "phenotype": "Lets yeast break table sugar into fuel it can burn.",
+    "guided": true,
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "SUC2 locus",
+        "plain_english": "On chromosome IX sits a stretch of DNA that encodes invertase. This is the recipe — not the enzyme yet.",
+        "seq_hint": "ATGACGATT… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "SUC2 transcript",
+        "plain_english": "The cell copies that DNA into messenger RNA — a working draft the ribosome can read. DNA stays in the nucleus; mRNA carries the message out.",
+        "seq_hint": "AUGACGAUU… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "Invertase enzyme",
+        "plain_english": "Ribosomes assemble amino acids into invertase. The finished enzyme cleaves sucrose → glucose + fructose — fuel yeast can actually use.",
+        "seq_hint": "MTI… (mock / simplified)"
+      }
+    ]
+  },
   "ACT1": {
     "id": "ACT1",
     "name": "Actin",
-    "role": "Cytoskeleton filament; shared across fungi",
+    "role": "Builds the cytoskeleton — the cell's internal scaffolding. Highly conserved across fungi.",
+    "organisms": ["bakers-yeast", "schizosaccharomyces", "neurospora", "oyster-mushroom", "aspergillus-nidulans", "candida-albicans"],
+    "phenotype": "Same job in every fungus: shape, movement, and division scaffolding.",
+    "family": "actin",
+    "compare_default": true,
     "steps": [
       {
         "stage": "DNA",
         "label": "ACT1 locus",
-        "seq_hint": "ATGTGTGAC\u2026"
+        "plain_english": "Actin is one of the most conserved genes in eukaryotes. The DNA sequence is almost a family signature across fungi.",
+        "seq_hint": "ATGTCTGAC… (mock / simplified)"
       },
       {
-        "stage": "RNA",
+        "stage": "mRNA",
         "label": "actin mRNA",
-        "seq_hint": "AUGUGUGAC\u2026"
+        "plain_english": "Transcribed constantly — cells need a steady supply of actin monomers to rebuild filaments as they grow and divide.",
+        "seq_hint": "AUGUCUGAC… (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "actin monomer",
-        "seq_hint": "MCDD\u2026"
+        "plain_english": "Monomers polymerize into filaments that push, pull, and hold the cell together. Change the sequence a little and the scaffold still works — change it a lot and the cell collapses.",
+        "seq_hint": "MSDD… (mock / simplified)"
+      }
+    ],
+    "compare": {
+      "bakers-yeast": {
+        "label": "S. cerevisiae ACT1",
+        "similarity": 0.92,
+        "note": "Budding yeast actin — classic lab reference."
+      },
+      "schizosaccharomyces": {
+        "label": "S. pombe act1",
+        "similarity": 0.88,
+        "note": "Fission yeast — same protein job, slightly different sequence handwriting."
+      },
+      "neurospora": {
+        "label": "N. crassa act",
+        "similarity": 0.85,
+        "note": "Filamentous mold — conserved core, divergent tips."
+      }
+    }
+  },
+  "HO": {
+    "id": "HO",
+    "name": "Homothallic endonuclease",
+    "role": "Cuts mating-type DNA so yeast can switch mating type — a yeast-specific story.",
+    "organisms": ["bakers-yeast"],
+    "phenotype": "Enables mating-type switching; not found the same way in fission yeast or molds.",
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "HO endonuclease gene",
+        "plain_english": "HO encodes a site-specific DNA cutter. Only budding yeast tells this particular mating-type switch story.",
+        "seq_hint": "ATGCTTTCT… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "HO transcript",
+        "plain_english": "Expressed in a tight window of the cell cycle — timing matters as much as the sequence.",
+        "seq_hint": "AUGCUUUCU… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "HO endonuclease",
+        "plain_english": "The enzyme nicks mating-type DNA, triggering gene conversion. Result: a cell can change which mating partner it seeks.",
+        "seq_hint": "MLS… (mock / simplified)"
+      }
+    ]
+  },
+  "TEF1": {
+    "id": "TEF1",
+    "name": "Translation elongation factor 1-α",
+    "role": "Helps ribosomes add amino acids during protein building. Conserved across fungi (also called EF1A).",
+    "organisms": ["bakers-yeast", "schizosaccharomyces", "neurospora", "oyster-mushroom"],
+    "phenotype": "Without it, protein synthesis stalls — every cell needs this machinery.",
+    "aliases": ["EF1A", "eEF1A"],
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "TEF1 / EF1A locus",
+        "plain_english": "A housekeeping gene for translation. Yeast keeps redundant copies because the cell cannot afford to run out.",
+        "seq_hint": "ATGGGTAAA… (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "TEF1 mRNA",
+        "plain_english": "Abundant transcript — translation factors are among the most expressed messages in a growing cell.",
+        "seq_hint": "AUGGGUAAA… (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "eEF1A",
+        "plain_english": "Shuttles aminoacyl-tRNAs into the ribosome. Same core job from yeast to humans — evolutionary handwriting with a shared ink.",
+        "seq_hint": "MGKE… (mock / simplified)"
       }
     ]
   },
   "EF1A": {
     "id": "EF1A",
-    "name": "Elongation factor 1-\u03b1",
-    "role": "Translation machinery; highly conserved",
+    "name": "Elongation factor 1-α",
+    "role": "Alias family for TEF1 — translation machinery; highly conserved.",
+    "organisms": ["bakers-yeast", "schizosaccharomyces", "neurospora"],
+    "phenotype": "Same translation job under a different name in some annotations.",
+    "alias_of": "TEF1",
     "steps": [
       {
         "stage": "DNA",
         "label": "EF1A locus",
-        "seq_hint": "ATGGGTAAA\u2026"
+        "plain_english": "Annotation alias for the elongation-factor family. See TEF1 for the baker's-yeast story.",
+        "seq_hint": "ATGGGTAAA… (mock / simplified)"
       },
       {
-        "stage": "RNA",
+        "stage": "mRNA",
         "label": "EF1A mRNA",
-        "seq_hint": "AUGGGUAAA\u2026"
+        "plain_english": "The message that keeps protein synthesis moving.",
+        "seq_hint": "AUGGGUAAA… (mock / simplified)"
       },
       {
         "stage": "Protein",
-        "label": "EF-1\u03b1",
-        "seq_hint": "MGKE\u2026"
-      }
-    ]
-  },
-  "PSI": {
-    "id": "PSI",
-    "name": "Public annotation marker (stub)",
-    "role": "Placeholder for public-genome annotation only \u2014 no cultivation content",
-    "steps": [
-      {
-        "stage": "DNA",
-        "label": "annotated locus",
-        "seq_hint": "public\u2026"
-      },
-      {
-        "stage": "RNA",
-        "label": "transcript stub",
-        "seq_hint": "public\u2026"
-      },
-      {
-        "stage": "Protein",
-        "label": "product stub",
-        "seq_hint": "\u2026"
+        "label": "EF-1α",
+        "plain_english": "The finished elongation factor — shared core across fungi.",
+        "seq_hint": "MGKE… (mock / simplified)"
       }
     ]
   }
