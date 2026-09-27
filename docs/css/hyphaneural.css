@@ -1,0 +1,449 @@
+/* Hyphaneural — Quiet Protomol tokens (ultra-light; no UI kit) */
+:root {
+  --void: #07090b;
+  --void-elev: #0c1014;
+  --void-panel: #0e1419;
+  --teal: #3d9e8f;
+  --teal-dim: #1a4a44;
+  --teal-glow: rgba(11, 138, 143, 0.4);
+  --teal-thread: rgba(11, 138, 143, 0.32);
+  --ember: #c4784a;
+  --ember-glow: rgba(196, 120, 74, 0.35);
+  --mist: #8a9aa3;
+  --mist-dim: #4a5560;
+  --ink: #d4dce2;
+  --font: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--teal);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--ember);
+}
+
+/* ——— Auth ——— */
+.auth-shell {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 120%, rgba(61, 158, 143, 0.08), transparent),
+    var(--void);
+}
+
+.auth-card {
+  width: min(360px, 100%);
+  padding: 2rem 1.75rem;
+  background: var(--void-elev);
+  border: 1px solid rgba(61, 158, 143, 0.12);
+  border-radius: 2px;
+}
+
+.auth-mark {
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 0.5rem;
+}
+
+.auth-card h1 {
+  font-weight: 400;
+  font-size: 1.35rem;
+  margin: 0 0 0.35rem;
+  letter-spacing: 0.02em;
+}
+
+.auth-card .tagline {
+  color: var(--mist-dim);
+  font-size: 0.85rem;
+  margin: 0 0 1.75rem;
+  line-height: 1.45;
+}
+
+.field {
+  margin-bottom: 1rem;
+}
+.field label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mist-dim);
+  margin-bottom: 0.35rem;
+}
+.field input {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  background: var(--void);
+  border: 1px solid rgba(61, 158, 143, 0.18);
+  border-radius: 1px;
+  color: var(--ink);
+  font: inherit;
+  outline: none;
+}
+.field input:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 1px rgba(61, 158, 143, 0.25);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.7rem 1rem;
+  background: transparent;
+  border: 1px solid var(--teal-dim);
+  color: var(--teal);
+  font: inherit;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  cursor: pointer;
+  border-radius: 1px;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.btn:hover {
+  border-color: var(--teal);
+  background: rgba(61, 158, 143, 0.08);
+}
+.btn-ember {
+  border-color: rgba(196, 120, 74, 0.4);
+  color: var(--ember);
+}
+.btn-ember:hover {
+  border-color: var(--ember);
+  background: rgba(196, 120, 74, 0.08);
+}
+
+.auth-error {
+  color: var(--ember);
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+.auth-foot {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--mist-dim);
+}
+
+/* ——— Map chrome ——— */
+.map-app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--void);
+}
+
+#hypha-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+}
+#hypha-canvas.dragging {
+  cursor: grabbing;
+}
+
+.chrome {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+}
+.chrome > * {
+  pointer-events: auto;
+}
+
+.top-bar {
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.1rem;
+  background: linear-gradient(to bottom, rgba(7, 9, 11, 0.85), transparent);
+}
+
+.brand {
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--teal);
+}
+
+.chrome-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+.chrome-actions button,
+.chrome-actions a {
+  background: none;
+  border: none;
+  color: var(--mist-dim);
+  font: inherit;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  padding: 0.25rem 0.4rem;
+}
+.chrome-actions button:hover,
+.chrome-actions a:hover {
+  color: var(--teal);
+}
+.chrome-actions button.active {
+  color: var(--ember);
+}
+
+.readout {
+  bottom: 0.9rem;
+  left: 1.1rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--mist-dim);
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+
+.hint {
+  bottom: 0.9rem;
+  right: 1.1rem;
+  font-size: 0.7rem;
+  color: var(--mist-dim);
+  opacity: 0.7;
+  max-width: 280px;
+  text-align: right;
+  pointer-events: none;
+}
+
+.map-app.calm .top-bar,
+.map-app.calm .hint {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s;
+}
+.map-app .top-bar,
+.map-app .hint {
+  transition: opacity 0.6s;
+}
+
+/* ——— Chamber panel ——— */
+.chamber {
+  position: absolute;
+  top: 3.5rem;
+  right: 1rem;
+  width: min(340px, calc(100vw - 2rem));
+  max-height: calc(100vh - 5rem);
+  background: rgba(14, 20, 25, 0.92);
+  border: 1px solid rgba(61, 158, 143, 0.15);
+  border-radius: 2px;
+  display: none;
+  flex-direction: column;
+  z-index: 20;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+}
+.chamber.open {
+  display: flex;
+}
+.chamber-head {
+  padding: 1rem 1.1rem 0.6rem;
+  border-bottom: 1px solid rgba(61, 158, 143, 0.1);
+  flex-shrink: 0;
+}
+.chamber-head .sci {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--mist-dim);
+  margin-top: 0.15rem;
+}
+.chamber-head h2 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+.chamber-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--mist-dim);
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.chamber-close:hover {
+  color: var(--ember);
+}
+.chamber-body {
+  overflow-y: auto;
+  padding: 1rem 1.1rem 1.25rem;
+  flex: 1;
+}
+.chamber-body p {
+  margin: 0 0 0.9rem;
+  line-height: 1.55;
+  color: var(--mist);
+  font-size: 0.9rem;
+}
+.chamber-note {
+  font-size: 0.75rem;
+  color: var(--ember);
+  border-left: 2px solid rgba(196, 120, 74, 0.45);
+  padding-left: 0.65rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+.gene-block {
+  margin-bottom: 1rem;
+}
+.gene-block h3 {
+  margin: 0 0 0.45rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mist-dim);
+  font-weight: 500;
+}
+.gene-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.chip {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid rgba(61, 158, 143, 0.25);
+  color: var(--teal);
+  background: transparent;
+  cursor: pointer;
+  border-radius: 1px;
+}
+.chip:hover,
+.chip.selected {
+  border-color: var(--ember);
+  color: var(--ember);
+  background: rgba(196, 120, 74, 0.08);
+}
+.chip.unique {
+  border-color: rgba(138, 154, 163, 0.25);
+  color: var(--mist);
+}
+
+/* Gene thread animation */
+.dogma {
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(61, 158, 143, 0.1);
+}
+.dogma h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mist-dim);
+  font-weight: 500;
+}
+.dogma-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+.dogma-step {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.5rem 0;
+  opacity: 0.25;
+  transition: opacity 0.5s;
+}
+.dogma-step.lit {
+  opacity: 1;
+}
+.dogma-node {
+  width: 10px;
+  height: 10px;
+  margin-top: 0.25rem;
+  border-radius: 50%;
+  background: var(--teal-dim);
+  box-shadow: none;
+  flex-shrink: 0;
+  transition: background 0.4s, box-shadow 0.4s;
+}
+.dogma-step.lit .dogma-node {
+  background: var(--teal);
+  box-shadow: 0 0 10px var(--teal-glow);
+}
+.dogma-step.lit.protein .dogma-node {
+  background: var(--ember);
+  box-shadow: 0 0 10px var(--ember-glow);
+}
+.dogma-label .stage {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mist-dim);
+}
+.dogma-label .name {
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+.dogma-label .hint-seq {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--mist-dim);
+}
+
+.compare-banner {
+  position: absolute;
+  top: 3.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  padding: 0.45rem 0.9rem;
+  background: rgba(14, 20, 25, 0.9);
+  border: 1px solid rgba(196, 120, 74, 0.3);
+  color: var(--ember);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  display: none;
+  border-radius: 1px;
+}
+.compare-banner.visible {
+  display: block;
+}
+
+.map-dim #hypha-canvas {
+  /* dim handled in JS via overlay flag */
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hyphaneural — map demo</title>
+  <meta name="description" content="Quiet Protomol mycelial organism map — pan, zoom, see the strand.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/hyphaneural.css">
+</head>
+<body>
+<div class="map-app" id="map-app">
+  <canvas id="hypha-canvas"></canvas>
+
+  <div class="chrome top-bar">
+    <div class="brand">Hyphaneural</div>
+    <div class="chrome-actions">
+      <button type="button" id="btn-compare" title="Select two organisms">Compare</button>
+      <button type="button" id="btn-calm" title="Hide chrome">Calm</button>
+      <a href="https://github.com/frank-dixon/hyphaneural" title="Source on GitHub">Source</a>
+    </div>
+  </div>
+
+  <div class="compare-banner" id="compare-banner"></div>
+
+  <div class="chrome readout" id="readout">x 0  y 0  ×1.00</div>
+  <div class="chrome hint">Pan · scroll to zoom · hyphae reach outward · static demo</div>
+
+  <aside class="chamber" id="chamber" aria-label="Organism chamber">
+    <button type="button" class="chamber-close" id="btn-close-chamber" aria-label="Close">×</button>
+    <div class="chamber-head">
+      <h2 id="chamber-title"></h2>
+      <div class="sci" id="chamber-sci"></div>
+    </div>
+    <div class="chamber-body" id="chamber-body"></div>
+  </aside>
+</div>
+<script>
+  /* Embedded seed — no login / Django required for GitHub Pages demo */
+  window.HYPHA_SEED = [{"id": 1, "slug": "bakers-yeast", "common_name": "Baker's yeast", "scientific_name": "Saccharomyces cerevisiae", "short_blurb": "The classic lab fungus. A compact genome where gene \u2192 trait stories are unusually readable.", "note": "", "x": 0, "y": 0, "glow": "#3d9e8f", "shared_genes": ["ACT1", "EF1A", "TUB1"], "unique_genes": ["HO", "SUC2"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 2, "slug": "oyster-mushroom", "common_name": "Oyster mushroom", "scientific_name": "Pleurotus ostreatus", "short_blurb": "A wood-decay basidiomycete. Hyphal networks and fruiting bodies make structure visible at human scale.", "note": "", "x": 420, "y": -180, "glow": "#2a8f82", "shared_genes": ["ACT1", "EF1A", "LAC1"], "unique_genes": ["POX1", "VEL1"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 3, "slug": "psilocybe-cubensis-annotation", "common_name": "Psilocybe (public genome)", "scientific_name": "Psilocybe cubensis (annotation)", "short_blurb": "Public sequence annotation of a medicinal/psilocybe-type genome. Explore shared fungal architecture \u2014 not cultivation.", "note": "Data is public sequence annotation only. No cultivation content.", "x": -380, "y": 260, "glow": "#c4784a", "shared_genes": ["ACT1", "EF1A", "PSI"], "unique_genes": ["PSI_CLUSTER_STUB"], "genome_source": "mock-public-annotation", "is_public_genome": true}, {"id": 4, "slug": "neurospora", "common_name": "Bread mold", "scientific_name": "Neurospora crassa", "short_blurb": "A genetic workhorse for circadian rhythms and gene silencing. Threads of regulation made measurable.", "note": "", "x": 200, "y": 340, "glow": "#3d9e8f", "shared_genes": ["ACT1", "EF1A", "WC1"], "unique_genes": ["FRQ", "WC2"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 5, "slug": "aspergillus-nidulans", "common_name": "A. nidulans", "scientific_name": "Aspergillus nidulans", "short_blurb": "Model ascomycete for secondary metabolism and developmental genetics.", "note": "", "x": -520, "y": -120, "glow": "#2f8a7c", "shared_genes": ["ACT1", "EF1A", "VEA"], "unique_genes": ["BRLE", "ABAB"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 6, "slug": "schizosaccharomyces", "common_name": "Fission yeast", "scientific_name": "Schizosaccharomyces pombe", "short_blurb": "Cell-cycle genetics in a yeast that divides by fission \u2014 a different silhouette of the same story.", "note": "", "x": 120, "y": -420, "glow": "#3d9e8f", "shared_genes": ["ACT1", "EF1A", "CDC2"], "unique_genes": ["STE11"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 7, "slug": "candida-albicans", "common_name": "C. albicans", "scientific_name": "Candida albicans", "short_blurb": "Dimorphic yeast; morphology switches illuminate how genotype meets environment.", "note": "Research / public-genome framing only.", "x": -200, "y": -300, "glow": "#358f82", "shared_genes": ["ACT1", "EF1A", "HWP1"], "unique_genes": ["EFG1"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 8, "slug": "cryptococcus", "common_name": "Cryptococcus", "scientific_name": "Cryptococcus neoformans", "short_blurb": "Basidiomycete yeast with a well-mapped virulence and mating genetics literature.", "note": "Public annotation focus.", "x": 560, "y": 200, "glow": "#2a8f82", "shared_genes": ["ACT1", "EF1A", "CAP59"], "unique_genes": ["STE12a"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 9, "slug": "ustilago", "common_name": "Corn smut", "scientific_name": "Ustilago maydis", "short_blurb": "A plant-associated basidiomycete whose mating-type loci are textbook genetics.", "note": "", "x": -100, "y": 480, "glow": "#3d9e8f", "shared_genes": ["ACT1", "EF1A", "B_LOCUS"], "unique_genes": ["PRA1"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 10, "slug": "coprinopsis", "common_name": "Ink cap model", "scientific_name": "Coprinopsis cinerea", "short_blurb": "Mushroom development genetics \u2014 fruiting as a readout of developmental programs.", "note": "", "x": 680, "y": -80, "glow": "#2f8a7c", "shared_genes": ["ACT1", "EF1A", "DST1"], "unique_genes": ["CC1"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 11, "slug": "magnaporthe", "common_name": "Rice blast fungus", "scientific_name": "Magnaporthe oryzae", "short_blurb": "Plant-pathogen genetics with clear morphological infection structures in the literature.", "note": "Public genome / research framing.", "x": -640, "y": 140, "glow": "#358f82", "shared_genes": ["ACT1", "EF1A", "PMK1"], "unique_genes": ["MPG1"], "genome_source": "mock-public", "is_public_genome": true}, {"id": 12, "slug": "trichoderma", "common_name": "Trichoderma", "scientific_name": "Trichoderma reesei", "short_blurb": "Industrial cellulase genetics \u2014 enzymes as the visible tip of a regulatory network.", "note": "", "x": 320, "y": 520, "glow": "#3d9e8f", "shared_genes": ["ACT1", "EF1A", "XYR1"], "unique_genes": ["CBH1"], "genome_source": "mock-public", "is_public_genome": true}];
+  window.HYPHA_GENES = {"ACT1": {"id": "ACT1", "name": "Actin", "role": "Cytoskeleton filament; shared across fungi", "steps": [{"stage": "DNA", "label": "ACT1 locus", "seq_hint": "ATGTGTGAC\u2026"}, {"stage": "RNA", "label": "actin mRNA", "seq_hint": "AUGUGUGAC\u2026"}, {"stage": "Protein", "label": "actin monomer", "seq_hint": "MCDD\u2026"}]}, "EF1A": {"id": "EF1A", "name": "Elongation factor 1-\u03b1", "role": "Translation machinery; highly conserved", "steps": [{"stage": "DNA", "label": "EF1A locus", "seq_hint": "ATGGGTAAA\u2026"}, {"stage": "RNA", "label": "EF1A mRNA", "seq_hint": "AUGGGUAAA\u2026"}, {"stage": "Protein", "label": "EF-1\u03b1", "seq_hint": "MGKE\u2026"}]}, "PSI": {"id": "PSI", "name": "Public annotation marker (stub)", "role": "Placeholder for public-genome annotation only \u2014 no cultivation content", "steps": [{"stage": "DNA", "label": "annotated locus", "seq_hint": "public\u2026"}, {"stage": "RNA", "label": "transcript stub", "seq_hint": "public\u2026"}, {"stage": "Protein", "label": "product stub", "seq_hint": "\u2026"}]}};
+</script>
+<script src="js/map.js"></script>
+</body>
+</html>

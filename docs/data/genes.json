@@ -1,0 +1,68 @@
+{
+  "ACT1": {
+    "id": "ACT1",
+    "name": "Actin",
+    "role": "Cytoskeleton filament; shared across fungi",
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "ACT1 locus",
+        "seq_hint": "ATGTGTGAC\u2026"
+      },
+      {
+        "stage": "RNA",
+        "label": "actin mRNA",
+        "seq_hint": "AUGUGUGAC\u2026"
+      },
+      {
+        "stage": "Protein",
+        "label": "actin monomer",
+        "seq_hint": "MCDD\u2026"
+      }
+    ]
+  },
+  "EF1A": {
+    "id": "EF1A",
+    "name": "Elongation factor 1-\u03b1",
+    "role": "Translation machinery; highly conserved",
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "EF1A locus",
+        "seq_hint": "ATGGGTAAA\u2026"
+      },
+      {
+        "stage": "RNA",
+        "label": "EF1A mRNA",
+        "seq_hint": "AUGGGUAAA\u2026"
+      },
+      {
+        "stage": "Protein",
+        "label": "EF-1\u03b1",
+        "seq_hint": "MGKE\u2026"
+      }
+    ]
+  },
+  "PSI": {
+    "id": "PSI",
+    "name": "Public annotation marker (stub)",
+    "role": "Placeholder for public-genome annotation only \u2014 no cultivation content",
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "annotated locus",
+        "seq_hint": "public\u2026"
+      },
+      {
+        "stage": "RNA",
+        "label": "transcript stub",
+        "seq_hint": "public\u2026"
+      },
+      {
+        "stage": "Protein",
+        "label": "product stub",
+        "seq_hint": "\u2026"
+      }
+    ]
+  }
+}
