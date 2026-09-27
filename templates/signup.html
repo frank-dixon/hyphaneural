@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Hyphaneural — create account{% endblock %}
+{% block body %}
+<div class="auth-shell">
+  <div class="auth-card">
+    <div class="auth-mark">Hyphaneural</div>
+    <h1>Create account</h1>
+    <p class="tagline">Session auth for the organism map prototype.</p>
+    <form method="post" action="{% url 'signup' %}">
+      {% csrf_token %}
+      {% if form.errors %}
+      <div class="auth-error">Please check the fields below.</div>
+      {% endif %}
+      <div class="field">
+        <label for="id_username">Username</label>
+        <input id="id_username" name="username" maxlength="150" required autofocus
+               value="{{ form.username.value|default:'' }}">
+        {% if form.username.errors %}<div class="auth-error">{{ form.username.errors.0 }}</div>{% endif %}
+      </div>
+      <div class="field">
+        <label for="id_password1">Password</label>
+        <input id="id_password1" type="password" name="password1" required>
+        {% if form.password1.errors %}<div class="auth-error">{{ form.password1.errors.0 }}</div>{% endif %}
+      </div>
+      <div class="field">
+        <label for="id_password2">Confirm</label>
+        <input id="id_password2" type="password" name="password2" required>
+        {% if form.password2.errors %}<div class="auth-error">{{ form.password2.errors.0 }}</div>{% endif %}
+      </div>
+      <button class="btn" type="submit">Create &amp; enter</button>
+    </form>
+    <p class="auth-foot"><a href="{% url 'login' %}">Already have an account</a></p>
+  </div>
+</div>
+{% endblock %}

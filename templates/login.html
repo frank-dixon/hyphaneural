@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Hyphaneural — enter{% endblock %}
+{% block body %}
+<div class="auth-shell">
+  <div class="auth-card">
+    <div class="auth-mark">Hyphaneural</div>
+    <h1>See the strand</h1>
+    <p class="tagline">Genetics as living threads in a simple fungal model — not a spreadsheet.</p>
+    {% if error %}<div class="auth-error">{{ error }}</div>{% endif %}
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div class="field">
+        <label for="id_username">Username</label>
+        <input id="id_username" name="username" autocomplete="username" required autofocus>
+      </div>
+      <div class="field">
+        <label for="id_password">Password</label>
+        <input id="id_password" type="password" name="password" autocomplete="current-password" required>
+      </div>
+      <button class="btn" type="submit">Enter</button>
+    </form>
+    <p class="auth-foot"><a href="{% url 'signup' %}">Create an account</a></p>
+  </div>
+</div>
+{% endblock %}
