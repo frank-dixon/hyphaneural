@@ -1,6 +1,7 @@
 /**
- * Hyphaneural map — expanding hyphal network.
- * Core organisms from API; procedural nodes grow in as camera pans/zooms.
+ * Hyphaneural map — living mycelial weave.
+ * Core organisms from API; procedural tips + organic hyphae expand as camera pans/zooms.
+ * Visual: tapered branching filaments (not force-graph straight edges).
  */
 (function () {
   "use strict";
@@ -16,14 +17,16 @@
   const compareBanner = document.getElementById("compare-banner");
   const app = document.getElementById("map-app");
 
-  const TEAL = [61, 158, 143];
+  // Quiet Protomol — living teal threads (#0B8A8F-ish), ember only on special foci
+  const TEAL = [11, 138, 143];
+  const TEAL_SOFT = [61, 158, 143];
   const EMBER = [196, 120, 74];
   const VOID = "#07090b";
 
   const cam = { x: 0, y: 0, z: 1 };
   let coreNodes = [];
   let procNodes = new Map(); // key "cx,cy" -> node
-  let edges = [];
+  let filaments = []; // organic hyphal strands
   let selected = null;
   let compareMode = false;
   let comparePair = [];
@@ -32,11 +35,11 @@
   let lastPtr = null;
   let dim = 0;
   let animT = 0;
-  let needsEdgeRebuild = true;
+  let needsRebuild = true;
 
-  const CELL = 280;
-  const PROC_R = 9;
-  const CORE_R = 14;
+  const CELL = 260;
+  const PROC_R = 3.8;
+  const CORE_R = 7;
 
   function resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -75,41 +78,45 @@
     return (h % 10000) / 10000;
   }
 
+  function seeded(h) {
+    // return next-hash + float in [0,1)
+    const n = (Math.imul(h ^ (h >>> 16), 2246822507) ^ Math.imul((h << 13) ^ h, 3266489909)) >>> 0;
+    return { h: n, v: (n % 10000) / 10000 };
+  }
+
   function makeProcNode(cx, cy) {
     const h = hash2(cx, cy);
-    // Sparse: only ~38% of cells spawn a visible node
-    if (rand01(h) > 0.28) return null;
-    const ox = (rand01(h >> 3) - 0.5) * CELL * 0.7;
-    const oy = (rand01(h >> 7) - 0.5) * CELL * 0.7;
+    // Sparse tips — mycelium density, not a dense graph
+    if (rand01(h) > 0.46) return null;
+    const ox = (rand01(h >> 3) - 0.5) * CELL * 0.72;
+    const oy = (rand01(h >> 7) - 0.5) * CELL * 0.72;
     const x = cx * CELL + CELL / 2 + ox;
     const y = cy * CELL + CELL / 2 + oy;
-    // Skip if too close to a core organism
     for (const c of coreNodes) {
       const dx = c.x - x;
       const dy = c.y - y;
-      if (dx * dx + dy * dy < 90 * 90) return null;
+      if (dx * dx + dy * dy < 70 * 70) return null;
     }
-    const ember = rand01(h >> 11) < 0.06;
+    const ember = rand01(h >> 11) < 0.04;
     return {
       id: `p-${cx}-${cy}`,
       x,
       y,
-      r: PROC_R * (0.55 + rand01(h >> 15) * 0.55),
-      glow: ember ? EMBER : TEAL,
+      r: PROC_R * (0.45 + rand01(h >> 15) * 0.7),
+      glow: ember ? EMBER : TEAL_SOFT,
       procedural: true,
       born: performance.now(),
       label: null,
       common_name: null,
+      degree: 0,
     };
   }
 
   function ensureProcedural() {
-    // Expand generation radius with zoom-out (more world visible → more mycelium)
-    const margin = 1.35;
+    const margin = 1.4;
     const halfW = (window.innerWidth / cam.z) * 0.5 * margin;
     const halfH = (window.innerHeight / cam.z) * 0.5 * margin;
-    // Extra ring grows as user explores (zoom-out fills more cells)
-    const exploreBoost = Math.max(0, Math.log2(1 / cam.z + 0.01)) * 0.4;
+    const exploreBoost = Math.max(0, Math.log2(1 / cam.z + 0.01)) * 0.45;
     const pad = (1 + exploreBoost) * CELL;
 
     const x0 = Math.floor((cam.x - halfW - pad) / CELL);
@@ -123,11 +130,11 @@
         const key = cx + "," + cy;
         if (procNodes.has(key)) continue;
         const n = makeProcNode(cx, cy);
-        procNodes.set(key, n); // null = visited empty
+        procNodes.set(key, n);
         if (n) added = true;
       }
     }
-    if (added) needsEdgeRebuild = true;
+    if (added) needsRebuild = true;
   }
 
   function allNodes() {
@@ -138,12 +145,127 @@
     return list;
   }
 
-  function rebuildEdges() {
-    edges = [];
+  /**
+   * Build organic control points between two world positions.
+   * Multi-segment wavy polyline with irregular perpendicular offsets.
+   */
+  function organicControls(ax, ay, bx, by, seed, ampScale) {
+    const dx = bx - ax;
+    const dy = by - ay;
+    const len = Math.hypot(dx, dy) || 1;
+    const nx = -dy / len;
+    const ny = dx / len;
+    // More segments → visibly wavy, not a single soft arc
+    const segs = Math.max(4, Math.min(10, Math.round(len / 38)));
+    const pts = [{ x: ax, y: ay }];
+    let h = seed;
+    // Strong bow + secondary S-curve so strands wander like hyphae
+    const bow = (seeded(h).v - 0.5) * len * 0.22 * ampScale;
+    h = seeded(h).h;
+    const bow2 = (seeded(h).v - 0.5) * len * 0.16 * ampScale;
+    h = seeded(h).h;
+    for (let i = 1; i < segs; i++) {
+      const t = i / segs;
+      const envelope = Math.sin(t * Math.PI);
+      const sCurve = Math.sin(t * Math.PI * 2);
+      const s = seeded(h);
+      h = s.h;
+      const s2 = seeded(h);
+      h = s2.h;
+      const wobble = (s.v - 0.5) * len * (0.12 + 0.16 * ampScale) * envelope;
+      const along = (s2.v - 0.5) * (len / segs) * 0.55;
+      const lateral = nx * (wobble + bow * envelope + bow2 * sCurve) + (dx / len) * along;
+      const lateraly = ny * (wobble + bow * envelope + bow2 * sCurve) + (dy / len) * along;
+      pts.push({ x: ax + dx * t + lateral, y: ay + dy * t + lateraly });
+    }
+    pts.push({ x: bx, y: by });
+    return pts;
+  }
+
+  /** Catmull-Rom → cubic Bezier segments for smooth organic stroke */
+  function strokeCatmull(ctx, pts, tension) {
+    if (pts.length < 2) return;
+    const t = tension == null ? 0.5 : tension;
+    ctx.moveTo(pts[0].x, pts[0].y);
+    if (pts.length === 2) {
+      ctx.lineTo(pts[1].x, pts[1].y);
+      return;
+    }
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[i === 0 ? 0 : i - 1];
+      const p1 = pts[i];
+      const p2 = pts[i + 1];
+      const p3 = pts[i + 2 < pts.length ? i + 2 : pts.length - 1];
+      const cp1x = p1.x + ((p2.x - p0.x) * t) / 6;
+      const cp1y = p1.y + ((p2.y - p0.y) * t) / 6;
+      const cp2x = p2.x - ((p3.x - p1.x) * t) / 6;
+      const cp2y = p2.y - ((p3.y - p1.y) * t) / 6;
+      ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, p2.x, p2.y);
+    }
+  }
+
+  function sampleCatmull(pts, samples) {
+    // Approximate polyline for tapered multi-stroke
+    if (pts.length < 2) return pts.slice();
+    const out = [];
+    const n = Math.max(samples, pts.length * 3);
+    for (let i = 0; i <= n; i++) {
+      const u = i / n;
+      const f = u * (pts.length - 1);
+      const i0 = Math.floor(f);
+      const t = f - i0;
+      const p0 = pts[Math.max(0, i0 - 1)];
+      const p1 = pts[i0];
+      const p2 = pts[Math.min(pts.length - 1, i0 + 1)];
+      const p3 = pts[Math.min(pts.length - 1, i0 + 2)];
+      const t2 = t * t;
+      const t3 = t2 * t;
+      // Catmull-Rom
+      const x =
+        0.5 *
+        (2 * p1.x +
+          (-p0.x + p2.x) * t +
+          (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * t2 +
+          (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * t3);
+      const y =
+        0.5 *
+        (2 * p1.y +
+          (-p0.y + p2.y) * t +
+          (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * t2 +
+          (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * t3);
+      out.push({ x, y });
+    }
+    return out;
+  }
+
+  function makeFilament(a, b, opts) {
+    opts = opts || {};
+    const seed = opts.seed != null ? opts.seed : hash2(Math.floor(a.x * 10), Math.floor(b.y * 10) ^ Math.floor(b.x));
+    const amp = opts.amp != null ? opts.amp : 1;
+    const controls = organicControls(a.x, a.y, b.x, b.y, seed, amp);
+    const dist = Math.hypot(b.x - a.x, b.y - a.y);
+    return {
+      a,
+      b,
+      controls,
+      seed,
+      w: opts.w != null ? opts.w : Math.max(0.15, 1 - dist / 380),
+      shared: !!opts.shared,
+      genes: opts.genes || null,
+      kind: opts.kind || "primary",
+      born: opts.born != null ? opts.born : performance.now(),
+      hubA: !!(a && (a.id || a.common_name) && !a.procedural),
+      hubB: !!(b && (b.id || b.common_name) && !b.procedural),
+    };
+  }
+
+  function rebuildFilaments() {
+    filaments = [];
     const nodes = allNodes();
-    const maxDist = 320;
+    for (const n of nodes) n.degree = 0;
+
+    const maxDist = 300;
     const maxDist2 = maxDist * maxDist;
-    // Spatial buckets
     const buckets = new Map();
     const bSize = maxDist;
     for (let i = 0; i < nodes.length; i++) {
@@ -154,12 +276,16 @@
       if (!buckets.has(k)) buckets.set(k, []);
       buckets.get(k).push(i);
     }
+
     const linked = new Set();
+    const now = performance.now();
+
+    // Sparse primary hyphae — fewer graph edges, more curve
     for (let i = 0; i < nodes.length; i++) {
       const a = nodes[i];
       const bx = Math.floor(a.x / bSize);
       const by = Math.floor(a.y / bSize);
-      let degree = 0;
+      const candidates = [];
       for (let oy = -1; oy <= 1; oy++) {
         for (let ox = -1; ox <= 1; ox++) {
           const cell = buckets.get(bx + ox + "," + (by + oy));
@@ -170,35 +296,192 @@
             const dx = a.x - b.x;
             const dy = a.y - b.y;
             const d2 = dx * dx + dy * dy;
-            if (d2 > maxDist2 || d2 < 1) continue;
-            // Prefer fewer edges for meditative feel
-            const h = hash2(Math.floor(a.x), Math.floor(b.x) ^ Math.floor(b.y));
-            if (rand01(h) > 0.42 && degree >= 2) continue;
-            const key = i < j ? i + "-" + j : j + "-" + i;
-            if (linked.has(key)) continue;
-            linked.add(key);
-            edges.push({ a, b, w: 1 - Math.sqrt(d2) / maxDist });
-            degree++;
-            if (degree >= 3) break;
+            if (d2 > maxDist2 || d2 < 48 * 48) continue;
+            candidates.push({ j, b, d2 });
           }
-          if (degree >= 3) break;
         }
-        if (degree >= 3) break;
+      }
+      candidates.sort((u, v) => u.d2 - v.d2);
+      let degree = 0;
+      const maxDeg = a.procedural ? 2 : 3;
+      for (const c of candidates) {
+        if (degree >= maxDeg) break;
+        if (c.b.degree >= (c.b.procedural ? 2 : 4)) continue;
+        const h = hash2(Math.floor(a.x), Math.floor(c.b.x) ^ Math.floor(c.b.y * 3));
+        if (rand01(h) > 0.48 && degree >= 1) continue;
+        const key = i < c.j ? i + "-" + c.j : c.j + "-" + i;
+        if (linked.has(key)) continue;
+        linked.add(key);
+        const fil = makeFilament(a, c.b, {
+          seed: h,
+          w: 1 - Math.sqrt(c.d2) / maxDist,
+          kind: "primary",
+          amp: 1.05 + rand01(h >> 5) * 0.45,
+          born: a.born || c.b.born || now,
+        });
+        filaments.push(fil);
+        a.degree++;
+        c.b.degree++;
+        degree++;
+
+        // Mid-hypha forks (1–2) — the mycelial signature
+        const forks = rand01(h >> 9) < 0.55 ? (rand01(h >> 11) < 0.4 ? 2 : 1) : 0;
+        for (let f = 0; f < forks; f++) {
+          const ctrls = fil.controls;
+          const idx = Math.max(1, Math.min(ctrls.length - 2, Math.floor(ctrls.length * (0.35 + rand01(h >> (14 + f)) * 0.35))));
+          const mid = ctrls[idx];
+          const baseAng = Math.atan2(ctrls[idx].y - ctrls[idx - 1].y, ctrls[idx].x - ctrls[idx - 1].x);
+          const ang = baseAng + (rand01(h >> (16 + f)) - 0.5) * Math.PI * 1.1 + (f === 1 ? Math.PI * 0.55 : 0);
+          const blen = 55 + rand01(h >> (18 + f)) * 120;
+          // Multi-segment wandering tip (not a straight stub)
+          let px = mid.x;
+          let py = mid.y;
+          let pang = ang;
+          let prev = mid;
+          const steps = 2 + Math.floor(rand01(h >> (20 + f)) * 2);
+          for (let s = 0; s < steps; s++) {
+            const slen = blen / steps;
+            pang += (rand01(hash2(h, s + f * 9)) - 0.5) * 0.9;
+            px += Math.cos(pang) * slen;
+            py += Math.sin(pang) * slen;
+            const tip = { x: px, y: py, procedural: true, r: 2 };
+            filaments.push(
+              makeFilament(prev, tip, {
+                seed: h ^ (0xabc1 + f * 97 + s * 13),
+                w: fil.w * (0.5 - s * 0.12),
+                kind: "branch",
+                amp: 1.25,
+                born: fil.born,
+              })
+            );
+            prev = tip;
+          }
+        }
       }
     }
-    // Shared-gene edges between core nodes (stronger visual)
+
+    // Exploratory secondary filaments from every tip/hub — weave density
+    for (const n of nodes) {
+      const h0 = hash2(Math.floor(n.x * 2), Math.floor(n.y * 2));
+      const count = n.procedural
+        ? rand01(h0) < 0.62
+          ? 1 + (rand01(h0 >> 2) < 0.35 ? 1 : 0)
+          : (rand01(h0 >> 5) < 0.2 ? 1 : 0)
+        : 1 + (rand01(h0) < 0.45 ? 1 : 0);
+      for (let k = 0; k < count; k++) {
+        const h = h0 ^ (k * 7919);
+        let ang = rand01(h >> 4) * Math.PI * 2;
+        let px = n.x;
+        let py = n.y;
+        let prev = n;
+        const steps = 2 + Math.floor(rand01(h >> 8) * 3);
+        const blen = 45 + rand01(h >> 10) * 130;
+        for (let s = 0; s < steps; s++) {
+          ang += (rand01(hash2(h, s + 3)) - 0.5) * 1.0;
+          const slen = blen / steps;
+          px += Math.cos(ang) * slen;
+          py += Math.sin(ang) * slen;
+          const tip = { x: px, y: py, procedural: true, r: 1.5 };
+          filaments.push(
+            makeFilament(prev, tip, {
+              seed: h ^ (0x55aa + s * 31),
+              w: 0.18 + rand01(h >> 12) * 0.22 * (1 - s / steps),
+              kind: "secondary",
+              amp: 1.3,
+              born: n.born || now,
+            })
+          );
+          prev = tip;
+        }
+      }
+    }
+
+    // Cell-local wandering felt — filaments that are NOT node-to-node edges
+    for (const [key, n] of procNodes) {
+      if (!n) continue;
+      const parts = key.split(",");
+      const cx = +parts[0];
+      const cy = +parts[1];
+      const h = hash2(cx * 17, cy * 29);
+      if (rand01(h) > 0.5) continue;
+      const ang0 = rand01(h >> 2) * Math.PI * 2;
+      let px = n.x + (rand01(h >> 5) - 0.5) * 30;
+      let py = n.y + (rand01(h >> 7) - 0.5) * 30;
+      let prev = { x: px, y: py, procedural: true, r: 1 };
+      let ang = ang0;
+      const steps = 3 + Math.floor(rand01(h >> 9) * 3);
+      for (let s = 0; s < steps; s++) {
+        ang += (rand01(hash2(h, s + 40)) - 0.5) * 1.15;
+        const slen = 28 + rand01(hash2(h, s + 50)) * 42;
+        px += Math.cos(ang) * slen;
+        py += Math.sin(ang) * slen;
+        const tip = { x: px, y: py, procedural: true, r: 1 };
+        filaments.push(
+          makeFilament(prev, tip, {
+            seed: h ^ (0xf00d + s),
+            w: 0.12 + 0.1 * (1 - s / steps),
+            kind: "secondary",
+            amp: 1.35,
+            born: n.born || now,
+          })
+        );
+        prev = tip;
+      }
+    }
+
+    // Gentle anastomoses — merge nearby midpoints
+    const primaries = filaments.filter((f) => f.kind === "primary" || f.kind === "branch");
+    const maxAna = Math.min(70, Math.floor(primaries.length * 0.18));
+    let ana = 0;
+    for (let i = 0; i < primaries.length && ana < maxAna; i++) {
+      const f1 = primaries[i];
+      const m1 = f1.controls[Math.floor(f1.controls.length / 2)];
+      for (let j = i + 1; j < primaries.length && ana < maxAna; j++) {
+        const f2 = primaries[j];
+        if (f1.a === f2.a || f1.a === f2.b || f1.b === f2.a || f1.b === f2.b) continue;
+        const m2 = f2.controls[Math.floor(f2.controls.length / 2)];
+        const ddx = m1.x - m2.x;
+        const ddy = m1.y - m2.y;
+        const d2 = ddx * ddx + ddy * ddy;
+        if (d2 > 110 * 110 || d2 < 14 * 14) continue;
+        const h = hash2(Math.floor(m1.x), Math.floor(m2.y));
+        if (rand01(h) > 0.45) continue;
+        filaments.push(
+          makeFilament(m1, m2, {
+            seed: h,
+            w: 0.22,
+            kind: "anastomosis",
+            amp: 0.95,
+            born: Math.max(f1.born, f2.born),
+          })
+        );
+        ana++;
+        break;
+      }
+    }
+
+    // Shared-gene hyphae between core organisms
     for (let i = 0; i < coreNodes.length; i++) {
       for (let j = i + 1; j < coreNodes.length; j++) {
         const a = coreNodes[i];
         const b = coreNodes[j];
-        const shared = (a.shared_genes || []).filter((g) =>
-          (b.shared_genes || []).includes(g)
-        );
+        const shared = (a.shared_genes || []).filter((g) => (b.shared_genes || []).includes(g));
         if (!shared.length) continue;
-        edges.push({ a, b, w: 0.85, shared: true, genes: shared });
+        filaments.push(
+          makeFilament(a, b, {
+            seed: hash2(Math.floor(a.x), Math.floor(b.y)),
+            w: 0.9,
+            shared: true,
+            genes: shared,
+            kind: "shared",
+            amp: 1.25,
+            born: now,
+          })
+        );
       }
     }
-    needsEdgeRebuild = false;
+
+    needsRebuild = false;
   }
 
   function hitTest(sx, sy) {
@@ -207,12 +490,11 @@
     let bestD = Infinity;
     for (const n of allNodes()) {
       if (!n.common_name && n.procedural) {
-        // procedural: only pickable when zoomed in
         if (cam.z < 0.85) continue;
       }
       const dx = n.x - w.x;
       const dy = n.y - w.y;
-      const hitR = (n.r || CORE_R) + 8 / cam.z;
+      const hitR = (n.r || CORE_R) + 10 / cam.z;
       const d2 = dx * dx + dy * dy;
       if (d2 < hitR * hitR && d2 < bestD) {
         bestD = d2;
@@ -222,80 +504,208 @@
     return best;
   }
 
+  function filamentAge(f) {
+    if (!f.born) return 1;
+    const age = Math.min(1, (animT - f.born) / 1600);
+    return age * age * (3 - 2 * age);
+  }
+
+  /** Live drift: subtle perpendicular sway on control points (calm, deterministic) */
+  function driftedControls(f) {
+    const pts = f.controls;
+    if (pts.length < 3) return pts;
+    const out = new Array(pts.length);
+    out[0] = pts[0];
+    out[pts.length - 1] = pts[pts.length - 1];
+    const phase = animT * 0.00035 + (f.seed % 1000) * 0.01;
+    for (let i = 1; i < pts.length - 1; i++) {
+      const p = pts[i];
+      const t = i / (pts.length - 1);
+      const env = Math.sin(t * Math.PI);
+      const drift = Math.sin(phase + i * 0.7) * 1.2 * env;
+      // perpendicular approx from neighbors
+      const dx = pts[i + 1].x - pts[i - 1].x;
+      const dy = pts[i + 1].y - pts[i - 1].y;
+      const len = Math.hypot(dx, dy) || 1;
+      out[i] = {
+        x: p.x + (-dy / len) * drift,
+        y: p.y + (dx / len) * drift,
+      };
+    }
+    return out;
+  }
+
+  /** Project filament to screen, exaggerating wander when zoomed out so hyphae stay organic */
+  function screenOrganicPoints(f) {
+    const pts = driftedControls(f);
+    const n = pts.length;
+    if (n < 3) return pts.map((p) => screenFromWorld(p.x, p.y));
+    const a = pts[0];
+    const b = pts[n - 1];
+    // Keep screen-space curvature similar across zoom levels
+    const zoomCurve = Math.min(3.0, Math.pow(1 / Math.max(cam.z, 0.2), 0.7));
+    const out = new Array(n);
+    out[0] = screenFromWorld(a.x, a.y);
+    out[n - 1] = screenFromWorld(b.x, b.y);
+    for (let i = 1; i < n - 1; i++) {
+      const t = i / (n - 1);
+      const chordX = a.x + (b.x - a.x) * t;
+      const chordY = a.y + (b.y - a.y) * t;
+      const ex = chordX + (pts[i].x - chordX) * zoomCurve;
+      const ey = chordY + (pts[i].y - chordY) * zoomCurve;
+      out[i] = screenFromWorld(ex, ey);
+    }
+    return out;
+  }
+
+  function drawFilament(f, w, h) {
+    const age = filamentAge(f);
+    if (age < 0.02) return;
+
+    const screenPts = screenOrganicPoints(f);
+
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (const p of screenPts) {
+      if (p.x < minX) minX = p.x;
+      if (p.x > maxX) maxX = p.x;
+      if (p.y < minY) minY = p.y;
+      if (p.y > maxY) maxY = p.y;
+    }
+    const pad = 70;
+    if (maxX < -pad || minX > w + pad || maxY < -pad || minY > h + pad) return;
+
+    const isCompare =
+      comparePair.length === 2 &&
+      f.a &&
+      f.b &&
+      ((f.a === comparePair[0] && f.b === comparePair[1]) ||
+        (f.a === comparePair[1] && f.b === comparePair[0]) ||
+        (f.shared && comparePair.includes(f.a) && comparePair.includes(f.b)));
+
+    const sharedHighlight =
+      comparePair.length === 2 &&
+      f.shared &&
+      f.a &&
+      f.b &&
+      comparePair.includes(f.a) &&
+      comparePair.includes(f.b);
+
+    let col = TEAL;
+    let baseAlpha = 0.06 + f.w * 0.1;
+    if (f.kind === "branch" || f.kind === "secondary") baseAlpha *= 0.85;
+    if (f.kind === "anastomosis") baseAlpha *= 0.6;
+    if (f.shared) {
+      baseAlpha = 0.2;
+      col = TEAL_SOFT;
+    }
+    if (sharedHighlight || isCompare) {
+      col = EMBER;
+      baseAlpha = 0.5;
+    }
+
+    if (f.shared && !sharedHighlight) {
+      baseAlpha += 0.03 * Math.sin(animT * 0.0008 + (f.seed % 200) * 0.02);
+    } else if (f.kind === "primary") {
+      baseAlpha += 0.01 * Math.sin(animT * 0.00055 + (f.seed % 300) * 0.015);
+    }
+
+    const alpha = Math.max(0, baseAlpha * age * (1 - dim * 0.55));
+    // Keep filaments readable when zoomed out (avoid star-chart dots)
+    const zScale = 0.5 + 0.55 * Math.min(cam.z, 1.6);
+
+    let hubBoost = 1;
+    if (f.hubA || f.hubB) hubBoost = 1.4;
+    if (f.kind === "shared") hubBoost = 1.65;
+    if (f.kind === "branch" || f.kind === "secondary") hubBoost = 0.65;
+    if (f.kind === "anastomosis") hubBoost = 0.5;
+
+    const baseLw = (0.65 + f.w * 1.25) * hubBoost * zScale;
+
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    if (sharedHighlight || isCompare) {
+      ctx.beginPath();
+      strokeCatmull(ctx, screenPts, 1.0);
+      ctx.strokeStyle = `rgba(${EMBER[0]},${EMBER[1]},${EMBER[2]},${0.4 * age})`;
+      ctx.lineWidth = Math.max(2.0, baseLw * 2.2);
+      ctx.stroke();
+    }
+
+    // Soft outer glow — continuous organic curve
+    ctx.beginPath();
+    strokeCatmull(ctx, screenPts, 1.0);
+    ctx.strokeStyle = `rgba(${col[0]},${col[1]},${col[2]},${alpha * 0.38})`;
+    ctx.lineWidth = Math.max(3.5, baseLw * 4.2);
+    ctx.stroke();
+
+    // Core filament — smooth Catmull-Rom (the mycelial stroke)
+    ctx.beginPath();
+    strokeCatmull(ctx, screenPts, 1.0);
+    ctx.strokeStyle = `rgba(${col[0]},${col[1]},${col[2]},${alpha})`;
+    ctx.lineWidth = Math.max(0.55, baseLw);
+    ctx.stroke();
+
+    // Taper accents near hubs / tips using short smooth end-caps (not jagged polylines)
+    if (screenPts.length >= 3 && (f.kind === "primary" || f.kind === "shared" || f.kind === "branch")) {
+      const n = screenPts.length;
+      if (f.hubA || f.kind === "shared") {
+        const head = screenPts.slice(0, Math.min(4, n));
+        ctx.beginPath();
+        strokeCatmull(ctx, head, 1.0);
+        ctx.strokeStyle = `rgba(${col[0]},${col[1]},${col[2]},${alpha * 0.7})`;
+        ctx.lineWidth = baseLw * 1.55;
+        ctx.stroke();
+      }
+      if (f.hubB || f.kind === "shared") {
+        const tail = screenPts.slice(Math.max(0, n - 4));
+        ctx.beginPath();
+        strokeCatmull(ctx, tail, 1.0);
+        ctx.strokeStyle = `rgba(${col[0]},${col[1]},${col[2]},${alpha * 0.7})`;
+        ctx.lineWidth = baseLw * 1.55;
+        ctx.stroke();
+      }
+      if (f.kind === "branch" || f.kind === "secondary") {
+        // thicker at root, fade tip
+        const root = screenPts.slice(0, Math.min(3, n));
+        ctx.beginPath();
+        strokeCatmull(ctx, root, 1.0);
+        ctx.strokeStyle = `rgba(${col[0]},${col[1]},${col[2]},${alpha * 0.75})`;
+        ctx.lineWidth = baseLw * 1.45;
+        ctx.stroke();
+      }
+    }
+  }
+
   function draw() {
     animT = performance.now();
     ensureProcedural();
-    if (needsEdgeRebuild) rebuildEdges();
+    if (needsRebuild) rebuildFilaments();
 
     const w = window.innerWidth;
     const h = window.innerHeight;
     ctx.fillStyle = VOID;
     ctx.fillRect(0, 0, w, h);
 
-    // Soft vignette field
-    const g = ctx.createRadialGradient(w / 2, h / 2, 40, w / 2, h / 2, Math.max(w, h) * 0.7);
-    g.addColorStop(0, "rgba(61,158,143,0.03)");
+    // Soft vignette field — Meditative Expanse
+    const g = ctx.createRadialGradient(w / 2, h / 2, 40, w / 2, h / 2, Math.max(w, h) * 0.72);
+    g.addColorStop(0, "rgba(11,138,143,0.035)");
     g.addColorStop(1, "rgba(0,0,0,0)");
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, w, h);
 
-    const dimAlpha = dim;
-
-    // Threads
-    for (const e of edges) {
-      const sa = screenFromWorld(e.a.x, e.a.y);
-      const sb = screenFromWorld(e.b.x, e.b.y);
-      // Cull offscreen
-      if (
-        (sa.x < -80 && sb.x < -80) ||
-        (sa.x > w + 80 && sb.x > w + 80) ||
-        (sa.y < -80 && sb.y < -80) ||
-        (sa.y > h + 80 && sb.y > h + 80)
-      )
-        continue;
-
-      const isCompare =
-        comparePair.length === 2 &&
-        ((e.a === comparePair[0] && e.b === comparePair[1]) ||
-          (e.a === comparePair[1] && e.b === comparePair[0]) ||
-          (e.shared &&
-            comparePair.includes(e.a) &&
-            comparePair.includes(e.b)));
-
-      const sharedHighlight =
-        comparePair.length === 2 &&
-        e.shared &&
-        ((comparePair[0] === e.a && comparePair[1] === e.b) ||
-          (comparePair[0] === e.b && comparePair[1] === e.a) ||
-          (comparePair.includes(e.a) && comparePair.includes(e.b)));
-
-      let alpha = (e.shared ? 0.2 : 0.07 + e.w * 0.1) * (1 - dimAlpha * 0.55);
-      let col = TEAL;
-      let lw = (e.shared ? 1.4 : 0.6 + e.w * 0.7) * Math.min(cam.z, 1.4);
-
-      if (sharedHighlight || isCompare) {
-        col = EMBER;
-        alpha = 0.55;
-        lw = 2.2;
-      }
-
-      // Gentle pulse along shared hyphae
-      if (e.shared && !sharedHighlight) {
-        alpha += 0.04 * Math.sin(animT * 0.001 + e.a.x * 0.01);
-      }
-
-      ctx.beginPath();
-      // Soft curve
-      const mx = (sa.x + sb.x) / 2 + (sa.y - sb.y) * 0.08;
-      const my = (sa.y + sb.y) / 2 + (sb.x - sa.x) * 0.08;
-      ctx.moveTo(sa.x, sa.y);
-      ctx.quadraticCurveTo(mx, my, sb.x, sb.y);
-      ctx.strokeStyle = `rgba(${col[0]},${col[1]},${col[2]},${Math.max(0, alpha)})`;
-      ctx.lineWidth = lw;
-      ctx.stroke();
+    // Draw hyphal weave FIRST — dominant visual
+    // Layer: anastomoses + secondary under, primary mid, shared on top
+    const layers = { anastomosis: [], secondary: [], branch: [], primary: [], shared: [] };
+    for (const f of filaments) {
+      const k = layers[f.kind] ? f.kind : "primary";
+      layers[k].push(f);
+    }
+    for (const key of ["anastomosis", "secondary", "branch", "primary", "shared"]) {
+      for (const f of layers[key]) drawFilament(f, w, h);
     }
 
-    // Nodes
+    // Nodes as soft foci / junctions / tips — subordinate to weave
     const nodes = allNodes();
     for (const n of nodes) {
       const s = screenFromWorld(n.x, n.y);
@@ -304,48 +714,47 @@
       let age = 1;
       if (n.born) {
         age = Math.min(1, (animT - n.born) / 1200);
-        // ease
         age = age * age * (3 - 2 * age);
       }
 
       const isCore = !n.procedural;
       const isSel = selected === n || comparePair.includes(n);
       const isHov = hover === n;
-      const col = n.glow || TEAL;
+      const col = n.glow || TEAL_SOFT;
       const baseR = (n.r || (isCore ? CORE_R : PROC_R)) * age;
-      const r = baseR * (isHov || isSel ? 1.25 : 1) * Math.min(1.15, 0.55 + cam.z * 0.5);
+      const r = baseR * (isHov || isSel ? 1.3 : 1) * Math.min(1.1, 0.5 + cam.z * 0.45);
 
-      // Outer glow
-      const glowR = r * (isCore ? 3.2 : 2.4);
+      // Soft outer bloom
+      const glowR = r * (isCore ? 3.8 : 2.8);
       const grad = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, glowR);
-      const ga = (isCore ? 0.35 : 0.18) * age * (1 - dimAlpha * 0.5);
+      const ga = (isCore ? 0.28 : 0.12) * age * (1 - dim * 0.5);
       grad.addColorStop(0, `rgba(${col[0]},${col[1]},${col[2]},${ga})`);
+      grad.addColorStop(0.45, `rgba(${col[0]},${col[1]},${col[2]},${ga * 0.35})`);
       grad.addColorStop(1, `rgba(${col[0]},${col[1]},${col[2]},0)`);
       ctx.fillStyle = grad;
       ctx.beginPath();
       ctx.arc(s.x, s.y, glowR, 0, Math.PI * 2);
       ctx.fill();
 
-      // Core disc
+      // Small luminous tip / junction (not big graph dots)
       ctx.beginPath();
       ctx.arc(s.x, s.y, r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},${(isCore ? 0.85 : 0.55) * age})`;
+      ctx.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},${(isCore ? 0.72 : 0.4) * age})`;
       ctx.fill();
 
       if (isSel) {
         ctx.beginPath();
-        ctx.arc(s.x, s.y, r + 4, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${EMBER[0]},${EMBER[1]},${EMBER[2]},0.7)`;
-        ctx.lineWidth = 1.2;
+        ctx.arc(s.x, s.y, r + 3.5, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${EMBER[0]},${EMBER[1]},${EMBER[2]},0.65)`;
+        ctx.lineWidth = 1.1;
         ctx.stroke();
       }
 
-      // Labels for core (and nearby procedural when zoomed)
       if (isCore && n.common_name && cam.z > 0.45) {
         ctx.font = "11px IBM Plex Sans, system-ui, sans-serif";
-        ctx.fillStyle = `rgba(212,220,226,${0.55 * age * (1 - dimAlpha * 0.4)})`;
+        ctx.fillStyle = `rgba(212,220,226,${0.5 * age * (1 - dim * 0.4)})`;
         ctx.textAlign = "center";
-        ctx.fillText(n.common_name, s.x, s.y + r + 14);
+        ctx.fillText(n.common_name, s.x, s.y + r + 13);
       }
     }
 
@@ -431,7 +840,6 @@
         </div>`
         )
         .join("");
-      // Stepped glow along DNA → RNA → protein
       const els = track.querySelectorAll(".dogma-step");
       els.forEach((el, i) => {
         setTimeout(() => el.classList.add("lit"), 280 + i * 420);
@@ -461,9 +869,7 @@
     } else {
       const a = comparePair[0];
       const b = comparePair[1];
-      const shared = (a.shared_genes || []).filter((g) =>
-        (b.shared_genes || []).includes(g)
-      );
+      const shared = (a.shared_genes || []).filter((g) => (b.shared_genes || []).includes(g));
       compareBanner.textContent =
         shared.length > 0
           ? `${a.common_name} ↔ ${b.common_name} · ${shared.length} shared`
@@ -471,7 +877,6 @@
     }
   }
 
-  // Pointer
   canvas.addEventListener("pointerdown", (e) => {
     canvas.setPointerCapture(e.pointerId);
     dragging = true;
@@ -487,7 +892,6 @@
       cam.y -= dy / cam.z;
       lastPtr.x = e.clientX;
       lastPtr.y = e.clientY;
-      needsEdgeRebuild = true;
     } else {
       hover = hitTest(e.clientX, e.clientY);
       canvas.style.cursor = hover && hover.common_name ? "pointer" : "grab";
@@ -514,7 +918,6 @@
       }
       updateCompareBanner();
       if (comparePair.length === 2) {
-        // Open chamber for first with overlap note
         openChamber(comparePair[0]);
         const shared = (comparePair[0].shared_genes || []).filter((g) =>
           (comparePair[1].shared_genes || []).includes(g)
@@ -546,7 +949,6 @@
       const after = worldFromScreen(e.clientX, e.clientY);
       cam.x += before.x - after.x;
       cam.y += before.y - after.y;
-      needsEdgeRebuild = true;
     },
     { passive: false }
   );
@@ -573,10 +975,13 @@
       const data = await res.json();
       coreNodes = (data.organisms || []).map((o) => ({
         ...o,
+        x: o.map_x != null ? o.map_x : o.x,
+        y: o.map_y != null ? o.map_y : o.y,
         r: CORE_R,
-        glow: o.glow && o.glow.startsWith("#c") ? EMBER : TEAL,
+        glow: o.glow && (o.glow.startsWith("#c") || o.glow.startsWith("#C")) ? EMBER : TEAL_SOFT,
         procedural: false,
         born: performance.now(),
+        degree: 0,
       }));
       for (const n of coreNodes) {
         if (n.slug && n.slug.includes("psilocybe")) n.glow = EMBER;
@@ -585,7 +990,7 @@
       console.warn("organisms fetch failed", err);
       coreNodes = [];
     }
-    needsEdgeRebuild = true;
+    needsRebuild = true;
     requestAnimationFrame(draw);
   }
 
