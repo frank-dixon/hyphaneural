@@ -129,7 +129,7 @@
     if (!g) return;
     closeCompare();
     if (appEl.classList.contains('mode-strand')) {
-      chamber.setHighlight(id);
+      chamber.setHighlight(id); // camera travels toward gene; BG keeps living sway/re-reach
     }
     geneFollow.show(g);
   }
@@ -171,6 +171,8 @@
       if (locLabel) locLabel.textContent = 'Genome panel · multi-organism';
     } else {
       if (locLabel) locLabel.textContent = "Inside Baker's yeast";
+      // Landing back inside yeast: big mycelial grow-out + camera pull-in
+      if (typeof chamber.replayGrowth === 'function') chamber.replayGrowth({ entrance: true });
     }
   }
 
