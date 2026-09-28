@@ -42,6 +42,7 @@
   let spaces = {};
   let geneFollow = null;
   let genomePanel = null;
+  let bandAnalyzer = null;
   let compareView = null;
   let familyIds = [];
 
@@ -58,14 +59,16 @@
       return r.json();
     });
     Promise.all([
-      loadJson('data/organisms.json?v=tw2'),
-      loadJson('data/genes.json?v=tw2'),
-    ]).then(([orgData, geneData]) => {
+      loadJson('data/organisms.json?v=bands1'),
+      loadJson('data/genes.json?v=bands1'),
+      loadJson('data/bands.json?v=bands1').catch(function () { return null; }),
+    ]).then(([orgData, geneData, bandData]) => {
       orgs = orgData.organisms || [];
       genes = geneData;
       if (orgData.compare_defaults) defaults = orgData.compare_defaults;
       if (orgData.panel_defaults) panelDefaults = orgData.panel_defaults;
       yeast = orgs.find((o) => o.slug === 'bakers-yeast') || orgs[0];
+      window.__hyphaBandData = bandData;
       init();
     }).catch((err) => {
       console.error('Hyphaneural seed load failed', err);
@@ -93,9 +96,9 @@
           b.classList.toggle('on', parseInt(b.getAttribute('data-zoom'), 10) === z);
         });
         const hints = [
-          'Wide field — mycelial expanse. Scroll or use the rail to zoom.',
-          'Mid zoom — hexagonal data lattice. Genes become structure.',
-          'Deep zoom — strand resolution. DNA→mRNA→protein teaching.',
+          'You are looking at a wide mycelial field. Scroll or use the rail to zoom toward the lattice.',
+          'Mid zoom reveals a hexagonal data lattice where genes become structure you can tap.',
+          'Deep zoom reaches strand resolution, where DNA to mRNA to protein teaching can unfold.',
         ];
         const h = document.getElementById('strand-hint');
         if (h) h.textContent = hints[z] || hints[0];
@@ -118,7 +121,7 @@
     document.getElementById('hex-nodes').textContent = String(chamberGenes.length);
     document.getElementById('hex-reach').textContent = chamberGenes.length + ' loci';
     document.getElementById('atlas-hint').textContent =
-      'Drag to explore · tap a fungus · fungi only · ' + orgs.length + ' organisms';
+      'Drag to explore this atlas, then tap a fungus to read a short overview. This catalog is fungi only and currently holds ' + orgs.length + ' organisms.';
 
     geneFollow = new window.HyphaGeneFollow(document.getElementById('gene-panel'), {
       onClose: function () {
@@ -146,6 +149,12 @@
       onGeneClick: function (gid) { openGene(gid); },
     });
 
+    bandAnalyzer = new window.HyphaBandAnalyzer(document.getElementById('bands-panel'), {
+      onGeneClick: function (gid) { openGene(gid); },
+    });
+    bandAnalyzer.onClose = closeBands;
+    if (window.__hyphaBandData) bandAnalyzer.load(window.__hyphaBandData);
+
     compareView = new window.HyphaCompareView(document.getElementById('compare-canvas'));
     setupCompare();
     setupDial();
@@ -158,7 +167,7 @@
     try { seen = localStorage.getItem(TOUR_KEY) === '1'; } catch (e) { /* */ }
     if (!seen) setTimeout(startTour, 800);
 
-    window.HyphaApp = { goToMode, openGene, openCompare, startTour, spaces, orgs };
+    window.HyphaApp = { goToMode, openGene, openCompare, openBands, startTour, spaces, orgs, bandAnalyzer };
   }
 
   // ——— Horizontal dial ———
@@ -178,7 +187,7 @@
     let origin = null;
     window.__hyphaDialGesture = false;
     viewport.addEventListener('pointerdown', (e) => {
-      if (e.target.closest('button, a, select, input, .panel, .atlas-card, .genome-panel, .mode-dial')) return;
+      if (e.target.closest('button, a, select, input, .panel, .atlas-card, .genome-panel, #bands-panel, #genome-panel, .mode-dial')) return;
       ptrId = e.pointerId;
       draggingDial = true;
       axisLocked = null;
@@ -246,6 +255,7 @@
         if (geneFollow && geneFollow.isOpen()) geneFollow.hide();
         closeCompare();
         closeGenome();
+        closeBands();
         closeAtlasCard();
         appEl.classList.remove('calm');
       }
@@ -344,6 +354,7 @@
     }
     if (spaces.strand) spaces.strand.setHighlight(id);
     if (spaces.hex) spaces.hex.setHighlight(id);
+    if (bandAnalyzer) bandAnalyzer.highlight(id);
     geneFollow.show(g);
   }
 
@@ -382,7 +393,7 @@
       if (!a || !b || !g) return;
       compareView.draw(g, a, b);
       const insight = document.getElementById('compare-insight');
-      insight.textContent = 'Same job, different evolutionary handwriting.';
+      insight.textContent = 'These two fungi still do the same molecular job, but the strand tips show different evolutionary handwriting.';
     }
     [cmpA, cmpB, cmpGene].forEach((el) => el.addEventListener('change', refresh));
     window._hyphaRefreshCompare = refresh;
@@ -425,8 +436,27 @@
     document.getElementById('atlas-card').hidden = true;
   }
 
+  function openBands() {
+    closeGenome();
+    closeCompare();
+    document.getElementById('bands-panel').hidden = false;
+    if (bandAnalyzer) {
+      if (window.__hyphaBandData && !bandAnalyzer.data) bandAnalyzer.load(window.__hyphaBandData);
+      bandAnalyzer.setVisible(true);
+    }
+    // Especially useful in Strand Zoom / Hex Reach
+    if (MODES[modeIndex] !== 'strand' && MODES[modeIndex] !== 'hex') {
+      goToMode(MODES.indexOf('strand'), true);
+    }
+  }
+  function closeBands() {
+    document.getElementById('bands-panel').hidden = true;
+    if (bandAnalyzer) bandAnalyzer.setVisible(false);
+  }
+
   function setupChrome() {
     document.getElementById('btn-compare').addEventListener('click', () => openCompare('ACT1'));
+    document.getElementById('btn-bands').addEventListener('click', openBands);
     document.getElementById('btn-genome').addEventListener('click', openGenome);
     document.getElementById('btn-close-genome').addEventListener('click', closeGenome);
     document.getElementById('btn-close-compare').addEventListener('click', closeCompare);
@@ -493,7 +523,7 @@
       },
       {
         title: 'Leave with this',
-        body: 'This gene is a recipe for invertase — the enzyme that lets yeast break table sugar into fuel. Swipe into Atlas for more fungi, Hex for lattice compare, Void to breathe.',
+        body: 'This gene is a recipe for invertase — the enzyme that lets yeast break table sugar into fuel. Open Bands next to compare shared teal cores against yeast-unique pale bands, swipe into Atlas for more fungi, Hex for lattice compare, or Void to breathe.',
         action: function () {
           if (geneFollow && !geneFollow.isOpen()) openGene('SUC2');
         },

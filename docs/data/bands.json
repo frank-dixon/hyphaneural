@@ -1,0 +1,2749 @@
+{
+  "version": 1,
+  "fetched_at": "2026-09-28T05:06:25Z",
+  "organism": {
+    "slug": "bakers-yeast",
+    "scientific_name": "Saccharomyces cerevisiae",
+    "strain": "S288c / ATCC 204508",
+    "taxon_id": 559292,
+    "assembly": "R64-1-1",
+    "citations": [
+      {
+        "source": "NCBI Taxonomy",
+        "id": "559292",
+        "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=559292",
+        "field": "organism taxon"
+      },
+      {
+        "source": "Ensembl Fungi",
+        "id": "saccharomyces_cerevisiae",
+        "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Info/Index",
+        "field": "genome assembly R64-1-1"
+      }
+    ]
+  },
+  "apis": [
+    {
+      "name": "UniProtKB REST",
+      "url": "https://rest.uniprot.org/",
+      "used_for": "Swiss-Prot accession, protein length (aa), protein name, SGD xref"
+    },
+    {
+      "name": "Ensembl Fungi REST",
+      "url": "https://rest.ensembl.org/",
+      "used_for": "chromosome, genomic coordinates, locus id, orthologue condensed homology"
+    },
+    {
+      "name": "SGD (via UniProt xref)",
+      "url": "https://www.yeastgenome.org/",
+      "used_for": "yeast gene identifiers cross-referenced from UniProt"
+    }
+  ],
+  "band_encoding": {
+    "position": "Ensembl chromosome order, then genomic start (bp)",
+    "intensity_height": "UniProt protein length (amino acids) \u2014 taller band = longer protein",
+    "color": "Teal when Ensembl Compara reports \u22651 ortholog among checked fungi; pale when unique in that check set",
+    "label": "Gene symbol + UniProt accession shown on select / hover"
+  },
+  "ortholog_targets": [
+    {
+      "key": "schizosaccharomyces",
+      "ensembl_species": "schizosaccharomyces_pombe",
+      "taxon": 4896,
+      "label": "Schizosaccharomyces pombe",
+      "common": "Fission yeast"
+    },
+    {
+      "key": "candida-albicans",
+      "ensembl_species": "candida_albicans",
+      "taxon": 5476,
+      "label": "Candida albicans",
+      "common": "C. albicans"
+    },
+    {
+      "key": "neurospora",
+      "ensembl_species": "neurospora_crassa",
+      "taxon": 5141,
+      "label": "Neurospora crassa",
+      "common": "Red bread mold"
+    },
+    {
+      "key": "aspergillus-nidulans",
+      "ensembl_species": "aspergillus_nidulans",
+      "taxon": 162425,
+      "label": "Aspergillus nidulans",
+      "common": "A. nidulans"
+    }
+  ],
+  "bands": [
+    {
+      "gene_id": "PYK1",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P00549",
+          "length_aa": 500,
+          "gene_primary": "CDC19",
+          "gene_synonyms": [
+            "PYK1"
+          ],
+          "locus_tag": "YAL038W",
+          "sgd_id": "S000000036",
+          "protein_name": "Pyruvate kinase 1",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P00549",
+            "sgd": "https://www.yeastgenome.org/locus/S000000036"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YAL038W",
+          "display_name": "CDC19",
+          "chromosome": "I",
+          "start": 71786,
+          "end": 73288,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Pyruvate kinase; functions as a homotetramer in glycolysis to convert phosphoenolpyruvate to pyruvate, the input for aerobic (TCA cycle) or anaerobic (glucose fermentation) respiration; regulated via allosteric activation by fructose bisphosphate; CDC19 has a paralog, PYK2, that arose from the whole genome duplication [Source:SGD;Acc:S000000036]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YAL038W"
+          },
+          "resolved_via": "xref:PYK1\u2192YAL038W"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPAC4H3.10c",
+            "protein_id": "SPAC4H3.10c.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Fungi",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPAC4H3.10c?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "C2_05460W_A",
+            "protein_id": "C2_05460W_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C2_05460W_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU06075",
+            "protein_id": "ESA41918",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU06075?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_05210",
+            "protein_id": "CBF81089",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_05210?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "I",
+      "genomic_start": 71786,
+      "genomic_end": 73288,
+      "genomic_length_bp": 1503,
+      "protein_length_aa": 500,
+      "locus_tag": "YAL038W",
+      "protein_name": "Pyruvate kinase 1",
+      "uniprot_accession": "P00549",
+      "sgd_id": "S000000036",
+      "ensembl_id": "YAL038W",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P00549",
+          "url": "https://www.uniprot.org/uniprotkb/P00549",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YAL038W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YAL038W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000000036",
+          "url": "https://www.yeastgenome.org/locus/S000000036",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "SSA1",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P10591",
+          "length_aa": 642,
+          "gene_primary": "SSA1",
+          "gene_synonyms": [],
+          "locus_tag": "YAL005C",
+          "sgd_id": "S000000004",
+          "protein_name": "Heat shock protein SSA1",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P10591",
+            "sgd": "https://www.yeastgenome.org/locus/S000000004"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YAL005C",
+          "display_name": "SSA1",
+          "chromosome": "I",
+          "start": 139503,
+          "end": 141431,
+          "strand": -1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "ATPase involved in protein folding and NLS-directed nuclear transport; member of HSP70 family; required for ubiquitin-dependent degradation of short-lived proteins; forms chaperone complex with Ydj1p; localized to nucleus, cytoplasm, cell wall; 98% identical to paralog Ssa2p with different functional specificity in propagation of yeast [URE3] prions, vacuolar-mediated degradations of gluconeogenesis enzymes; general targeting factor of Hsp104p to prion fibrils [Source:SGD;Acc:S000000004]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YAL005C"
+          },
+          "resolved_via": "symbol:SSA1"
+        },
+        "orthologs": {
+          "schizosaccharomyces": null,
+          "candida-albicans": {
+            "id": "C1_04300C_A",
+            "protein_id": "C1_04300C_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C1_04300C_A?content-type=application/json"
+            }
+          },
+          "neurospora": null,
+          "aspergillus-nidulans": null
+        }
+      },
+      "chromosome": "I",
+      "genomic_start": 139503,
+      "genomic_end": 141431,
+      "genomic_length_bp": 1929,
+      "protein_length_aa": 642,
+      "locus_tag": "YAL005C",
+      "protein_name": "Heat shock protein SSA1",
+      "uniprot_accession": "P10591",
+      "sgd_id": "S000000004",
+      "ensembl_id": "YAL005C",
+      "ortholog_count": 1,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P10591",
+          "url": "https://www.uniprot.org/uniprotkb/P10591",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YAL005C",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YAL005C",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000000004",
+          "url": "https://www.yeastgenome.org/locus/S000000004",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "GAL1",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P04385",
+          "length_aa": 528,
+          "gene_primary": "GAL1",
+          "gene_synonyms": [],
+          "locus_tag": "YBR020W",
+          "sgd_id": "S000000224",
+          "protein_name": "Galactokinase",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P04385",
+            "sgd": "https://www.yeastgenome.org/locus/S000000224"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YBR020W",
+          "display_name": "GAL1",
+          "chromosome": "II",
+          "start": 279021,
+          "end": 280607,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Galactokinase; phosphorylates alpha-D-galactose to alpha-D-galactose-1-phosphate in the first step of galactose catabolism; expression regulated by Gal4p; human homolog GALK2 complements yeast null mutant; GAL1 has a paralog, GAL3, that arose from the whole genome duplication [Source:SGD;Acc:S000000224]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YBR020W"
+          },
+          "resolved_via": "symbol:GAL1"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPBPB2B2.13",
+            "protein_id": "SPBPB2B2.13.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPBPB2B2.13?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "C1_02130C_A",
+            "protein_id": "C1_02130C_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Ascomycota",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C1_02130C_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU08687",
+            "protein_id": "EAA32530",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Ascomycota",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU08687?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_04957",
+            "protein_id": "CBF76398",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Ascomycota",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_04957?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "II",
+      "genomic_start": 279021,
+      "genomic_end": 280607,
+      "genomic_length_bp": 1587,
+      "protein_length_aa": 528,
+      "locus_tag": "YBR020W",
+      "protein_name": "Galactokinase",
+      "uniprot_accession": "P04385",
+      "sgd_id": "S000000224",
+      "ensembl_id": "YBR020W",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P04385",
+          "url": "https://www.uniprot.org/uniprotkb/P04385",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YBR020W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YBR020W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000000224",
+          "url": "https://www.yeastgenome.org/locus/S000000224",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "CDC28",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P00546",
+          "length_aa": 298,
+          "gene_primary": "CDC28",
+          "gene_synonyms": [
+            "CDK1",
+            "HSL5",
+            "SRM5"
+          ],
+          "locus_tag": "YBR160W",
+          "sgd_id": "S000000364",
+          "protein_name": "Cyclin-dependent kinase 1",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P00546",
+            "sgd": "https://www.yeastgenome.org/locus/S000000364"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YBR160W",
+          "display_name": "CDC28",
+          "chromosome": "II",
+          "start": 560078,
+          "end": 560974,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Cyclin-dependent kinase (CDK) catalytic subunit; master regulator of mitotic and meiotic cell cycles; alternately associates with G1, S, G2/M phase cyclins, which provide substrate specificity; regulates metabolism, basal transcription, chromosome dynamics, growth and morphogenesis; transcript induction in osmostress involves antisense RNA; human homologs CDK1, CDK2, CDK3 can complement yeast conditional cdc28 mutants; human CDK1, CDK2 can complement yeast cdc28 null mutant [Source:SGD;Acc:S000000364]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YBR160W"
+          },
+          "resolved_via": "symbol:CDC28"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPBC11B10.09",
+            "protein_id": "SPBC11B10.09.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPBC11B10.09?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "CR_06050W_A",
+            "protein_id": "CR_06050W_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/CR_06050W_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU09778",
+            "protein_id": "EAA30881",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU09778?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": null
+        }
+      },
+      "chromosome": "II",
+      "genomic_start": 560078,
+      "genomic_end": 560974,
+      "genomic_length_bp": 897,
+      "protein_length_aa": 298,
+      "locus_tag": "YBR160W",
+      "protein_name": "Cyclin-dependent kinase 1",
+      "uniprot_accession": "P00546",
+      "sgd_id": "S000000364",
+      "ensembl_id": "YBR160W",
+      "ortholog_count": 3,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P00546",
+          "url": "https://www.uniprot.org/uniprotkb/P00546",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YBR160W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YBR160W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000000364",
+          "url": "https://www.yeastgenome.org/locus/S000000364",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "LEU2",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P04173",
+          "length_aa": 364,
+          "gene_primary": "LEU2",
+          "gene_synonyms": [],
+          "locus_tag": "YCL018W",
+          "sgd_id": "S000000523",
+          "protein_name": "3-isopropylmalate dehydrogenase",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P04173",
+            "sgd": "https://www.yeastgenome.org/locus/S000000523"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YCL018W",
+          "display_name": "LEU2",
+          "chromosome": "III",
+          "start": 91324,
+          "end": 92418,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Beta-isopropylmalate dehydrogenase (IMDH); catalyzes the third step in the leucine biosynthesis pathway; can additionally catalyze the conversion of beta-ethylmalate into alpha-ketovalerate [Source:SGD;Acc:S000000523]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YCL018W"
+          },
+          "resolved_via": "symbol:LEU2"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPBC1A4.02c",
+            "protein_id": "SPBC1A4.02c.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPBC1A4.02c?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "C7_00400W_A",
+            "protein_id": "C7_00400W_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C7_00400W_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU06232",
+            "protein_id": "EAA33847",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU06232?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_00912",
+            "protein_id": "CBF88539",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_00912?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "III",
+      "genomic_start": 91324,
+      "genomic_end": 92418,
+      "genomic_length_bp": 1095,
+      "protein_length_aa": 364,
+      "locus_tag": "YCL018W",
+      "protein_name": "3-isopropylmalate dehydrogenase",
+      "uniprot_accession": "P04173",
+      "sgd_id": "S000000523",
+      "ensembl_id": "YCL018W",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P04173",
+          "url": "https://www.uniprot.org/uniprotkb/P04173",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YCL018W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YCL018W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000000523",
+          "url": "https://www.yeastgenome.org/locus/S000000523",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "PGK1",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P00560",
+          "length_aa": 416,
+          "gene_primary": "PGK1",
+          "gene_synonyms": [],
+          "locus_tag": "YCR012W",
+          "sgd_id": "S000000605",
+          "protein_name": "Phosphoglycerate kinase",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P00560",
+            "sgd": "https://www.yeastgenome.org/locus/S000000605"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YCR012W",
+          "display_name": "PGK1",
+          "chromosome": "III",
+          "start": 137746,
+          "end": 138996,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "3-phosphoglycerate kinase; catalyzes transfer of high-energy phosphoryl groups from the acyl phosphate of 1,3-bisphosphoglycerate to ADP to produce ATP; key enzyme in glycolysis and gluconeogenesis [Source:SGD;Acc:S000000605]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YCR012W"
+          },
+          "resolved_via": "symbol:PGK1"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPBC14F5.04c",
+            "protein_id": "SPBC14F5.04c.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPBC14F5.04c?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "C6_00750C_A",
+            "protein_id": "C6_00750C_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C6_00750C_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU07914",
+            "protein_id": "EAA33194",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Ascomycota",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU07914?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_01246",
+            "protein_id": "CBF87861",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Ascomycota",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_01246?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "III",
+      "genomic_start": 137746,
+      "genomic_end": 138996,
+      "genomic_length_bp": 1251,
+      "protein_length_aa": 416,
+      "locus_tag": "YCR012W",
+      "protein_name": "Phosphoglycerate kinase",
+      "uniprot_accession": "P00560",
+      "sgd_id": "S000000605",
+      "ensembl_id": "YCR012W",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P00560",
+          "url": "https://www.uniprot.org/uniprotkb/P00560",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YCR012W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YCR012W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000000605",
+          "url": "https://www.yeastgenome.org/locus/S000000605",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "HO",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P09932",
+          "length_aa": 586,
+          "gene_primary": "HO",
+          "gene_synonyms": [],
+          "locus_tag": "YDL227C",
+          "sgd_id": "S000002386",
+          "protein_name": "Homothallic switching endonuclease",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P09932",
+            "sgd": "https://www.yeastgenome.org/locus/S000002386"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YDL227C",
+          "display_name": "HO",
+          "chromosome": "IV",
+          "start": 46271,
+          "end": 48031,
+          "strand": -1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Site-specific endonuclease; required for gene conversion at the MAT locus (homothallic switching) through the generation of a ds DNA break; expression restricted to mother cells in late G1 as controlled by Swi4p-Swi6p, Swi5p, and Ash1p [Source:SGD;Acc:S000002386]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YDL227C"
+          },
+          "resolved_via": "symbol:HO"
+        },
+        "orthologs": {
+          "schizosaccharomyces": null,
+          "candida-albicans": null,
+          "neurospora": null,
+          "aspergillus-nidulans": null
+        }
+      },
+      "chromosome": "IV",
+      "genomic_start": 46271,
+      "genomic_end": 48031,
+      "genomic_length_bp": 1761,
+      "protein_length_aa": 586,
+      "locus_tag": "YDL227C",
+      "protein_name": "Homothallic switching endonuclease",
+      "uniprot_accession": "P09932",
+      "sgd_id": "S000002386",
+      "ensembl_id": "YDL227C",
+      "ortholog_count": 0,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P09932",
+          "url": "https://www.uniprot.org/uniprotkb/P09932",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YDL227C",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YDL227C",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000002386",
+          "url": "https://www.yeastgenome.org/locus/S000002386",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "SIR2",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P06700",
+          "length_aa": 562,
+          "gene_primary": "SIR2",
+          "gene_synonyms": [
+            "MAR1"
+          ],
+          "locus_tag": "YDL042C",
+          "sgd_id": "S000002200",
+          "protein_name": "NAD-dependent histone deacetylase SIR2",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P06700",
+            "sgd": "https://www.yeastgenome.org/locus/S000002200"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YDL042C",
+          "display_name": "SIR2",
+          "chromosome": "IV",
+          "start": 376757,
+          "end": 378445,
+          "strand": -1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Conserved NAD+ dependent histone deacetylase of the Sirtuin family; deacetylation targets are primarily nuclear proteins; required for telomere hypercluster formation in quiescent yeast cells; involved in regulation of lifespan; plays roles in silencing at HML, HMR, telomeres, and rDNA; negatively regulates initiation of DNA replication; functions as regulator of autophagy like mammalian homolog SIRT1, and also of mitophagy [Source:SGD;Acc:S000002200]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YDL042C"
+          },
+          "resolved_via": "symbol:SIR2"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPBC16D10.07c",
+            "protein_id": "SPBC16D10.07c.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPBC16D10.07c?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "C1_09050W_A",
+            "protein_id": "C1_09050W_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_many2many",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C1_09050W_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU04737",
+            "protein_id": "EAA31136",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU04737?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_10449",
+            "protein_id": "CBF75701",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_10449?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "IV",
+      "genomic_start": 376757,
+      "genomic_end": 378445,
+      "genomic_length_bp": 1689,
+      "protein_length_aa": 562,
+      "locus_tag": "YDL042C",
+      "protein_name": "NAD-dependent histone deacetylase SIR2",
+      "uniprot_accession": "P06700",
+      "sgd_id": "S000002200",
+      "ensembl_id": "YDL042C",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P06700",
+          "url": "https://www.uniprot.org/uniprotkb/P06700",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YDL042C",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YDL042C",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000002200",
+          "url": "https://www.yeastgenome.org/locus/S000002200",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "MFA1",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P34165",
+          "length_aa": 36,
+          "gene_primary": "MFA1",
+          "gene_synonyms": [],
+          "locus_tag": "YDR461W",
+          "sgd_id": "S000002869",
+          "protein_name": "Mating hormone A-factor 1",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P34165",
+            "sgd": "https://www.yeastgenome.org/locus/S000002869"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YDR461W",
+          "display_name": "MFA1",
+          "chromosome": "IV",
+          "start": 1385176,
+          "end": 1385286,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Mating pheromone a-factor; made by a cells; interacts with alpha cells to induce cell cycle arrest and other responses leading to mating; biogenesis involves C-terminal modification, N-terminal proteolysis, and export; also encoded by MFA2 [Source:SGD;Acc:S000002869]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YDR461W"
+          },
+          "resolved_via": "symbol:MFA1"
+        },
+        "orthologs": {
+          "schizosaccharomyces": null,
+          "candida-albicans": null,
+          "neurospora": null,
+          "aspergillus-nidulans": null
+        }
+      },
+      "chromosome": "IV",
+      "genomic_start": 1385176,
+      "genomic_end": 1385286,
+      "genomic_length_bp": 111,
+      "protein_length_aa": 36,
+      "locus_tag": "YDR461W",
+      "protein_name": "Mating hormone A-factor 1",
+      "uniprot_accession": "P34165",
+      "sgd_id": "S000002869",
+      "ensembl_id": "YDR461W",
+      "ortholog_count": 0,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P34165",
+          "url": "https://www.uniprot.org/uniprotkb/P34165",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YDR461W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YDR461W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000002869",
+          "url": "https://www.yeastgenome.org/locus/S000002869",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "URA3",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P03962",
+          "length_aa": 267,
+          "gene_primary": "URA3",
+          "gene_synonyms": [],
+          "locus_tag": "YEL021W",
+          "sgd_id": "S000000747",
+          "protein_name": "Orotidine 5'-phosphate decarboxylase",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P03962",
+            "sgd": "https://www.yeastgenome.org/locus/S000000747"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YEL021W",
+          "display_name": "URA3",
+          "chromosome": "V",
+          "start": 116167,
+          "end": 116970,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Orotidine-5'-phosphate (OMP) decarboxylase; catalyzes the sixth enzymatic step in the de novo biosynthesis of pyrimidines, converting OMP into uridine monophosphate (UMP); converts 5-FOA into 5-fluorouracil, a toxic compound [Source:SGD;Acc:S000000747]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YEL021W"
+          },
+          "resolved_via": "symbol:URA3"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPCC330.05c",
+            "protein_id": "SPCC330.05c.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Fungi",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPCC330.05c?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "C3_01350C_A",
+            "protein_id": "C3_01350C_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C3_01350C_A?content-type=application/json"
+            }
+          },
+          "neurospora": null,
+          "aspergillus-nidulans": null
+        }
+      },
+      "chromosome": "V",
+      "genomic_start": 116167,
+      "genomic_end": 116970,
+      "genomic_length_bp": 804,
+      "protein_length_aa": 267,
+      "locus_tag": "YEL021W",
+      "protein_name": "Orotidine 5'-phosphate decarboxylase",
+      "uniprot_accession": "P03962",
+      "sgd_id": "S000000747",
+      "ensembl_id": "YEL021W",
+      "ortholog_count": 2,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P03962",
+          "url": "https://www.uniprot.org/uniprotkb/P03962",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YEL021W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YEL021W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000000747",
+          "url": "https://www.yeastgenome.org/locus/S000000747",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "RAD51",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P25454",
+          "length_aa": 400,
+          "gene_primary": "RAD51",
+          "gene_synonyms": [],
+          "locus_tag": "YER095W",
+          "sgd_id": "S000000897",
+          "protein_name": "DNA repair protein RAD51",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P25454",
+            "sgd": "https://www.yeastgenome.org/locus/S000000897"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YER095W",
+          "display_name": "RAD51",
+          "chromosome": "V",
+          "start": 349980,
+          "end": 351182,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Strand exchange protein; forms a helical filament with DNA that searches for homology; involved in the recombinational repair of double-strand breaks in DNA during vegetative growth and meiosis; homolog of Dmc1p and bacterial RecA protein [Source:SGD;Acc:S000000897]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YER095W"
+          },
+          "resolved_via": "symbol:RAD51"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPAC644.14c",
+            "protein_id": "SPAC644.14c.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPAC644.14c?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "CR_02200C_A",
+            "protein_id": "CR_02200C_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/CR_02200C_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU02741",
+            "protein_id": "EAA35890",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU02741?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_01237",
+            "protein_id": "CBF87878",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_01237?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "V",
+      "genomic_start": 349980,
+      "genomic_end": 351182,
+      "genomic_length_bp": 1203,
+      "protein_length_aa": 400,
+      "locus_tag": "YER095W",
+      "protein_name": "DNA repair protein RAD51",
+      "uniprot_accession": "P25454",
+      "sgd_id": "S000000897",
+      "ensembl_id": "YER095W",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P25454",
+          "url": "https://www.uniprot.org/uniprotkb/P25454",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YER095W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YER095W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000000897",
+          "url": "https://www.yeastgenome.org/locus/S000000897",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "ACT1",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P60010",
+          "length_aa": 375,
+          "gene_primary": "ACT1",
+          "gene_synonyms": [
+            "ABY1",
+            "END7"
+          ],
+          "locus_tag": "YFL039C",
+          "sgd_id": "S000001855",
+          "protein_name": "Actin",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P60010",
+            "sgd": "https://www.yeastgenome.org/locus/S000001855"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YFL039C",
+          "display_name": "ACT1",
+          "chromosome": "VI",
+          "start": 53260,
+          "end": 54696,
+          "strand": -1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Actin; structural protein involved in cell polarization, endocytosis, and other cytoskeletal functions [Source:SGD;Acc:S000001855]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YFL039C"
+          },
+          "resolved_via": "symbol:ACT1"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPBC32H8.12c",
+            "protein_id": "SPBC32H8.12c.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPBC32H8.12c?content-type=application/json"
+            }
+          },
+          "candida-albicans": null,
+          "neurospora": {
+            "id": "NCU04173",
+            "protein_id": "ESA42661",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU04173?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_06542",
+            "protein_id": "CBF70950",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_06542?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "VI",
+      "genomic_start": 53260,
+      "genomic_end": 54696,
+      "genomic_length_bp": 1437,
+      "protein_length_aa": 375,
+      "locus_tag": "YFL039C",
+      "protein_name": "Actin",
+      "uniprot_accession": "P60010",
+      "sgd_id": "S000001855",
+      "ensembl_id": "YFL039C",
+      "ortholog_count": 3,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P60010",
+          "url": "https://www.uniprot.org/uniprotkb/P60010",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YFL039C",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YFL039C",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000001855",
+          "url": "https://www.yeastgenome.org/locus/S000001855",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "STE2",
+      "sources": {
+        "uniprot": {
+          "uniprot": "D6VTK4",
+          "length_aa": 431,
+          "gene_primary": "STE2",
+          "gene_synonyms": [],
+          "locus_tag": "YFL026W",
+          "sgd_id": "S000001868",
+          "protein_name": "Pheromone alpha factor receptor",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/D6VTK4",
+            "sgd": "https://www.yeastgenome.org/locus/S000001868"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YFL026W",
+          "display_name": "STE2",
+          "chromosome": "VI",
+          "start": 82580,
+          "end": 83875,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Receptor for alpha-factor pheromone; seven transmembrane-domain GPCR that interacts with both pheromone and a heterotrimeric G protein to initiate the signaling response that leads to mating between haploid a and alpha cells [Source:SGD;Acc:S000001868]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YFL026W"
+          },
+          "resolved_via": "symbol:STE2"
+        },
+        "orthologs": {
+          "schizosaccharomyces": null,
+          "candida-albicans": null,
+          "neurospora": null,
+          "aspergillus-nidulans": null
+        }
+      },
+      "chromosome": "VI",
+      "genomic_start": 82580,
+      "genomic_end": 83875,
+      "genomic_length_bp": 1296,
+      "protein_length_aa": 431,
+      "locus_tag": "YFL026W",
+      "protein_name": "Pheromone alpha factor receptor",
+      "uniprot_accession": "D6VTK4",
+      "sgd_id": "S000001868",
+      "ensembl_id": "YFL026W",
+      "ortholog_count": 0,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "D6VTK4",
+          "url": "https://www.uniprot.org/uniprotkb/D6VTK4",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YFL026W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YFL026W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000001868",
+          "url": "https://www.yeastgenome.org/locus/S000001868",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "TDH3",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P00359",
+          "length_aa": 332,
+          "gene_primary": "TDH3",
+          "gene_synonyms": [
+            "GPD3"
+          ],
+          "locus_tag": "YGR192C",
+          "sgd_id": "S000003424",
+          "protein_name": "Glyceraldehyde-3-phosphate dehydrogenase 3",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P00359",
+            "sgd": "https://www.yeastgenome.org/locus/S000003424"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YGR192C",
+          "display_name": "TDH3",
+          "chromosome": "VII",
+          "start": 882812,
+          "end": 883810,
+          "strand": -1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Glyceraldehyde-3-phosphate dehydrogenase (GAPDH), isozyme 3; involved in glycolysis and gluconeogenesis; tetramer that catalyzes the reaction of glyceraldehyde-3-phosphate to 1,3 bis-phosphoglycerate; detected in the cytoplasm and cell wall; GAPDH-derived antimicrobial peptides secreted by S. cerevisiae are active against a wide variety of wine-related yeasts and bacteria; binds AU-rich RNA [Source:SGD;Acc:S000003424]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YGR192C"
+          },
+          "resolved_via": "symbol:TDH3"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPBC354.12",
+            "protein_id": "SPBC354.12.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_many2many",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPBC354.12?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "C3_06870W_A",
+            "protein_id": "C3_06870W_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C3_06870W_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU01528",
+            "protein_id": "EAA27741",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Fungi",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU01528?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_08041",
+            "protein_id": "CBF73760",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Fungi",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_08041?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "VII",
+      "genomic_start": 882812,
+      "genomic_end": 883810,
+      "genomic_length_bp": 999,
+      "protein_length_aa": 332,
+      "locus_tag": "YGR192C",
+      "protein_name": "Glyceraldehyde-3-phosphate dehydrogenase 3",
+      "uniprot_accession": "P00359",
+      "sgd_id": "S000003424",
+      "ensembl_id": "YGR192C",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P00359",
+          "url": "https://www.uniprot.org/uniprotkb/P00359",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YGR192C",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YGR192C",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000003424",
+          "url": "https://www.yeastgenome.org/locus/S000003424",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "ENO2",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P00925",
+          "length_aa": 437,
+          "gene_primary": "ENO2",
+          "gene_synonyms": [
+            "ENOB"
+          ],
+          "locus_tag": "YHR174W",
+          "sgd_id": "S000001217",
+          "protein_name": "Enolase 2",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P00925",
+            "sgd": "https://www.yeastgenome.org/locus/S000001217"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YHR174W",
+          "display_name": "ENO2",
+          "chromosome": "VIII",
+          "start": 451327,
+          "end": 452640,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Enolase II, a phosphopyruvate hydratase; catalyzes conversion of 2-phosphoglycerate to phosphoenolpyruvate during glycolysis and the reverse reaction during gluconeogenesis; expression induced in response to glucose; ENO2 has a paralog, ENO1, that arose from the whole genome duplication [Source:SGD;Acc:S000001217]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YHR174W"
+          },
+          "resolved_via": "symbol:ENO2"
+        },
+        "orthologs": {
+          "schizosaccharomyces": null,
+          "candida-albicans": {
+            "id": "C1_08500C_A",
+            "protein_id": "C1_08500C_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C1_08500C_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU10042",
+            "protein_id": "ESA44170",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Ascomycota",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU10042?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_05746",
+            "protein_id": "CBF81288",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Ascomycota",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_05746?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "VIII",
+      "genomic_start": 451327,
+      "genomic_end": 452640,
+      "genomic_length_bp": 1314,
+      "protein_length_aa": 437,
+      "locus_tag": "YHR174W",
+      "protein_name": "Enolase 2",
+      "uniprot_accession": "P00925",
+      "sgd_id": "S000001217",
+      "ensembl_id": "YHR174W",
+      "ortholog_count": 3,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P00925",
+          "url": "https://www.uniprot.org/uniprotkb/P00925",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YHR174W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YHR174W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000001217",
+          "url": "https://www.yeastgenome.org/locus/S000001217",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "SUC2",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P00724",
+          "length_aa": 532,
+          "gene_primary": "SUC2",
+          "gene_synonyms": [],
+          "locus_tag": "YIL162W",
+          "sgd_id": "S000001424",
+          "protein_name": "Invertase 2",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P00724",
+            "sgd": "https://www.yeastgenome.org/locus/S000001424"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YIL162W",
+          "display_name": "SUC2",
+          "chromosome": "IX",
+          "start": 37385,
+          "end": 38983,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Invertase; sucrose hydrolyzing enzyme; a secreted, glycosylated form is regulated by glucose repression, and an intracellular, nonglycosylated enzyme is produced constitutively [Source:SGD;Acc:S000001424]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YIL162W"
+          },
+          "resolved_via": "symbol:SUC2"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPCC191.11",
+            "protein_id": "SPCC191.11.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPCC191.11?content-type=application/json"
+            }
+          },
+          "candida-albicans": null,
+          "neurospora": null,
+          "aspergillus-nidulans": {
+            "id": "ANIA_05012",
+            "protein_id": "CBF76281",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Dikarya",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_05012?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "IX",
+      "genomic_start": 37385,
+      "genomic_end": 38983,
+      "genomic_length_bp": 1599,
+      "protein_length_aa": 532,
+      "locus_tag": "YIL162W",
+      "protein_name": "Invertase 2",
+      "uniprot_accession": "P00724",
+      "sgd_id": "S000001424",
+      "ensembl_id": "YIL162W",
+      "ortholog_count": 2,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P00724",
+          "url": "https://www.uniprot.org/uniprotkb/P00724",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YIL162W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YIL162W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000001424",
+          "url": "https://www.yeastgenome.org/locus/S000001424",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "FLO11",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P08640",
+          "length_aa": 1367,
+          "gene_primary": "FLO11",
+          "gene_synonyms": [
+            "MAL5",
+            "MUC1",
+            "S1",
+            "S2"
+          ],
+          "locus_tag": "YIR019C",
+          "sgd_id": "S000001458",
+          "protein_name": "Flocculation protein FLO11",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P08640",
+            "sgd": "https://www.yeastgenome.org/locus/S000001458"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YIR019C",
+          "display_name": null,
+          "chromosome": "IX",
+          "start": 389572,
+          "end": 393675,
+          "strand": -1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "GPI-anchored cell surface glycoprotein (flocculin); required for pseudohyphal and invasive growth, flocculation, and biofilm formation; major determinant of colony morphology; transcription regulated by the MAPK pathway (Ste12p and Tec1p) and the cAMP pathway (Flo8p); required for formation of fibrous interconnections between cells of a wild strain; role in co-flocculation with other yeast species; cleaved and shed from cells, contributing to their surface properties [Source:SGD;Acc:S000001458]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YIR019C"
+          },
+          "resolved_via": "xref:MUC1\u2192YIR019C"
+        },
+        "orthologs": {
+          "schizosaccharomyces": null,
+          "candida-albicans": null,
+          "neurospora": null,
+          "aspergillus-nidulans": null
+        }
+      },
+      "chromosome": "IX",
+      "genomic_start": 389572,
+      "genomic_end": 393675,
+      "genomic_length_bp": 4104,
+      "protein_length_aa": 1367,
+      "locus_tag": "YIR019C",
+      "protein_name": "Flocculation protein FLO11",
+      "uniprot_accession": "P08640",
+      "sgd_id": "S000001458",
+      "ensembl_id": "YIR019C",
+      "ortholog_count": 0,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P08640",
+          "url": "https://www.uniprot.org/uniprotkb/P08640",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YIR019C",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YIR019C",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000001458",
+          "url": "https://www.yeastgenome.org/locus/S000001458",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "ATP2",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P00830",
+          "length_aa": 511,
+          "gene_primary": "ATP2",
+          "gene_synonyms": [],
+          "locus_tag": "YJR121W",
+          "sgd_id": "S000003882",
+          "protein_name": "ATP synthase subunit beta, mitochondrial",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P00830",
+            "sgd": "https://www.yeastgenome.org/locus/S000003882"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YJR121W",
+          "display_name": "ATP2",
+          "chromosome": "X",
+          "start": 647607,
+          "end": 649142,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Beta subunit of the F1 sector of mitochondrial F1F0 ATP synthase; which is a large, evolutionarily conserved enzyme complex required for ATP synthesis; F1 translationally regulates ATP6 and ATP8 expression to achieve a balanced output of ATP synthase genes encoded in nucleus and mitochondria; phosphorylated [Source:SGD;Acc:S000003882]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YJR121W"
+          },
+          "resolved_via": "symbol:ATP2"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPAC222.12c",
+            "protein_id": "SPAC222.12c.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPAC222.12c?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "C4_00270W_A",
+            "protein_id": "C4_00270W_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C4_00270W_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU05430",
+            "protein_id": "EAA34017",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Ascomycota",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU05430?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_02315",
+            "protein_id": "CBF86592",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Ascomycota",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_02315?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "X",
+      "genomic_start": 647607,
+      "genomic_end": 649142,
+      "genomic_length_bp": 1536,
+      "protein_length_aa": 511,
+      "locus_tag": "YJR121W",
+      "protein_name": "ATP synthase subunit beta, mitochondrial",
+      "uniprot_accession": "P00830",
+      "sgd_id": "S000003882",
+      "ensembl_id": "YJR121W",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P00830",
+          "url": "https://www.uniprot.org/uniprotkb/P00830",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YJR121W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YJR121W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000003882",
+          "url": "https://www.yeastgenome.org/locus/S000003882",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "RPS5",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P26783",
+          "length_aa": 225,
+          "gene_primary": "RPS5",
+          "gene_synonyms": [
+            "RPS2"
+          ],
+          "locus_tag": "YJR123W",
+          "sgd_id": "S000003884",
+          "protein_name": "Small ribosomal subunit protein uS7",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P26783",
+            "sgd": "https://www.yeastgenome.org/locus/S000003884"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YJR123W",
+          "display_name": "RPS5",
+          "chromosome": "X",
+          "start": 651901,
+          "end": 652578,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Protein component of the small (40S) ribosomal subunit; least basic of non-acidic ribosomal proteins; phosphorylated in vivo; essential for viability; homologous to mammalian ribosomal protein S5 and bacterial S7 [Source:SGD;Acc:S000003884]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YJR123W"
+          },
+          "resolved_via": "symbol:RPS5"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPAC328.10c",
+            "protein_id": "SPAC328.10c.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPAC328.10c?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "C5_03070W_A",
+            "protein_id": "C5_03070W_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C5_03070W_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU09475",
+            "protein_id": "EAA33994",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU09475?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_00843",
+            "protein_id": "CBF88674",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_00843?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "X",
+      "genomic_start": 651901,
+      "genomic_end": 652578,
+      "genomic_length_bp": 678,
+      "protein_length_aa": 225,
+      "locus_tag": "YJR123W",
+      "protein_name": "Small ribosomal subunit protein uS7",
+      "uniprot_accession": "P26783",
+      "sgd_id": "S000003884",
+      "ensembl_id": "YJR123W",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P26783",
+          "url": "https://www.uniprot.org/uniprotkb/P26783",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YJR123W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YJR123W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000003884",
+          "url": "https://www.yeastgenome.org/locus/S000003884",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "TUB1",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P09733",
+          "length_aa": 447,
+          "gene_primary": "TUB1",
+          "gene_synonyms": [],
+          "locus_tag": "YML085C",
+          "sgd_id": "S000004550",
+          "protein_name": "Tubulin alpha-1 chain",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P09733",
+            "sgd": "https://www.yeastgenome.org/locus/S000004550"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YML085C",
+          "display_name": "TUB1",
+          "chromosome": "XIII",
+          "start": 97941,
+          "end": 99400,
+          "strand": -1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Alpha-tubulin; associates with beta-tubulin (Tub2p) to form tubulin dimer, which polymerizes to form microtubules; relative distribution to nuclear foci increases upon DNA replication stress; TUB1 has a paralog, TUB3, that arose from the whole genome duplication [Source:SGD;Acc:S000004550]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YML085C"
+          },
+          "resolved_via": "symbol:TUB1"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPBC800.05c",
+            "protein_id": "SPBC800.05c.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_many2many",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPBC800.05c?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "CR_09120C_A",
+            "protein_id": "CR_09120C_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/CR_09120C_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU09468",
+            "protein_id": "EAA33987",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Dikarya",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU09468?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_00316",
+            "protein_id": "CBF89739",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Dikarya",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_00316?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "XIII",
+      "genomic_start": 97941,
+      "genomic_end": 99400,
+      "genomic_length_bp": 1460,
+      "protein_length_aa": 447,
+      "locus_tag": "YML085C",
+      "protein_name": "Tubulin alpha-1 chain",
+      "uniprot_accession": "P09733",
+      "sgd_id": "S000004550",
+      "ensembl_id": "YML085C",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P09733",
+          "url": "https://www.uniprot.org/uniprotkb/P09733",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YML085C",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YML085C",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000004550",
+          "url": "https://www.yeastgenome.org/locus/S000004550",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "RPL25",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P04456",
+          "length_aa": 142,
+          "gene_primary": "RPL25",
+          "gene_synonyms": [],
+          "locus_tag": "YOL127W",
+          "sgd_id": "S000005487",
+          "protein_name": "Large ribosomal subunit protein uL23",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P04456",
+            "sgd": "https://www.yeastgenome.org/locus/S000005487"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YOL127W",
+          "display_name": "RPL25",
+          "chromosome": "XV",
+          "start": 80348,
+          "end": 81190,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Ribosomal 60S subunit protein L25; primary rRNA-binding ribosomal protein component of large ribosomal subunit; binds to 25S rRNA via a conserved C-terminal motif; homologous to mammalian ribosomal protein L23A and bacterial L23 [Source:SGD;Acc:S000005487]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YOL127W"
+          },
+          "resolved_via": "symbol:RPL25"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPBC106.18",
+            "protein_id": "SPBC106.18.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPBC106.18?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "C6_01970C_A",
+            "protein_id": "C6_01970C_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C6_01970C_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU06226",
+            "protein_id": "EAA33841",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Ascomycota",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU06226?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_08856",
+            "protein_id": "CBF77869",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Ascomycota",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_08856?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "XV",
+      "genomic_start": 80348,
+      "genomic_end": 81190,
+      "genomic_length_bp": 843,
+      "protein_length_aa": 142,
+      "locus_tag": "YOL127W",
+      "protein_name": "Large ribosomal subunit protein uL23",
+      "uniprot_accession": "P04456",
+      "sgd_id": "S000005487",
+      "ensembl_id": "YOL127W",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P04456",
+          "url": "https://www.uniprot.org/uniprotkb/P04456",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YOL127W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YOL127W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000005487",
+          "url": "https://www.yeastgenome.org/locus/S000005487",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "ADE2",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P21264",
+          "length_aa": 571,
+          "gene_primary": "ADE2",
+          "gene_synonyms": [],
+          "locus_tag": "YOR128C",
+          "sgd_id": "S000005654",
+          "protein_name": "Phosphoribosylaminoimidazole carboxylase",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P21264",
+            "sgd": "https://www.yeastgenome.org/locus/S000005654"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YOR128C",
+          "display_name": "ADE2",
+          "chromosome": "XV",
+          "start": 564476,
+          "end": 566191,
+          "strand": -1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Phosphoribosylaminoimidazole carboxylase; catalyzes a step in the 'de novo' purine nucleotide biosynthetic pathway; red pigment accumulates in mutant cells deprived of adenine [Source:SGD;Acc:S000005654]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YOR128C"
+          },
+          "resolved_via": "symbol:ADE2"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPCC1322.13",
+            "protein_id": "SPCC1322.13.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPCC1322.13?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "C3_04520C_A",
+            "protein_id": "C3_04520C_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C3_04520C_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU03194",
+            "protein_id": "EAA36058",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Fungi",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU03194?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_03626",
+            "protein_id": "CBF75747",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Fungi",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_03626?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "XV",
+      "genomic_start": 564476,
+      "genomic_end": 566191,
+      "genomic_length_bp": 1716,
+      "protein_length_aa": 571,
+      "locus_tag": "YOR128C",
+      "protein_name": "Phosphoribosylaminoimidazole carboxylase",
+      "uniprot_accession": "P21264",
+      "sgd_id": "S000005654",
+      "ensembl_id": "YOR128C",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P21264",
+          "url": "https://www.uniprot.org/uniprotkb/P21264",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YOR128C",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YOR128C",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000005654",
+          "url": "https://www.yeastgenome.org/locus/S000005654",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "HIS3",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P06633",
+          "length_aa": 220,
+          "gene_primary": "HIS3",
+          "gene_synonyms": [],
+          "locus_tag": "YOR202W",
+          "sgd_id": "S000005728",
+          "protein_name": "Imidazoleglycerol-phosphate dehydratase",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P06633",
+            "sgd": "https://www.yeastgenome.org/locus/S000005728"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YOR202W",
+          "display_name": "HIS3",
+          "chromosome": "XV",
+          "start": 721946,
+          "end": 722608,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Imidazoleglycerol-phosphate dehydratase; catalyzes the sixth step in histidine biosynthesis; mutations cause histidine auxotrophy and sensitivity to Cu, Co, and Ni salts; transcription is regulated by general amino acid control via Gcn4p [Source:SGD;Acc:S000005728]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YOR202W"
+          },
+          "resolved_via": "symbol:HIS3"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPBC21H7.07c",
+            "protein_id": "SPBC21H7.07c.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPBC21H7.07c?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "C2_04810W_A",
+            "protein_id": "C2_04810W_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C2_04810W_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU01300",
+            "protein_id": "EAA32150",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Fungi",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU01300?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_06536",
+            "protein_id": "CBF70937",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2one",
+            "taxonomy_level": "Fungi",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_06536?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "XV",
+      "genomic_start": 721946,
+      "genomic_end": 722608,
+      "genomic_length_bp": 663,
+      "protein_length_aa": 220,
+      "locus_tag": "YOR202W",
+      "protein_name": "Imidazoleglycerol-phosphate dehydratase",
+      "uniprot_accession": "P06633",
+      "sgd_id": "S000005728",
+      "ensembl_id": "YOR202W",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P06633",
+          "url": "https://www.uniprot.org/uniprotkb/P06633",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YOR202W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YOR202W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000005728",
+          "url": "https://www.yeastgenome.org/locus/S000005728",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "HSP82",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P02829",
+          "length_aa": 709,
+          "gene_primary": "HSP82",
+          "gene_synonyms": [
+            "HSP90"
+          ],
+          "locus_tag": "YPL240C",
+          "sgd_id": "S000006161",
+          "protein_name": "ATP-dependent molecular chaperone HSP82",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P02829",
+            "sgd": "https://www.yeastgenome.org/locus/S000006161"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YPL240C",
+          "display_name": "HSP82",
+          "chromosome": "XVI",
+          "start": 96496,
+          "end": 98625,
+          "strand": -1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Hsp90 chaperone; redundant in function with Hsc82p; required for pheromone signaling, negative regulation of Hsf1p; docks with Tom70p for mitochondrial preprotein delivery; promotes telomerase DNA binding, nucleotide addition; protein abundance increases in response to DNA replication stress; contains two acid-rich unstructured regions that promote solubility of chaperone-substrate complexes; HSP82 has a paralog, HSC82, that arose from the whole genome duplication [Source:SGD;Acc:S000006161]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YPL240C"
+          },
+          "resolved_via": "symbol:HSP82"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPAC926.04c",
+            "protein_id": "SPAC926.04c.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Ascomycota",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPAC926.04c?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "C7_02030W_A",
+            "protein_id": "C7_02030W_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Saccharomycotina",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C7_02030W_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU04142",
+            "protein_id": "EAA32062",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU04142?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_08269",
+            "protein_id": "CBF74248",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "saccharomyceta",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_08269?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "XVI",
+      "genomic_start": 96496,
+      "genomic_end": 98625,
+      "genomic_length_bp": 2130,
+      "protein_length_aa": 709,
+      "locus_tag": "YPL240C",
+      "protein_name": "ATP-dependent molecular chaperone HSP82",
+      "uniprot_accession": "P02829",
+      "sgd_id": "S000006161",
+      "ensembl_id": "YPL240C",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P02829",
+          "url": "https://www.uniprot.org/uniprotkb/P02829",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YPL240C",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YPL240C",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000006161",
+          "url": "https://www.yeastgenome.org/locus/S000006161",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    },
+    {
+      "gene_id": "TEF1",
+      "sources": {
+        "uniprot": {
+          "uniprot": "P02994",
+          "length_aa": 458,
+          "gene_primary": "TEF1",
+          "gene_synonyms": [],
+          "locus_tag": "YPR080W",
+          "sgd_id": "S000006284",
+          "protein_name": "Elongation factor 1-alpha",
+          "organism": "Saccharomyces cerevisiae (S288c)",
+          "taxon_id": 559292,
+          "urls": {
+            "uniprot": "https://www.uniprot.org/uniprotkb/P02994",
+            "sgd": "https://www.yeastgenome.org/locus/S000006284"
+          }
+        },
+        "ensembl": {
+          "ensembl_id": "YPR080W",
+          "display_name": "TEF1",
+          "chromosome": "XVI",
+          "start": 700594,
+          "end": 701970,
+          "strand": 1,
+          "biotype": "protein_coding",
+          "assembly": "R64-1-1",
+          "description": "Translational elongation factor EF-1 alpha; in the GTP-bound active form, binds to and delivers aminoacylated tRNA to the A-site of ribosomes for elongation of nascent polypeptides; associates with vacuolar Rho1p GTPase; may also have a role in tRNA re-export from the nucleus; TEF1 has a paralog, TEF2, that arose from the whole genome duplication [Source:SGD;Acc:S000006284]",
+          "urls": {
+            "ensembl": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YPR080W"
+          },
+          "resolved_via": "symbol:TEF1"
+        },
+        "orthologs": {
+          "schizosaccharomyces": {
+            "id": "SPBC839.15c",
+            "protein_id": "SPBC839.15c.1:pep",
+            "species": "schizosaccharomyces_pombe",
+            "type": "ortholog_many2many",
+            "taxonomy_level": "Fungi",
+            "label": "Schizosaccharomyces pombe",
+            "common": "Fission yeast",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/SPBC839.15c?content-type=application/json"
+            }
+          },
+          "candida-albicans": {
+            "id": "C2_08370C_A",
+            "protein_id": "C2_08370C_A-T-p1",
+            "species": "candida_albicans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Fungi",
+            "label": "Candida albicans",
+            "common": "C. albicans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/C2_08370C_A?content-type=application/json"
+            }
+          },
+          "neurospora": {
+            "id": "NCU02003",
+            "protein_id": "EAA35632",
+            "species": "neurospora_crassa",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Fungi",
+            "label": "Neurospora crassa",
+            "common": "Red bread mold",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/NCU02003?content-type=application/json"
+            }
+          },
+          "aspergillus-nidulans": {
+            "id": "ANIA_04218",
+            "protein_id": "CBF74460",
+            "species": "aspergillus_nidulans",
+            "type": "ortholog_one2many",
+            "taxonomy_level": "Fungi",
+            "label": "Aspergillus nidulans",
+            "common": "A. nidulans",
+            "urls": {
+              "ensembl_rest": "https://rest.ensembl.org/lookup/id/ANIA_04218?content-type=application/json"
+            }
+          }
+        }
+      },
+      "chromosome": "XVI",
+      "genomic_start": 700594,
+      "genomic_end": 701970,
+      "genomic_length_bp": 1377,
+      "protein_length_aa": 458,
+      "locus_tag": "YPR080W",
+      "protein_name": "Elongation factor 1-alpha",
+      "uniprot_accession": "P02994",
+      "sgd_id": "S000006284",
+      "ensembl_id": "YPR080W",
+      "ortholog_count": 4,
+      "ortholog_targets_checked": 4,
+      "citations": [
+        {
+          "source": "UniProtKB/Swiss-Prot",
+          "id": "P02994",
+          "url": "https://www.uniprot.org/uniprotkb/P02994",
+          "field": "protein length (aa), accession, protein name"
+        },
+        {
+          "source": "Ensembl Fungi",
+          "id": "YPR080W",
+          "url": "https://fungi.ensembl.org/Saccharomyces_cerevisiae/Gene/Summary?g=YPR080W",
+          "field": "chromosome, genomic start/end, locus id"
+        },
+        {
+          "source": "SGD",
+          "id": "S000006284",
+          "url": "https://www.yeastgenome.org/locus/S000006284",
+          "field": "yeast gene curation cross-reference"
+        }
+      ]
+    }
+  ],
+  "skipped": [],
+  "notes": [
+    "Only genes with both UniProt Swiss-Prot and Ensembl Fungi hits are included.",
+    "Ortholog gaps mean Ensembl returned no orthologue for that target taxon.",
+    "Teaching prose may use plain language; band metrics and IDs are API-backed."
+  ]
+}

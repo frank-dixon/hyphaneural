@@ -12,7 +12,7 @@ const srcDir = path.join(root, 'src', 'js');
 const pagesOut = path.join(root, 'docs', 'js');
 const staticOut = path.join(root, 'static', 'js');
 
-const PAGES_ENTRIES = ['app.js', 'canvas.js', 'gene-follow.js', 'panel.js'];
+const PAGES_ENTRIES = ['app.js', 'canvas.js', 'gene-follow.js', 'panel.js', 'bands.js'];
 const STATIC_ENTRIES = ['map.js']; // Django map only
 
 async function buildOne(file, outDir) {
