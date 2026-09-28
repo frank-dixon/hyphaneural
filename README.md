@@ -21,7 +21,7 @@ Quiet Protomol / Slow Ombre: a fungal genetics demo where four immersive **space
 | **Fungal Atlas** | Immersive atlas of ~36 fungi (mushrooms, yeasts, molds, pathogens) |
 | **Void Breath** | Living field-dominant calm · growing hyphae across the void |
 
-Main shell: Slow Ombre purple–blue–green pulse, sparse white accents, SNES-style parallax while panning. HTML chrome is **Tailwind utility classes**; canvas stays JS.
+Main shell: Slow Ombre purple–blue–green pulse with SNES-style parallax while panning. HTML chrome is cream/paper with readable ink and turquoise `#0B8A8F` (Tailwind utilities); canvas craft stays vanilla JS.
 
 ## Stack
 

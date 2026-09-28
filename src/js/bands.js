@@ -25,7 +25,7 @@
         (c && c.id ? ' · ' + escapeHtml(c.id) : '') + '</span>';
     }
     return (
-      '<a class="text-teal-bright/90 underline decoration-white/20 hover:decoration-teal-bright" ' +
+      '<a class="text-teal underline decoration-teal/30 hover:decoration-teal" ' +
       'href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener">' +
       escapeHtml(c.source) + ' · ' + escapeHtml(c.id) + '</a>'
     );
@@ -69,7 +69,7 @@
     this.selectedId = geneId || null;
     this.root.querySelectorAll('[data-band]').forEach((el) => {
       el.classList.toggle('ring-1', el.getAttribute('data-band') === this.selectedId);
-      el.classList.toggle('ring-white/70', el.getAttribute('data-band') === this.selectedId);
+      el.classList.toggle('ring-teal/60', el.getAttribute('data-band') === this.selectedId);
       el.classList.toggle('z-10', el.getAttribute('data-band') === this.selectedId);
     });
     if (this.selectedId) this._renderDetail(this.selectedId);
@@ -145,15 +145,15 @@
     html +=
       '<div class="flex items-start justify-between gap-3 mb-2">' +
       '<div>' +
-      '<div class="text-[0.58rem] tracking-widest uppercase text-white/45 mb-1">Heads-up analyzer</div>' +
-      '<h2 class="m-0 font-display font-normal text-[1.15rem] text-white leading-tight">Gene bands for ' +
+      '<div class="text-[0.58rem] tracking-widest uppercase text-mist mb-1">Heads-up analyzer</div>' +
+      '<h2 class="m-0 font-display font-normal text-[1.15rem] text-ink leading-tight">Gene bands for ' +
       escapeHtml(org.scientific_name || "baker's yeast") +
       '</h2>' +
       '<p class="m-0 mt-1.5 text-[0.78rem] leading-snug text-mist max-w-[52ch]">' +
       'Each vertical band is one real gene. Left-to-right follows chromosome order from Ensembl Fungi. ' +
-      'Band height scales with UniProt protein length. Teal means Ensembl Compara found an ortholog in at least one fungus we checked; cooler white-blue means no ortholog hit in that set.</p>' +
+      'Band height scales with UniProt protein length. Teal means Ensembl Compara found an ortholog in at least one fungus we checked; pale paper means no ortholog hit in that set.</p>' +
       '</div>' +
-      '<button type="button" data-band-close class="shrink-0 text-[0.72rem] tracking-wider border border-white/15 bg-transparent text-mist px-2.5 py-1 rounded-sm cursor-pointer hover:border-white/40 hover:text-white" aria-label="Close analyzer">Close</button>' +
+      '<button type="button" data-band-close class="shrink-0 text-[0.72rem] tracking-wider border border-rule bg-paper-soft text-ink-soft px-2.5 py-1 rounded-sm cursor-pointer hover:border-teal/50 hover:text-ink" aria-label="Close analyzer">Close</button>' +
       '</div>';
 
     html +=
@@ -163,15 +163,15 @@
       this._filterBtn('unique', 'Yeast-unique in check set') +
       '<button type="button" data-band-compare-toggle class="text-[0.65rem] tracking-wide border px-2 py-1 rounded-sm cursor-pointer ' +
       (this.compareOn
-        ? 'border-white/40 text-white bg-white/10'
-        : 'border-white/15 text-mist bg-transparent') +
+        ? 'border-teal text-teal bg-teal-soft'
+        : 'border-rule text-mist bg-paper-soft') +
       '">' +
       (this.compareOn ? 'Compare lanes on' : 'Compare lanes off') +
       '</button>' +
       '</div>';
 
     html +=
-      '<p class="m-0 mb-2 font-mono text-[0.62rem] tracking-wide text-white/45">' +
+      '<p class="m-0 mb-2 font-mono text-[0.62rem] tracking-wide text-mist">' +
       escapeHtml(String(all.length)) +
       ' API-backed bands · ' +
       sharedN +
@@ -184,7 +184,7 @@
     // Spectrum track
     html +=
       '<div class="relative mb-1">' +
-      '<div class="flex items-end gap-px h-[88px] px-1 py-1 bg-black/35 border border-white/10 rounded-sm overflow-x-auto" role="list" aria-label="Gene band spectrum">' +
+      '<div class="flex items-end gap-px h-[88px] px-1 py-1 bg-paper-2 border border-rule rounded-sm overflow-x-auto" role="list" aria-label="Gene band spectrum">' +
       bands
         .map((b) => {
           const h = Math.max(
@@ -194,8 +194,8 @@
           const shared = (b.ortholog_count || 0) >= 1;
           const sel = b.gene_id === this.selectedId;
           const color = shared
-            ? 'bg-teal/75 hover:bg-teal-bright/90 shadow-[0_0_10px_rgba(61,158,143,0.25)]'
-            : 'bg-white/35 hover:bg-white/55 shadow-[0_0_8px_rgba(122,158,196,0.2)]';
+            ? 'bg-teal hover:bg-teal-deep shadow-[0_0_10px_rgba(11,138,143,0.25)]'
+            : 'bg-paper-2 hover:bg-paper shadow-paper-sm';
           const title =
             b.gene_id +
             ' · ' +
@@ -212,7 +212,7 @@
             '" class="band-pill relative flex-1 min-w-[10px] max-w-[28px] ' +
             color +
             ' rounded-sm cursor-pointer transition-all border-0 p-0 ' +
-            (sel ? 'ring-1 ring-white/70 z-10' : '') +
+            (sel ? 'ring-1 ring-teal/60 z-10' : '') +
             '" style="height:' +
             h +
             'px" aria-label="' +
@@ -225,7 +225,7 @@
         })
         .join('') +
       '</div>' +
-      '<div class="flex justify-between mt-1 px-1 font-mono text-[0.5rem] tracking-wider text-white/35">' +
+      '<div class="flex justify-between mt-1 px-1 font-mono text-[0.5rem] tracking-wider text-mist">' +
       '<span>Chr order →</span><span>Height = protein length (aa)</span></div>' +
       '</div>';
 
@@ -248,12 +248,12 @@
 
     // Source strip
     html +=
-      '<div class="mt-3 pt-2 border-t border-white/10">' +
+      '<div class="mt-3 pt-2 border-t border-rule">' +
       '<p class="m-0 text-[0.68rem] leading-snug text-mist-dim">Data citations for this analyzer: ' +
       ((this.data.apis || [])
         .map(function (a) {
           return (
-            '<a class="text-teal-bright/80 underline decoration-white/15 hover:decoration-teal-bright" href="' +
+            '<a class="text-teal underline decoration-teal/25 hover:decoration-teal" href="' +
             escapeHtml(a.url) +
             '" target="_blank" rel="noopener">' +
             escapeHtml(a.name) +
@@ -284,7 +284,7 @@
       '<button type="button" data-band-filter="' +
       key +
       '" class="text-[0.65rem] tracking-wide border px-2 py-1 rounded-sm cursor-pointer ' +
-      (on ? 'border-white/40 text-white bg-white/10' : 'border-white/15 text-mist bg-transparent hover:border-white/30') +
+      (on ? 'border-teal text-teal bg-teal-soft' : 'border-rule text-mist bg-paper-soft hover:border-teal/40') +
       '">' +
       escapeHtml(label) +
       '</button>'
@@ -304,11 +304,11 @@
     if (!seen.length) return '';
     return (
       '<div class="flex flex-wrap gap-1 mb-2" aria-hidden="true">' +
-      '<span class="text-[0.55rem] tracking-widest uppercase text-white/35 mr-1 self-center">Chromosomes</span>' +
+      '<span class="text-[0.55rem] tracking-widest uppercase text-mist mr-1 self-center">Chromosomes</span>' +
       seen
         .map(function (c) {
           return (
-            '<span class="font-mono text-[0.55rem] px-1.5 py-0.5 border border-white/10 text-white/50 rounded-sm">Chr ' +
+            '<span class="font-mono text-[0.55rem] px-1.5 py-0.5 border border-rule text-mist rounded-sm">Chr ' +
             escapeHtml(c) +
             '</span>'
           );
@@ -324,7 +324,7 @@
 
     let html =
       '<div class="mt-2 mb-1">' +
-      '<h3 class="m-0 mb-1 text-[0.72rem] tracking-wide text-white/70 font-normal">Cross-fungus ortholog lanes</h3>' +
+      '<h3 class="m-0 mb-1 text-[0.72rem] tracking-wide text-ink-soft font-normal">Cross-fungus ortholog lanes</h3>' +
       '<p class="m-0 mb-2 text-[0.72rem] leading-snug text-mist">Each row is one fungus we checked in Ensembl Compara. A teal tick means a real ortholog id came back; an empty notch means no ortholog was returned for that gene.</p>' +
       '<div class="flex flex-col gap-1.5">';
 
@@ -360,12 +360,12 @@
       '">' +
       escapeHtml(label) +
       '</div>' +
-      '<div class="flex flex-1 gap-px h-3.5 bg-black/30 border border-white/[0.07] rounded-sm overflow-hidden">' +
+      '<div class="flex flex-1 gap-px h-3.5 bg-paper-2 border border-rule rounded-sm overflow-hidden">' +
       cells
         .map((c) => {
           const cls = c.hit
-            ? 'bg-teal/70 hover:bg-teal-bright/90'
-            : 'bg-white/[0.04]';
+            ? 'bg-teal hover:bg-teal-deep'
+            : 'bg-paper-2';
           return (
             '<button type="button" data-band="' +
             escapeHtml(c.gene_id) +
@@ -396,7 +396,7 @@
         shared.length +
         ' shared-core bands (teal) and ' +
         unique.length +
-        ' yeast-leaning bands (pale) among the ' +
+        ' yeast-leaning bands (pale paper) among the ' +
         all.length +
         ' API-backed genes.'
     );
@@ -448,13 +448,13 @@
         return (
           '<li class="text-[0.72rem] text-mist leading-snug">' +
           escapeHtml(o.common || o.label || k) +
-          ': <span class="font-mono text-teal-bright/90">' +
+          ': <span class="font-mono text-teal">' +
           escapeHtml(o.id) +
           '</span> (' +
           escapeHtml(o.type || 'ortholog') +
           ')' +
           (o.urls && o.urls.ensembl_rest
-            ? ' · <a class="underline decoration-white/20 text-teal-bright/80" href="' +
+            ? ' · <a class="underline decoration-teal/30 text-teal" href="' +
               escapeHtml(o.urls.ensembl_rest) +
               '" target="_blank" rel="noopener">Ensembl REST</a>'
             : '') +
@@ -475,12 +475,12 @@
       .join('');
 
     host.innerHTML =
-      '<div class="p-3 bg-void-elev/50 border border-white/10 rounded-sm animate-panel-in">' +
-      '<div class="font-mono text-[0.65rem] tracking-widest text-teal-bright mb-1">' +
+      '<div class="p-3 bg-paper-soft border border-rule rounded-sm animate-panel-in">' +
+      '<div class="font-mono text-[0.65rem] tracking-widest text-teal mb-1">' +
       escapeHtml(b.gene_id) +
       (b.locus_tag ? ' · ' + escapeHtml(b.locus_tag) : '') +
       '</div>' +
-      '<h3 class="m-0 font-display font-normal text-[1.05rem] text-white">' +
+      '<h3 class="m-0 font-display font-normal text-[1.05rem] text-ink">' +
       escapeHtml(b.protein_name || b.gene_id) +
       '</h3>' +
       '<p class="m-0 mt-1.5 text-[0.78rem] leading-snug text-mist">' +
@@ -503,7 +503,7 @@
       '<ul class="mt-2 mb-2 pl-4 list-disc space-y-1">' +
       orthoLines +
       '</ul>' +
-      '<div class="text-[0.58rem] tracking-widest uppercase text-white/40 mb-1">Citations</div>' +
+      '<div class="text-[0.58rem] tracking-widest uppercase text-mist mb-1">Citations</div>' +
       '<ul class="m-0 pl-4 list-disc space-y-1">' +
       cites +
       '</ul>' +

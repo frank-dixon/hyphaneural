@@ -120,12 +120,12 @@
       .map((lab, i) => {
         const on = i === this._lod ? ' on' : i < this._lod ? ' done' : '';
         return (
-          '<button type="button" class="lod-chip flex-1 text-[0.58rem] tracking-wider uppercase px-1.5 py-1.5 border border-white/15 bg-transparent text-mist rounded-sm cursor-pointer' + on + '" data-lod="' + i + '">' +
-          '<span class="lod-n font-mono mr-1 text-white/40">' + (i + 1) + '</span>' + escapeHtml(lab) +
+          '<button type="button" class="lod-chip flex-1 text-[0.58rem] tracking-wider uppercase px-1.5 py-1.5 border border-rule bg-transparent text-mist rounded-sm cursor-pointer' + on + '" data-lod="' + i + '">' +
+          '<span class="lod-n font-mono mr-1 text-mist">' + (i + 1) + '</span>' + escapeHtml(lab) +
           '</button>'
         );
       })
-      .join('<span class="lod-sep text-white/25 px-0.5 self-center" aria-hidden="true">→</span>');
+      .join('<span class="lod-sep text-rule px-0.5 self-center" aria-hidden="true">→</span>');
   };
 
   GeneFollow.prototype._renderFamilyOrOrg = function () {
@@ -141,8 +141,8 @@
       const el = document.createElement('div');
       el.className = 'step active lod-card';
       el.innerHTML =
-        '<div class="step-stage font-mono text-[0.58rem] tracking-widest text-teal-bright mb-1">Organism</div>' +
-        '<div class="step-label text-[0.88rem] text-white mb-1">' + escapeHtml(org ? org.common_name : "Baker's yeast") + '</div>' +
+        '<div class="step-stage font-mono text-[0.58rem] tracking-widest text-teal mb-1">Organism</div>' +
+        '<div class="step-label text-[0.88rem] text-ink mb-1">' + escapeHtml(org ? org.common_name : "Baker's yeast") + '</div>' +
         '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0 mb-1">' + escapeHtml((org && org.short_blurb) || '') + '</p>' +
         '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0 mb-1">' + escapeHtml(ov.why || '') + '</p>' +
         '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0 mb-1">' + escapeHtml(ov.habitat || '') + '</p>' +
@@ -163,8 +163,8 @@
     const el = document.createElement('div');
     el.className = 'step active lod-card';
     el.innerHTML =
-      '<div class="step-stage font-mono text-[0.58rem] tracking-widest text-teal-bright mb-1">Gene / family</div>' +
-      '<div class="step-label text-[0.88rem] text-white mb-1">' + escapeHtml(fd.title || (gene.family || gene.id) + ' family') + '</div>' +
+      '<div class="step-stage font-mono text-[0.58rem] tracking-widest text-teal mb-1">Gene / family</div>' +
+      '<div class="step-label text-[0.88rem] text-ink mb-1">' + escapeHtml(fd.title || (gene.family || gene.id) + ' family') + '</div>' +
       '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0 mb-1">' + escapeHtml(fd.plain_english || gene.role || '') + '</p>' +
       '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0 mb-1">' + escapeHtml(fd.why_it_matters || gene.phenotype || '') + '</p>' +
       '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0 mb-1">' + escapeHtml(fd.conservation || '') + '</p>' +
@@ -203,8 +203,8 @@
       el.className = 'step';
       el.setAttribute('role', 'listitem');
       el.innerHTML =
-        '<div class="step-stage font-mono text-[0.58rem] tracking-widest text-teal-bright mb-1">' + escapeHtml(s.stage) + '</div>' +
-        '<div class="step-label text-[0.88rem] text-white mb-1">' + escapeHtml(s.label) + '</div>' +
+        '<div class="step-stage font-mono text-[0.58rem] tracking-widest text-teal mb-1">' + escapeHtml(s.stage) + '</div>' +
+        '<div class="step-label text-[0.88rem] text-ink mb-1">' + escapeHtml(s.label) + '</div>' +
         '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0">' + escapeHtml(s.plain_english || '') + '</p>' +
         '<div class="step-seq font-mono text-[0.62rem] text-mist-dim mt-1.5">' + escapeHtml(s.seq_hint || '') + '</div>';
       root.appendChild(el);
@@ -283,7 +283,7 @@
     const mid = left + (right - left) * shared;
 
     // Hex whisper under compare
-    ctx.strokeStyle = 'rgba(61,158,143,0.07)';
+    ctx.strokeStyle = 'rgba(11,138,143,0.07)';
     ctx.lineWidth = 1;
     const R = 14;
     for (let row = 0; row < 6; row++) {
@@ -302,7 +302,7 @@
       }
     }
 
-    ctx.fillStyle = 'rgba(61,158,143,0.08)';
+    ctx.fillStyle = 'rgba(11,138,143,0.08)';
     ctx.fillRect(left, 20, mid - left, h - 40);
 
     drawCurvedStrand(ctx, left, y1, mid, y1, right, y1 - 18, true, shared);
@@ -315,7 +315,7 @@
     ctx.fillText(orgB.common_name + ' — ' + (bMeta.label || gene.id), left, h - 8);
 
     ctx.textAlign = 'center';
-    ctx.fillStyle = 'rgba(94,196,180,0.95)';
+    ctx.fillStyle = 'rgba(11,138,143,0.95)';
     ctx.font = '10px "IBM Plex Mono", monospace';
     ctx.fillText('shared core', (left + mid) / 2, h / 2 + 4);
 
@@ -325,7 +325,7 @@
     ctx.beginPath();
     ctx.moveTo(mid, 28);
     ctx.lineTo(mid, h - 28);
-    ctx.strokeStyle = 'rgba(61,158,143,0.35)';
+    ctx.strokeStyle = 'rgba(11,138,143,0.35)';
     ctx.setLineDash([3, 4]);
     ctx.stroke();
     ctx.setLineDash([]);
@@ -337,7 +337,7 @@
     const c1x = x0 + (xMid - x0) * 0.5;
     const c1y = y0 + (up ? -14 : 14);
     ctx.quadraticCurveTo(c1x, c1y, xMid, yMid);
-    ctx.strokeStyle = 'rgba(61,158,143,0.85)';
+    ctx.strokeStyle = 'rgba(11,138,143,0.85)';
     ctx.lineWidth = 3.5;
     ctx.lineCap = 'round';
     ctx.stroke();
@@ -345,7 +345,7 @@
     ctx.beginPath();
     ctx.moveTo(x0, y0);
     ctx.quadraticCurveTo(c1x, c1y, xMid, yMid);
-    ctx.strokeStyle = 'rgba(94,196,180,0.28)';
+    ctx.strokeStyle = 'rgba(11,138,143,0.28)';
     ctx.lineWidth = 10;
     ctx.stroke();
 
@@ -372,7 +372,7 @@
 
     ctx.beginPath();
     ctx.arc(x0, y0, 4, 0, Math.PI * 2);
-    ctx.fillStyle = '#5ec4b4';
+    ctx.fillStyle = '#0B8A8F';
     ctx.fill();
   }
 

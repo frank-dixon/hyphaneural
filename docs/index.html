@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F3EEE4">
   <title>Hyphaneural — slow networks · deep intelligence</title>
   <meta name="description" content="Fungal genetics as living spaces: Hex Reach, Strand Zoom, Fungal Atlas, Void Breath. DNA→mRNA→protein teaching inside baker's yeast. Fungi only. No login.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,400&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/hyphaneural.css?v=bands1">
+  <link rel="stylesheet" href="css/hyphaneural.css?v=cream1">
 </head>
 <body>
 <div class="app relative w-full h-full overflow-hidden bg-void" id="app" data-mode="strand">
@@ -23,18 +24,18 @@
     <div class="para para-mist absolute -inset-[12%] will-change-transform transition-transform duration-75" data-para="0.7"></div>
   </div>
 
-  <header class="top-bar absolute top-0 left-0 right-0 z-40 flex items-center justify-between gap-4 px-5 py-4 bg-gradient-to-b from-void/55 to-transparent pointer-events-none">
+  <header class="top-bar absolute top-0 left-0 right-0 z-40 flex items-center justify-between gap-4 px-5 py-3 bg-paper/90 border-b border-rule backdrop-blur-md pointer-events-none shadow-paper-sm">
     <div class="brand flex flex-col gap-0.5 pointer-events-auto">
-      <span class="text-[0.68rem] tracking-brand uppercase text-white/55">Hyphaneural</span>
+      <span class="text-[0.68rem] tracking-brand uppercase text-teal">Hyphaneural</span>
       <span class="text-[0.9rem] text-ink font-normal" id="loc-label">Strand Zoom · Baker's yeast</span>
     </div>
     <nav class="flex items-center gap-1.5 flex-wrap justify-end pointer-events-auto" aria-label="Actions">
-      <button type="button" class="btn-primary text-[0.76rem] tracking-wider border border-white/30 bg-white/10 text-white px-3 py-1.5 rounded-sm cursor-pointer shadow-[0_0_20px_rgba(61,158,143,0.12)] hover:bg-white/15" id="btn-tour" title="Start the guided path into Strand Zoom and SUC2">Start here</button>
-      <button type="button" class="text-[0.76rem] tracking-wider border border-white/30 bg-white/10 text-white px-3 py-1.5 rounded-sm cursor-pointer hover:bg-white/15" id="btn-bands" title="Open the gene-band heads-up analyzer">Bands</button>
-      <button type="button" class="text-[0.76rem] tracking-wider border border-white/15 bg-void-elev/45 text-ink px-3 py-1.5 rounded-sm cursor-pointer hover:border-white/40 hover:text-white" id="btn-genome" title="Open the full linear genome panel">Genome</button>
-      <button type="button" class="text-[0.76rem] tracking-wider border border-white/15 bg-void-elev/45 text-ink px-3 py-1.5 rounded-sm cursor-pointer hover:border-white/40 hover:text-white" id="btn-compare" title="Compare the same gene family across two fungi">Compare</button>
-      <button type="button" class="text-[0.76rem] tracking-wider border border-white/15 bg-void-elev/45 text-ink px-3 py-1.5 rounded-sm cursor-pointer hover:border-white/40 hover:text-white" id="btn-calm" title="Hide the interface chrome for a calmer view">Calm</button>
-      <a class="text-[0.76rem] tracking-wider border border-white/15 bg-void-elev/45 text-ink px-3 py-1.5 rounded-sm hover:border-white/40 hover:text-white no-underline" href="https://github.com/frank-dixon/hyphaneural" target="_blank" rel="noopener">Source</a>
+      <button type="button" class="btn-primary text-[0.76rem] tracking-wider border border-teal bg-teal text-teal-on px-3 py-1.5 rounded-sm cursor-pointer shadow-teal hover:bg-teal-deep" id="btn-tour" title="Start the guided path into Strand Zoom and SUC2">Start here</button>
+      <button type="button" class="text-[0.76rem] tracking-wider border border-teal/40 bg-teal-soft text-teal-deep px-3 py-1.5 rounded-sm cursor-pointer hover:border-teal" id="btn-bands" title="Open the gene-band heads-up analyzer">Bands</button>
+      <button type="button" class="text-[0.76rem] tracking-wider border border-rule bg-paper-soft text-ink-soft px-3 py-1.5 rounded-sm cursor-pointer hover:border-teal/50 hover:text-ink" id="btn-genome" title="Open the full linear genome panel">Genome</button>
+      <button type="button" class="text-[0.76rem] tracking-wider border border-rule bg-paper-soft text-ink-soft px-3 py-1.5 rounded-sm cursor-pointer hover:border-teal/50 hover:text-ink" id="btn-compare" title="Compare the same gene family across two fungi">Compare</button>
+      <button type="button" class="text-[0.76rem] tracking-wider border border-rule bg-paper-soft text-ink-soft px-3 py-1.5 rounded-sm cursor-pointer hover:border-teal/50 hover:text-ink" id="btn-calm" title="Hide the interface chrome for a calmer view">Calm</button>
+      <a class="text-[0.76rem] tracking-wider border border-rule bg-paper-soft text-ink-soft px-3 py-1.5 rounded-sm hover:border-teal/50 hover:text-ink no-underline" href="https://github.com/frank-dixon/hyphaneural" target="_blank" rel="noopener">Source</a>
     </nav>
   </header>
 
@@ -44,73 +45,73 @@
       <!-- HEX REACH -->
       <section class="space" data-mode="hex" aria-label="Hex Reach">
         <canvas class="absolute inset-0 w-full h-full block touch-none" id="canvas-hex" aria-hidden="true"></canvas>
-        <div class="space-chrome absolute z-[12] top-[4.5rem] left-5 max-w-[min(340px,78vw)] pointer-events-none">
-          <h1 class="m-0 font-display font-normal text-[clamp(1.8rem,4vw,2.6rem)] tracking-wider uppercase text-white leading-tight">Hex Reach</h1>
-          <p class="mt-1.5 mb-3 text-[0.72rem] tracking-wide2 text-white/55">A lattice for watching genes connect across the mycelium.</p>
-          <p class="m-0 mt-2 text-[0.78rem] leading-snug text-mist max-w-[34ch]">You are looking at a hexagonal map of hyphal genetics. Tap a glowing node to open that gene, or open Bands to compare shared versus unique loci at a glance.</p>
+        <div class="space-chrome absolute z-[12] top-[4.5rem] left-5 max-w-[min(340px,78vw)] pointer-events-none p-3.5 bg-paper/92 border border-rule rounded-sm shadow-paper-sm backdrop-blur-md">
+          <h1 class="m-0 font-display font-normal text-[clamp(1.8rem,4vw,2.6rem)] tracking-wider uppercase text-ink leading-tight">Hex Reach</h1>
+          <p class="mt-1.5 mb-3 text-[0.72rem] tracking-wide2 text-mist">A lattice for watching genes connect across the mycelium.</p>
+          <p class="m-0 mt-2 text-[0.78rem] leading-snug text-ink-soft max-w-[34ch]">You are looking at a hexagonal map of hyphal genetics. Tap a glowing node to open that gene, or open Bands to compare shared versus unique loci at a glance.</p>
         </div>
-        <div class="space-stats absolute z-[12] bottom-[5.5rem] left-5 flex flex-col gap-1.5 font-mono text-[0.62rem] tracking-wider text-white/55 pointer-events-none" id="hex-stats">
-          <div><span class="text-white/35 mr-1.5">REACH</span> <span class="text-teal-bright" id="hex-reach">—</span></div>
-          <div><span class="text-white/35 mr-1.5">NODES</span> <span class="text-teal-bright" id="hex-nodes">—</span></div>
-          <div><span class="text-white/35 mr-1.5">ACTIVITY</span> <span class="text-teal-bright">low · steady</span></div>
+        <div class="space-stats absolute z-[12] bottom-[5.5rem] left-5 flex flex-col gap-1.5 font-mono text-[0.62rem] tracking-wider text-ink-soft pointer-events-none px-3 py-2 bg-paper/90 border border-rule rounded-sm shadow-paper-sm" id="hex-stats">
+          <div><span class="text-mist mr-1.5">REACH</span> <span class="text-teal" id="hex-reach">—</span></div>
+          <div><span class="text-mist mr-1.5">NODES</span> <span class="text-teal" id="hex-nodes">—</span></div>
+          <div><span class="text-mist mr-1.5">ACTIVITY</span> <span class="text-teal">low · steady</span></div>
         </div>
       </section>
 
       <!-- STRAND ZOOM -->
       <section class="space" data-mode="strand" aria-label="Strand Zoom">
         <canvas class="absolute inset-0 w-full h-full block touch-none" id="canvas-strand" aria-hidden="true"></canvas>
-        <div class="space-chrome absolute z-[12] top-[4.5rem] left-5 max-w-[min(340px,78vw)] pointer-events-none">
-          <h1 class="m-0 font-display font-normal text-[clamp(1.8rem,4vw,2.6rem)] tracking-wider uppercase text-white leading-tight">Strand Zoom</h1>
-          <p class="mt-1.5 mb-3 text-[0.72rem] tracking-wide2 text-white/55">Zoom from the living field down into a single strand of teaching DNA.</p>
+        <div class="space-chrome absolute z-[12] top-[4.5rem] left-5 max-w-[min(340px,78vw)] pointer-events-none p-3.5 bg-paper/92 border border-rule rounded-sm shadow-paper-sm backdrop-blur-md">
+          <h1 class="m-0 font-display font-normal text-[clamp(1.8rem,4vw,2.6rem)] tracking-wider uppercase text-ink leading-tight">Strand Zoom</h1>
+          <p class="mt-1.5 mb-3 text-[0.72rem] tracking-wide2 text-mist">Zoom from the living field down into a single strand of teaching DNA.</p>
           <div class="zoom-rail flex gap-1 my-2.5 pointer-events-auto" id="zoom-rail" role="group" aria-label="Camera zoom level">
-            <button type="button" data-zoom="0" class="on text-[0.62rem] tracking-widest uppercase px-2.5 py-1.5 border border-white/40 bg-white/10 text-white rounded-sm cursor-pointer">01 Field</button>
-            <button type="button" data-zoom="1" class="text-[0.62rem] tracking-widest uppercase px-2.5 py-1.5 border border-white/15 bg-black/25 text-mist rounded-sm cursor-pointer hover:border-white/40">02 Lattice</button>
-            <button type="button" data-zoom="2" class="text-[0.62rem] tracking-widest uppercase px-2.5 py-1.5 border border-white/15 bg-black/25 text-mist rounded-sm cursor-pointer hover:border-white/40">03 Strand</button>
+            <button type="button" data-zoom="0" class="on text-[0.62rem] tracking-widest uppercase px-2.5 py-1.5 border border-teal bg-teal-soft text-teal rounded-sm cursor-pointer">01 Field</button>
+            <button type="button" data-zoom="1" class="text-[0.62rem] tracking-widest uppercase px-2.5 py-1.5 border border-rule bg-paper-soft text-mist rounded-sm cursor-pointer hover:border-teal/50">02 Lattice</button>
+            <button type="button" data-zoom="2" class="text-[0.62rem] tracking-widest uppercase px-2.5 py-1.5 border border-rule bg-paper-soft text-mist rounded-sm cursor-pointer hover:border-teal/50">03 Strand</button>
           </div>
-          <p class="m-0 mt-2 text-[0.78rem] leading-snug text-mist max-w-[34ch]" id="strand-hint">You are inside baker's yeast. Scroll or use the rail to zoom, then tap SUC2 to watch DNA become messenger RNA and then invertase protein.</p>
+          <p class="m-0 mt-2 text-[0.78rem] leading-snug text-ink-soft max-w-[34ch]" id="strand-hint">You are inside baker's yeast. Scroll or use the rail to zoom, then tap SUC2 to watch DNA become messenger RNA and then invertase protein.</p>
         </div>
-        <div class="chamber-caption absolute z-[12] left-1/2 bottom-[5.2rem] -translate-x-1/2 text-center max-w-[min(420px,88vw)] pointer-events-none transition-opacity duration-500" id="chamber-caption">
-          <div class="font-display text-[1.15rem] italic text-white tracking-wide" id="cap-sci">Saccharomyces cerevisiae</div>
-          <div class="text-[0.68rem] tracking-widest uppercase text-white/55 mt-1" id="cap-clade">Ascomycota · budding yeast</div>
-          <div class="mt-2.5 text-[0.78rem] leading-snug text-mist" id="cap-overview">Baker's yeast is the classic lab fungus. Follow SUC2 (invertase) to watch a stretch of DNA become the enzyme that splits table sugar.</div>
+        <div class="chamber-caption absolute z-[12] left-1/2 bottom-[5.2rem] -translate-x-1/2 text-center max-w-[min(420px,88vw)] pointer-events-none transition-opacity duration-500 px-4 py-3 bg-paper/92 border border-rule rounded-sm shadow-paper-sm" id="chamber-caption">
+          <div class="font-display text-[1.15rem] italic text-ink tracking-wide" id="cap-sci">Saccharomyces cerevisiae</div>
+          <div class="text-[0.68rem] tracking-widest uppercase text-teal mt-1" id="cap-clade">Ascomycota · budding yeast</div>
+          <div class="mt-2.5 text-[0.78rem] leading-snug text-ink-soft" id="cap-overview">Baker's yeast is the classic lab fungus. Follow SUC2 (invertase) to watch a stretch of DNA become the enzyme that splits table sugar.</div>
         </div>
       </section>
 
       <!-- FUNGAL ATLAS -->
       <section class="space" data-mode="atlas" aria-label="Fungal Atlas">
         <canvas class="absolute inset-0 w-full h-full block touch-none" id="canvas-atlas" aria-hidden="true"></canvas>
-        <div class="space-chrome absolute z-[12] top-[4.5rem] left-5 max-w-[min(340px,78vw)] pointer-events-none">
-          <h1 class="m-0 font-display font-normal text-[clamp(1.8rem,4vw,2.6rem)] tracking-wider uppercase text-white leading-tight">Fungal Atlas</h1>
-          <p class="mt-1.5 mb-3 text-[0.72rem] tracking-wide2 text-white/55">A map of living fungi you can enter, not a spreadsheet of names.</p>
-          <div class="flex flex-wrap gap-x-4 gap-y-2 my-2.5 text-[0.68rem] tracking-wider text-white/55">
-            <span><i class="inline-block w-2 h-2 rounded-full mr-1.5 align-middle bg-[#5ec4b4] shadow-[0_0_6px_#5ec4b4]"></i> Yeast</span>
+        <div class="space-chrome absolute z-[12] top-[4.5rem] left-5 max-w-[min(340px,78vw)] pointer-events-none p-3.5 bg-paper/92 border border-rule rounded-sm shadow-paper-sm backdrop-blur-md">
+          <h1 class="m-0 font-display font-normal text-[clamp(1.8rem,4vw,2.6rem)] tracking-wider uppercase text-ink leading-tight">Fungal Atlas</h1>
+          <p class="mt-1.5 mb-3 text-[0.72rem] tracking-wide2 text-mist">A map of living fungi you can enter, not a spreadsheet of names.</p>
+          <div class="flex flex-wrap gap-x-4 gap-y-2 my-2.5 text-[0.68rem] tracking-wider text-ink-soft">
+            <span><i class="inline-block w-2 h-2 rounded-full mr-1.5 align-middle bg-teal shadow-[0_0_6px_#0B8A8F]"></i> Yeast</span>
             <span><i class="inline-block w-2 h-2 rounded-full mr-1.5 align-middle bg-[#7a9ec4] shadow-[0_0_6px_#7a9ec4]"></i> Mold</span>
             <span><i class="inline-block w-2 h-2 rounded-full mr-1.5 align-middle bg-[#a8c47a] shadow-[0_0_6px_#a8c47a]"></i> Mushroom</span>
             <span><i class="inline-block w-2 h-2 rounded-full mr-1.5 align-middle bg-ember shadow-[0_0_6px_#c4784a]"></i> Pathogen</span>
           </div>
-          <p class="m-0 mt-2 text-[0.78rem] leading-snug text-mist max-w-[34ch]" id="atlas-hint">Drag to explore this atlas, then tap a fungus to read a short overview. This catalog is fungi only and currently holds about thirty-six organisms.</p>
+          <p class="m-0 mt-2 text-[0.78rem] leading-snug text-ink-soft max-w-[34ch]" id="atlas-hint">Drag to explore this atlas, then tap a fungus to read a short overview. This catalog is fungi only and currently holds about thirty-six organisms.</p>
         </div>
-        <aside class="atlas-card absolute z-[25] right-5 top-20 w-[min(300px,88vw)] p-4 bg-void-panel border border-white/15 backdrop-blur-md pointer-events-auto animate-panel-in" id="atlas-card" hidden>
-          <button type="button" class="absolute top-2 right-2 w-7 h-7 p-0 border-0 bg-transparent text-mist text-xl leading-none cursor-pointer" id="btn-close-atlas" aria-label="Close">×</button>
-          <div class="font-mono text-[0.6rem] tracking-widest uppercase text-white/55" id="atlas-form"></div>
-          <h2 class="m-0 mt-1 font-display font-normal text-[1.35rem] text-white" id="atlas-name"></h2>
-          <div class="italic text-[0.85rem] text-teal-bright" id="atlas-sci"></div>
+        <aside class="atlas-card absolute z-[25] right-5 top-20 w-[min(300px,88vw)] p-4 bg-paper border border-rule shadow-paper backdrop-blur-md pointer-events-auto animate-panel-in" id="atlas-card" hidden>
+          <button type="button" class="absolute top-2 right-2 w-7 h-7 p-0 border-0 bg-transparent text-mist text-xl leading-none cursor-pointer hover:text-ink" id="btn-close-atlas" aria-label="Close">×</button>
+          <div class="font-mono text-[0.6rem] tracking-widest uppercase text-mist" id="atlas-form"></div>
+          <h2 class="m-0 mt-1 font-display font-normal text-[1.35rem] text-ink" id="atlas-name"></h2>
+          <div class="italic text-[0.85rem] text-teal" id="atlas-sci"></div>
           <div class="text-[0.65rem] tracking-widest uppercase text-mist-dim mt-1.5 mb-2.5" id="atlas-clade"></div>
-          <p class="m-0 mb-3.5 text-[0.82rem] leading-snug text-mist" id="atlas-blurb"></p>
-          <button type="button" class="text-[0.76rem] tracking-wider border border-white/15 bg-transparent text-mist px-3 py-1.5 rounded-sm cursor-pointer hover:border-white/40 hover:text-white" id="btn-atlas-enter">Enter Strand Zoom</button>
+          <p class="m-0 mb-3.5 text-[0.82rem] leading-snug text-ink-soft" id="atlas-blurb"></p>
+          <button type="button" class="text-[0.76rem] tracking-wider border border-rule bg-paper-soft text-ink-soft px-3 py-1.5 rounded-sm cursor-pointer hover:border-teal/50 hover:text-ink" id="btn-atlas-enter">Enter Strand Zoom</button>
         </aside>
       </section>
 
       <!-- VOID BREATH -->
       <section class="space" data-mode="void" aria-label="Void Breath">
         <canvas class="absolute inset-0 w-full h-full block touch-none" id="canvas-void" aria-hidden="true"></canvas>
-        <div class="space-chrome absolute z-[12] top-[4.5rem] left-5 max-w-[min(340px,78vw)] pointer-events-none opacity-55">
-          <h1 class="m-0 font-display font-normal text-[clamp(1.8rem,4vw,2.6rem)] tracking-wider uppercase text-white leading-tight">Void Breath</h1>
-          <p class="mt-1.5 mb-3 text-[0.72rem] tracking-wide2 text-white/55">A quiet field where the mycelium keeps growing while the chrome stays faint.</p>
-          <p class="m-0 mt-2 text-[0.78rem] leading-snug text-mist max-w-[34ch]">A wide hyphal weave fills the void so you can sit with the motion. Swipe sideways whenever you are ready to leave.</p>
+        <div class="space-chrome absolute z-[12] top-[4.5rem] left-5 max-w-[min(340px,78vw)] pointer-events-none opacity-70 p-3.5 bg-paper/85 border border-rule rounded-sm shadow-paper-sm backdrop-blur-md">
+          <h1 class="m-0 font-display font-normal text-[clamp(1.8rem,4vw,2.6rem)] tracking-wider uppercase text-ink leading-tight">Void Breath</h1>
+          <p class="mt-1.5 mb-3 text-[0.72rem] tracking-wide2 text-mist">A quiet field where the mycelium keeps growing while the chrome stays faint.</p>
+          <p class="m-0 mt-2 text-[0.78rem] leading-snug text-ink-soft max-w-[34ch]">A wide hyphal weave fills the void so you can sit with the motion. Swipe sideways whenever you are ready to leave.</p>
         </div>
-        <div class="void-readout absolute z-[12] top-20 right-5 font-mono text-[0.58rem] tracking-widest text-white/35 leading-relaxed pointer-events-none text-right">
-          <div class="text-teal-bright/55 mb-1">// FIELD FLOW</div>
+        <div class="void-readout absolute z-[12] top-20 right-5 font-mono text-[0.58rem] tracking-widest text-ink-soft leading-relaxed pointer-events-none text-right px-3 py-2 bg-paper/85 border border-rule rounded-sm shadow-paper-sm">
+          <div class="text-teal mb-1">// FIELD FLOW</div>
           <div>MOTION: MACRO-SLOW</div>
           <div>PARALLAX LAYERS: 5</div>
           <div>HYPHAL DENSITY: HIGH</div>
@@ -121,33 +122,33 @@
   </div>
 
   <!-- Mode dial -->
-  <nav class="mode-dial absolute z-[35] bottom-3.5 left-1/2 -translate-x-1/2 flex gap-0.5 px-2 py-1.5 bg-void/35 border border-white/10 rounded-full backdrop-blur-md pointer-events-auto" id="mode-dial" aria-label="Spaces">
-    <button type="button" data-mode="hex" title="Hex Reach" class="flex flex-col items-center gap-1 px-3 py-1.5 border-0 bg-transparent text-white/35 min-w-[3.2rem] cursor-pointer">
-      <span class="tick w-1.5 h-1.5 rounded-full border border-white/35 bg-transparent transition-all"></span>
+  <nav class="mode-dial absolute z-[35] bottom-3.5 left-1/2 -translate-x-1/2 flex gap-0.5 px-2 py-1.5 bg-paper/95 border border-rule rounded-full backdrop-blur-md pointer-events-auto shadow-paper-sm" id="mode-dial" aria-label="Spaces">
+    <button type="button" data-mode="hex" title="Hex Reach" class="flex flex-col items-center gap-1 px-3 py-1.5 border-0 bg-transparent text-mist min-w-[3.2rem] cursor-pointer">
+      <span class="tick w-1.5 h-1.5 rounded-full border border-rule bg-transparent transition-all"></span>
       <span class="text-[0.55rem] tracking-widest uppercase">Hex</span>
     </button>
-    <button type="button" data-mode="strand" class="on flex flex-col items-center gap-1 px-3 py-1.5 border-0 bg-transparent text-white min-w-[3.2rem] cursor-pointer" title="Strand Zoom">
-      <span class="tick w-1.5 h-1.5 rounded-full border border-white bg-white shadow-[0_0_10px_rgba(255,255,255,0.55)] transition-all"></span>
+    <button type="button" data-mode="strand" class="on flex flex-col items-center gap-1 px-3 py-1.5 border-0 bg-transparent text-ink min-w-[3.2rem] cursor-pointer" title="Strand Zoom">
+      <span class="tick w-1.5 h-1.5 rounded-full border border-teal bg-teal shadow-teal transition-all"></span>
       <span class="text-[0.55rem] tracking-widest uppercase">Strand</span>
     </button>
-    <button type="button" data-mode="atlas" title="Fungal Atlas" class="flex flex-col items-center gap-1 px-3 py-1.5 border-0 bg-transparent text-white/35 min-w-[3.2rem] cursor-pointer">
-      <span class="tick w-1.5 h-1.5 rounded-full border border-white/35 bg-transparent transition-all"></span>
+    <button type="button" data-mode="atlas" title="Fungal Atlas" class="flex flex-col items-center gap-1 px-3 py-1.5 border-0 bg-transparent text-mist min-w-[3.2rem] cursor-pointer">
+      <span class="tick w-1.5 h-1.5 rounded-full border border-rule bg-transparent transition-all"></span>
       <span class="text-[0.55rem] tracking-widest uppercase">Atlas</span>
     </button>
-    <button type="button" data-mode="void" title="Void Breath" class="flex flex-col items-center gap-1 px-3 py-1.5 border-0 bg-transparent text-white/35 min-w-[3.2rem] cursor-pointer">
-      <span class="tick w-1.5 h-1.5 rounded-full border border-white/35 bg-transparent transition-all"></span>
+    <button type="button" data-mode="void" title="Void Breath" class="flex flex-col items-center gap-1 px-3 py-1.5 border-0 bg-transparent text-mist min-w-[3.2rem] cursor-pointer">
+      <span class="tick w-1.5 h-1.5 rounded-full border border-rule bg-transparent transition-all"></span>
       <span class="text-[0.55rem] tracking-widest uppercase">Void</span>
     </button>
   </nav>
 
 
   <!-- Heads-up gene-band analyzer -->
-  <section class="absolute z-[46] inset-x-3 top-14 bottom-14 md:inset-x-auto md:left-3 md:right-auto md:w-[min(520px,94vw)] bg-void/92 border border-white/15 backdrop-blur-lg p-4 overflow-auto animate-panel-in" id="bands-panel" hidden aria-label="Gene band analyzer">
+  <section class="absolute z-[46] inset-x-3 top-14 bottom-14 md:inset-x-auto md:left-3 md:right-auto md:w-[min(520px,94vw)] bg-paper/96 border border-rule shadow-paper backdrop-blur-lg p-4 overflow-auto animate-panel-in" id="bands-panel" hidden aria-label="Gene band analyzer">
     <!-- filled by bands.js -->
   </section>
 
   <!-- Genome panel -->
-  <section class="absolute z-[45] inset-x-3 top-14 bottom-14 bg-void/92 border border-white/15 backdrop-blur-lg p-4 overflow-auto animate-panel-in" id="genome-panel" hidden aria-label="Genome panel">
+  <section class="absolute z-[45] inset-x-3 top-14 bottom-14 bg-paper/96 border border-rule shadow-paper backdrop-blur-lg p-4 overflow-auto animate-panel-in" id="genome-panel" hidden aria-label="Genome panel">
     <div class="grid grid-cols-1 md:grid-cols-[1fr_1.4fr_auto] gap-4 mb-3">
       <div>
         <div class="text-[0.58rem] tracking-widest uppercase text-mist-dim mb-1.5">Organisms</div>
@@ -156,14 +157,14 @@
       <div>
         <div class="text-[0.58rem] tracking-widest uppercase text-mist-dim mb-1.5">Filter · search</div>
         <div class="flex flex-wrap gap-1.5 mb-1.5" data-filter-bar></div>
-        <input type="search" class="w-full max-w-[220px] font-mono text-[0.75rem] px-2 py-1.5 bg-black/40 border border-white/15 text-ink mb-1.5 rounded-sm" data-gene-search placeholder="Search gene id…" aria-label="Search gene id">
+        <input type="search" class="w-full max-w-[220px] font-mono text-[0.75rem] px-2 py-1.5 bg-paper-soft border border-rule text-ink mb-1.5 rounded-sm focus:border-teal focus:outline-none" data-gene-search placeholder="Search gene id…" aria-label="Search gene id">
         <div class="flex flex-wrap gap-1" data-chr-chips></div>
       </div>
       <div>
         <div class="text-[0.58rem] tracking-widest uppercase text-mist-dim mb-1.5">Reference</div>
         <div class="text-[0.82rem] text-ink mb-1.5">Baker's yeast</div>
         <div class="font-mono text-[0.62rem] text-mist-dim tracking-wide">S. cerevisiae · mock linear catalog</div>
-        <button type="button" class="mt-2.5 text-[0.76rem] tracking-wider border border-white/15 bg-transparent text-mist px-3 py-1.5 rounded-sm cursor-pointer hover:border-white/40 hover:text-white" id="btn-close-genome">Close panel</button>
+        <button type="button" class="mt-2.5 text-[0.76rem] tracking-wider border border-rule bg-paper-soft text-ink-soft px-3 py-1.5 rounded-sm cursor-pointer hover:border-teal/50 hover:text-ink" id="btn-close-genome">Close panel</button>
       </div>
     </div>
     <div class="font-mono text-[0.62rem] tracking-wide text-mist mb-2.5" data-stats></div>
@@ -174,74 +175,74 @@
   </section>
 
   <!-- Gene follow -->
-  <aside class="panel gene-panel absolute z-50 top-[4.2rem] right-4 w-[min(380px,92vw)] max-h-[calc(100%-6.5rem)] overflow-y-auto p-5 bg-void-panel border border-white/15 backdrop-blur-md animate-panel-in" id="gene-panel" hidden aria-label="Gene follow">
-    <button type="button" class="absolute top-2 right-2 w-7 h-7 p-0 border-0 bg-transparent text-mist text-xl leading-none cursor-pointer" id="btn-close-gene" aria-label="Close">×</button>
+  <aside class="panel gene-panel absolute z-50 top-[4.2rem] right-4 w-[min(380px,92vw)] max-h-[calc(100%-6.5rem)] overflow-y-auto p-5 bg-paper border border-rule shadow-paper backdrop-blur-md animate-panel-in" id="gene-panel" hidden aria-label="Gene follow">
+    <button type="button" class="absolute top-2 right-2 w-7 h-7 p-0 border-0 bg-transparent text-mist text-xl leading-none cursor-pointer hover:text-ink" id="btn-close-gene" aria-label="Close">×</button>
     <div class="lod-rail flex gap-1 mb-3.5" id="gene-lod" aria-label="Level of detail"></div>
     <div class="gene-head">
-      <div class="font-mono text-[0.65rem] tracking-widest text-teal-bright mb-1" id="gene-id"></div>
-      <div class="text-[0.65rem] tracking-wider text-white/55 mb-1 hidden" id="gene-family" hidden></div>
-      <div class="text-[0.65rem] tracking-wider text-white/55 mb-1" id="gene-org-context" hidden></div>
-      <h2 class="m-0 mb-1 font-display font-normal text-[1.35rem] text-white" id="gene-name"></h2>
-      <p class="mt-1 mb-3 text-[0.82rem] text-mist leading-snug" id="gene-role"></p>
+      <div class="font-mono text-[0.65rem] tracking-widest text-teal mb-1" id="gene-id"></div>
+      <div class="text-[0.65rem] tracking-wider text-mist mb-1 hidden" id="gene-family" hidden></div>
+      <div class="text-[0.65rem] tracking-wider text-mist mb-1" id="gene-org-context" hidden></div>
+      <h2 class="m-0 mb-1 font-display font-normal text-[1.35rem] text-ink" id="gene-name"></h2>
+      <p class="mt-1 mb-3 text-[0.82rem] text-ink-soft leading-snug" id="gene-role"></p>
     </div>
     <div class="steps flex flex-col gap-2.5" id="gene-steps" role="list"></div>
     <div class="gene-takeaway mt-3.5 py-2.5 px-3 border-l-2 border-teal text-[0.82rem] leading-snug text-ink" id="gene-takeaway"></div>
     <div class="flex gap-1.5 mt-3.5 flex-wrap">
-      <button type="button" class="text-[0.76rem] tracking-wider border border-white/15 bg-transparent text-mist px-3 py-1.5 rounded-sm cursor-pointer hover:border-white/40 hover:text-white" id="btn-replay-steps">Replay steps</button>
-      <button type="button" class="text-[0.76rem] tracking-wider border border-white/15 bg-transparent text-mist px-3 py-1.5 rounded-sm cursor-pointer hover:border-white/40 hover:text-white" id="btn-compare-from-gene">Compare family</button>
+      <button type="button" class="text-[0.76rem] tracking-wider border border-rule bg-paper-soft text-ink-soft px-3 py-1.5 rounded-sm cursor-pointer hover:border-teal/50 hover:text-ink" id="btn-replay-steps">Replay steps</button>
+      <button type="button" class="text-[0.76rem] tracking-wider border border-rule bg-paper-soft text-ink-soft px-3 py-1.5 rounded-sm cursor-pointer hover:border-teal/50 hover:text-ink" id="btn-compare-from-gene">Compare family</button>
     </div>
   </aside>
 
   <!-- Compare -->
-  <aside class="panel compare-panel absolute z-50 top-[4.2rem] right-4 w-[min(380px,92vw)] max-h-[calc(100%-6.5rem)] overflow-y-auto p-5 bg-void-panel border border-white/15 backdrop-blur-md animate-panel-in" id="compare-panel" hidden aria-label="Compare">
-    <button type="button" class="absolute top-2 right-2 w-7 h-7 p-0 border-0 bg-transparent text-mist text-xl leading-none cursor-pointer" id="btn-close-compare" aria-label="Close">×</button>
-    <h2 class="m-0 mb-1 font-display font-normal text-[1.35rem] text-white">Compare strands</h2>
-    <p class="text-[0.8rem] text-mist m-0 mb-3.5 leading-snug">Pick the same gene family in two fungi. The shared core of the strand lights teal, and the divergent tips light ember, so you can see what traveled together and what split apart.</p>
+  <aside class="panel compare-panel absolute z-50 top-[4.2rem] right-4 w-[min(380px,92vw)] max-h-[calc(100%-6.5rem)] overflow-y-auto p-5 bg-paper border border-rule shadow-paper backdrop-blur-md animate-panel-in" id="compare-panel" hidden aria-label="Compare">
+    <button type="button" class="absolute top-2 right-2 w-7 h-7 p-0 border-0 bg-transparent text-mist text-xl leading-none cursor-pointer hover:text-ink" id="btn-close-compare" aria-label="Close">×</button>
+    <h2 class="m-0 mb-1 font-display font-normal text-[1.35rem] text-ink">Compare strands</h2>
+    <p class="text-[0.8rem] text-ink-soft m-0 mb-3.5 leading-snug">Pick the same gene family in two fungi. The shared core of the strand lights teal, and the divergent tips light ember, so you can see what traveled together and what split apart.</p>
     <div class="flex flex-col gap-2 mb-3.5">
-      <label class="flex flex-col gap-1 text-[0.65rem] tracking-wider uppercase text-mist-dim">
+      <label class="flex flex-col gap-1 text-[0.65rem] tracking-wider uppercase text-mist">
         <span>Organism A</span>
-        <select id="cmp-a" class="font-sans text-[0.82rem] px-2 py-1.5 bg-black/40 border border-white/15 text-ink rounded-sm"></select>
+        <select id="cmp-a" class="font-sans text-[0.82rem] px-2 py-1.5 bg-paper-soft border border-rule text-ink rounded-sm focus:border-teal focus:outline-none"></select>
       </label>
-      <label class="flex flex-col gap-1 text-[0.65rem] tracking-wider uppercase text-mist-dim">
+      <label class="flex flex-col gap-1 text-[0.65rem] tracking-wider uppercase text-mist">
         <span>Organism B</span>
-        <select id="cmp-b" class="font-sans text-[0.82rem] px-2 py-1.5 bg-black/40 border border-white/15 text-ink rounded-sm"></select>
+        <select id="cmp-b" class="font-sans text-[0.82rem] px-2 py-1.5 bg-paper-soft border border-rule text-ink rounded-sm focus:border-teal focus:outline-none"></select>
       </label>
-      <label class="flex flex-col gap-1 text-[0.65rem] tracking-wider uppercase text-mist-dim">
+      <label class="flex flex-col gap-1 text-[0.65rem] tracking-wider uppercase text-mist">
         <span>Gene family</span>
-        <select id="cmp-gene" class="font-sans text-[0.82rem] px-2 py-1.5 bg-black/40 border border-white/15 text-ink rounded-sm"></select>
+        <select id="cmp-gene" class="font-sans text-[0.82rem] px-2 py-1.5 bg-paper-soft border border-rule text-ink rounded-sm focus:border-teal focus:outline-none"></select>
       </label>
     </div>
-    <canvas id="compare-canvas" width="640" height="220" class="w-full h-auto block my-1.5" aria-label="Strand similarity"></canvas>
-    <p class="text-[0.78rem] text-mist leading-snug" id="compare-insight">These two fungi still do the same molecular job, but the strand tips show different evolutionary handwriting.</p>
+    <canvas id="compare-canvas" width="640" height="220" class="w-full h-auto block my-1.5 border border-rule rounded-sm bg-paper-soft" aria-label="Strand similarity"></canvas>
+    <p class="text-[0.78rem] text-ink-soft leading-snug" id="compare-insight">These two fungi still do the same molecular job, but the strand tips show different evolutionary handwriting.</p>
   </aside>
 
   <!-- Tour -->
-  <div class="tour absolute inset-0 z-[60] flex items-end justify-center p-6 bg-void/25 pointer-events-none" id="tour" hidden>
-    <div class="pointer-events-auto w-[min(420px,94vw)] p-5 bg-void-elev/92 border border-white/15 backdrop-blur-md mb-14 animate-panel-in" role="dialog" aria-labelledby="tour-title">
+  <div class="tour absolute inset-0 z-[60] flex items-end justify-center p-6 bg-ink/20 pointer-events-none" id="tour" hidden>
+    <div class="pointer-events-auto w-[min(420px,94vw)] p-5 bg-paper border border-rule shadow-paper backdrop-blur-md mb-14 animate-panel-in" role="dialog" aria-labelledby="tour-title">
       <div class="flex gap-1.5" id="tour-dots"></div>
-      <h2 class="mt-2 mb-1.5 font-display font-normal text-[1.4rem] text-white" id="tour-title"></h2>
-      <p class="m-0 mb-3.5 text-[0.88rem] leading-snug text-mist" id="tour-body"></p>
+      <h2 class="mt-2 mb-1.5 font-display font-normal text-[1.4rem] text-ink" id="tour-title"></h2>
+      <p class="m-0 mb-3.5 text-[0.88rem] leading-snug text-ink-soft" id="tour-body"></p>
       <div class="flex justify-end gap-1.5">
-        <button type="button" class="text-[0.76rem] tracking-wider border border-white/15 bg-transparent text-mist px-3 py-1.5 rounded-sm cursor-pointer hover:border-white/40 hover:text-white" id="btn-tour-skip">Skip</button>
-        <button type="button" class="text-[0.76rem] tracking-wider border border-white/30 bg-white/10 text-white px-3 py-1.5 rounded-sm cursor-pointer hover:bg-white/15" id="btn-tour-next">Next</button>
+        <button type="button" class="text-[0.76rem] tracking-wider border border-rule bg-paper-soft text-ink-soft px-3 py-1.5 rounded-sm cursor-pointer hover:border-teal/50 hover:text-ink" id="btn-tour-skip">Skip</button>
+        <button type="button" class="text-[0.76rem] tracking-wider border border-teal bg-teal text-teal-on px-3 py-1.5 rounded-sm cursor-pointer shadow-teal hover:bg-teal-deep" id="btn-tour-next">Next</button>
       </div>
     </div>
   </div>
 
-  <footer class="footer-hint absolute bottom-11 left-1/2 -translate-x-1/2 z-30 text-[0.65rem] tracking-wider text-mist-dim whitespace-nowrap text-center max-w-[92vw] overflow-hidden text-ellipsis pointer-events-none" id="footer-hint">
+  <footer class="footer-hint absolute bottom-11 left-1/2 -translate-x-1/2 z-30 text-[0.65rem] tracking-wider text-mist whitespace-nowrap text-center max-w-[92vw] overflow-hidden text-ellipsis pointer-events-none px-3 py-1 bg-paper/80 border border-rule rounded-full shadow-paper-sm" id="footer-hint">
     Swipe between spaces, pan and zoom inside a chamber, and press Esc to close panels. This demo is fungi only, uses public API accessions for band metrics, and needs no login.
   </footer>
 
-  <div class="breath-state absolute bottom-2 left-1/2 -translate-x-1/2 z-30 text-[0.58rem] tracking-wide3 text-white/30 pointer-events-none" id="breath-state" aria-hidden="true">
+  <div class="breath-state absolute bottom-2 left-1/2 -translate-x-1/2 z-30 text-[0.58rem] tracking-wide3 text-mist pointer-events-none" id="breath-state" aria-hidden="true">
     <span>BREATHING · SLOWING · LISTENING</span>
   </div>
 </div>
 
-<script>window.HYPHA_BOOT = { version: 'bands1' };</script>
-<script src="js/gene-follow.js?v=bands1"></script>
-<script src="js/panel.js?v=bands1"></script>
-<script src="js/bands.js?v=bands1"></script>
-<script src="js/canvas.js?v=bands1"></script>
-<script src="js/app.js?v=bands1"></script>
+<script>window.HYPHA_BOOT = { version: 'cream1' };</script>
+<script src="js/gene-follow.js?v=cream1"></script>
+<script src="js/panel.js?v=cream1"></script>
+<script src="js/bands.js?v=cream1"></script>
+<script src="js/canvas.js?v=cream1"></script>
+<script src="js/app.js?v=cream1"></script>
 </body>
 </html>

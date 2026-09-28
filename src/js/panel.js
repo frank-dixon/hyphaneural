@@ -176,7 +176,7 @@
       .map((o) => {
         const on = this.selected.has(o.slug);
         return (
-          '<label class="gp-check flex flex-col gap-0.5 text-[0.7rem] text-mist cursor-pointer px-1.5 py-1 border border-transparent rounded-sm' + (on ? ' on border-white/20 text-white' : '') + '">' +
+          '<label class="gp-check flex flex-col gap-0.5 text-[0.7rem] text-mist cursor-pointer px-1.5 py-1 border border-transparent rounded-sm' + (on ? ' on border-rule text-ink' : '') + '">' +
           '<input type="checkbox" data-org-check value="' + escapeHtml(o.slug) + '"' +
           (on ? ' checked' : '') + '>' +
           '<span class="gp-check-name">' + escapeHtml(o.common_name) + '</span>' +
@@ -195,7 +195,7 @@
       filters.innerHTML = opts
         .map(
           ([v, label]) =>
-            '<label class="gp-filter text-[0.65rem] tracking-wide text-mist cursor-pointer px-2 py-1 border border-white/10 rounded-sm' + (this.filter === v ? ' on border-white/40 text-white' : '') + '">' +
+            '<label class="gp-filter text-[0.65rem] tracking-wide text-mist cursor-pointer px-2 py-1 border border-rule rounded-sm' + (this.filter === v ? ' on border-teal text-teal' : '') + '">' +
             '<input type="radio" name="gp-filter" data-filter value="' + v + '"' +
             (this.filter === v ? ' checked' : '') + '>' +
             label +
@@ -229,7 +229,7 @@
             .map((c) => {
               const on = this.chrFilter === c;
               return (
-                '<button type="button" class="gp-chip font-mono text-[0.58rem] px-1.5 py-1 border border-white/15 bg-transparent text-mist rounded-sm cursor-pointer' + (on ? ' on' : '') + '" data-chr-chip="' +
+                '<button type="button" class="gp-chip font-mono text-[0.58rem] px-1.5 py-1 border border-rule bg-transparent text-mist rounded-sm cursor-pointer' + (on ? ' on' : '') + '" data-chr-chip="' +
                 escapeHtml(c) + '">Chr ' + escapeHtml(c) + '</button>'
               );
             })
@@ -266,7 +266,7 @@
       '<div class="gp-legend flex flex-wrap gap-3 text-[0.65rem] text-mist mb-3" aria-hidden="true">' +
       '<span class="gp-leg shared flex items-center gap-1.5"><i class="inline-block w-2.5 h-2.5 bg-teal/70"></i>Shared ortholog / family</span>' +
       '<span class="gp-leg unique flex items-center gap-1.5"><i class="inline-block w-2.5 h-2.5 bg-ember/70"></i>Organism-unique</span>' +
-      '<span class="gp-leg gap flex items-center gap-1.5"><i class="inline-block w-2.5 h-2.5 bg-white/10"></i>Missing counterpart</span>' +
+      '<span class="gp-leg gap flex items-center gap-1.5"><i class="inline-block w-2.5 h-2.5 bg-teal-soft"></i>Missing counterpart</span>' +
       '</div>';
 
     html += '<div class="gp-tracks flex flex-col gap-2.5" role="list">';
@@ -282,12 +282,12 @@
       html +=
         '<div class="gp-row mb-2.5" role="listitem" data-org-row="' + escapeHtml(org.slug) + '">' +
         '<div class="gp-row-meta mb-1">' +
-        '<div class="gp-row-name text-[0.72rem] text-white/70">' + escapeHtml(org.common_name) + '</div>' +
-        '<div class="gp-row-sci text-[0.65rem] italic text-teal-bright/80">' + escapeHtml(org.scientific_name) + '</div>' +
+        '<div class="gp-row-name text-[0.72rem] text-ink-soft">' + escapeHtml(org.common_name) + '</div>' +
+        '<div class="gp-row-sci text-[0.65rem] italic text-teal">' + escapeHtml(org.scientific_name) + '</div>' +
         '<div class="gp-row-count font-mono text-[0.58rem] text-mist-dim">' + slots.length + ' genes</div>' +
         '</div>' +
         '<div class="gp-track-scroll overflow-x-auto">' +
-        '<div class="gp-track relative flex h-7 bg-white/[0.03] border border-white/[0.06]">';
+        '<div class="gp-track relative flex h-7 bg-paper-2 border border-rule">';
 
       if (multi) {
         // Aligned by family axis
@@ -420,9 +420,9 @@
     }
 
     el.innerHTML =
-      '<div class="gp-stat inline-flex items-baseline gap-1.5 mr-4"><span class="gp-stat-n text-teal-bright">' + total + '</span><span class="gp-stat-l">gene slots</span></div>' +
-      '<div class="gp-stat inline-flex items-baseline gap-1.5 mr-4"><span class="gp-stat-n text-teal-bright">' + selected.length + '</span><span class="gp-stat-l">organisms</span></div>' +
-      '<div class="gp-stat inline-flex items-baseline gap-1.5 mr-4"><span class="gp-stat-n text-teal-bright">' + pct + '%</span><span class="gp-stat-l">shared w/ ' +
+      '<div class="gp-stat inline-flex items-baseline gap-1.5 mr-4"><span class="gp-stat-n text-teal">' + total + '</span><span class="gp-stat-l">gene slots</span></div>' +
+      '<div class="gp-stat inline-flex items-baseline gap-1.5 mr-4"><span class="gp-stat-n text-teal">' + selected.length + '</span><span class="gp-stat-l">organisms</span></div>' +
+      '<div class="gp-stat inline-flex items-baseline gap-1.5 mr-4"><span class="gp-stat-n text-teal">' + pct + '%</span><span class="gp-stat-l">shared w/ ' +
       escapeHtml(ref ? ref.common_name : 'ref') + '</span></div>' +
       '<div class="gp-stat inline-flex items-baseline gap-1.5 mr-4"><span class="gp-stat-n text-ember">' + uniqueCount + '</span><span class="gp-stat-l">unique in view</span></div>';
   };

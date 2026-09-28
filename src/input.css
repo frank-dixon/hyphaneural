@@ -2,15 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Minimal custom — canvas-adjacent, dial track, JS state, reduced-motion */
+/* Minimal custom — Slow Ombre craft, dial track, JS state, reduced-motion */
 @layer base {
   html, body {
-    @apply m-0 h-full overflow-hidden bg-void text-ink font-sans text-[15px] font-light antialiased;
+    @apply m-0 h-full overflow-hidden bg-void text-ink font-sans text-[15px] font-normal antialiased;
   }
 }
 
 @layer components {
-  /* Slow Ombre wash — gradient too complex for one utility string */
+  /* Slow Ombre wash — keep craft; chrome sits on top in cream */
   .ombre-pulse {
     position: absolute;
     inset: -8%;
@@ -32,12 +32,12 @@
   }
   .para-mid {
     background:
-      radial-gradient(ellipse 40% 30% at 25% 70%, rgba(61, 158, 143, 0.08), transparent),
+      radial-gradient(ellipse 40% 30% at 25% 70%, rgba(11, 138, 143, 0.1), transparent),
       radial-gradient(ellipse 35% 28% at 75% 30%, rgba(80, 60, 140, 0.1), transparent);
     @apply opacity-[0.85];
   }
   .para-near {
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpath d='M20 200 Q100 120 180 200 T340 200' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='0.8'/%3E%3Cpath d='M40 280 Q140 200 220 260 T380 240' fill='none' stroke='rgba(61,158,143,0.08)' stroke-width='0.7'/%3E%3C/svg%3E") center/cover;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpath d='M20 200 Q100 120 180 200 T340 200' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='0.8'/%3E%3Cpath d='M40 280 Q140 200 220 260 T380 240' fill='none' stroke='rgba(11,138,143,0.12)' stroke-width='0.7'/%3E%3C/svg%3E") center/cover;
     @apply opacity-55;
   }
   .para-hex {
@@ -63,29 +63,29 @@
     width: 25%;
   }
 
-  /* JS-toggled state accents */
+  /* JS-toggled state accents — cream chrome */
   .mode-dial button.on .tick,
   .zoom-rail button.on,
   .lod-chip.on,
   .gp-chip.on,
   .gp-check.on,
   .gp-filter.on {
-    @apply border-white/40 text-white;
+    @apply border-teal text-teal;
   }
   .mode-dial button.on .tick {
-    @apply bg-white shadow-[0_0_10px_rgba(255,255,255,0.55)];
+    @apply bg-teal shadow-teal;
   }
-  .mode-dial button.on { @apply text-white; }
+  .mode-dial button.on { @apply text-ink; }
   .zoom-rail button.on,
   .lod-chip.on {
-    @apply bg-white/10;
+    @apply bg-teal-soft;
   }
 
   .step {
-    @apply p-3 border border-white/[0.08] bg-black/25 opacity-40 transition-all duration-500;
+    @apply p-3 border border-rule bg-paper-soft opacity-40 transition-all duration-500;
   }
   .step.active {
-    @apply opacity-100 border-teal-bright/45 shadow-[0_0_18px_rgba(61,158,143,0.15)];
+    @apply opacity-100 border-teal/45 shadow-[0_0_18px_rgba(11,138,143,0.15)];
   }
   .step.done { @apply opacity-70; }
   .gene-takeaway { @apply opacity-0 transition-opacity duration-600; }
@@ -104,19 +104,19 @@
   }
 
   .tour-spotlight {
-    @apply absolute z-[55] rounded-full border-[1.5px] border-white/55
-      shadow-[0_0_24px_rgba(61,158,143,0.35)] pointer-events-none animate-pulse-ring;
+    @apply absolute z-[55] rounded-full border-[1.5px] border-teal
+      shadow-[0_0_24px_rgba(11,138,143,0.35)] pointer-events-none animate-pulse-ring;
   }
 
-  /* Genome panel blocks (JS-generated) */
+  /* Genome panel blocks (JS-generated) — keep gene-band craft colors */
   .gp-block {
-    @apply absolute top-[3px] h-[22px] min-w-[4px] rounded-sm cursor-pointer text-[0.5rem] text-white
+    @apply absolute top-[3px] h-[22px] min-w-[4px] rounded-sm cursor-pointer text-[0.5rem] text-teal-on
       flex items-center justify-center overflow-hidden px-0.5;
   }
-  .gp-block.shared { @apply bg-teal/70; }
-  .gp-block.unique { @apply bg-ember/70; }
-  .gp-block.stub { @apply bg-transparent border border-dashed border-teal/55; }
-  .gp-block.gap { @apply bg-white/5 text-mist-dim; }
+  .gp-block.shared { @apply bg-teal/80; }
+  .gp-block.unique { @apply bg-ember/80; }
+  .gp-block.stub { @apply bg-transparent border border-dashed border-teal/55 text-teal; }
+  .gp-block.gap { @apply bg-paper-2 text-mist-dim; }
 }
 
 @layer utilities {
@@ -134,12 +134,12 @@
 
 @layer components {
   #tour-dots span {
-    @apply w-1.5 h-1.5 rounded-full bg-white/15;
+    @apply w-1.5 h-1.5 rounded-full bg-rule;
   }
   #tour-dots span.on {
-    @apply bg-white;
+    @apply bg-teal;
   }
   .lod-chip.done {
-    @apply text-white/50 border-white/20;
+    @apply text-mist border-rule;
   }
 }

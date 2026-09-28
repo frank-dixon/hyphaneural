@@ -4,27 +4,27 @@
 <div class="relative w-screen h-screen overflow-hidden bg-void" id="map-app">
   <canvas id="hypha-canvas" class="absolute inset-0 w-full h-full block touch-none"></canvas>
 
-  <div class="absolute top-0 left-0 right-0 z-20 flex items-center justify-between gap-4 px-5 py-4 bg-gradient-to-b from-void/55 to-transparent pointer-events-none">
-    <div class="text-[0.68rem] tracking-brand uppercase text-white/55 pointer-events-auto">Hyphaneural</div>
+  <div class="absolute top-0 left-0 right-0 z-20 flex items-center justify-between gap-4 px-5 py-4 bg-gradient-to-b from-paper/90 to-transparent pointer-events-none">
+    <div class="text-[0.68rem] tracking-brand uppercase text-teal pointer-events-auto">Hyphaneural</div>
     <div class="flex items-center gap-1.5 pointer-events-auto">
-      <button type="button" id="btn-compare" title="Select two organisms" class="text-[0.76rem] tracking-wider border border-white/15 bg-void-elev/45 text-ink px-3 py-1.5 rounded-sm cursor-pointer hover:border-white/40 hover:text-white">Compare</button>
-      <button type="button" id="btn-calm" title="Hide chrome" class="text-[0.76rem] tracking-wider border border-white/15 bg-void-elev/45 text-ink px-3 py-1.5 rounded-sm cursor-pointer hover:border-white/40 hover:text-white">Calm</button>
+      <button type="button" id="btn-compare" title="Select two organisms" class="text-[0.76rem] tracking-wider border border-rule bg-paper-soft text-ink-soft px-3 py-1.5 rounded-sm cursor-pointer hover:border-teal/50 hover:text-ink">Compare</button>
+      <button type="button" id="btn-calm" title="Hide chrome" class="text-[0.76rem] tracking-wider border border-rule bg-paper-soft text-ink-soft px-3 py-1.5 rounded-sm cursor-pointer hover:border-teal/50 hover:text-ink">Calm</button>
       <form method="post" action="{% url 'logout' %}" class="inline m-0">
         {% csrf_token %}
-        <button type="submit" class="text-[0.76rem] tracking-wider border border-white/15 bg-void-elev/45 text-ink px-3 py-1.5 rounded-sm cursor-pointer hover:border-white/40 hover:text-white">Leave</button>
+        <button type="submit" class="text-[0.76rem] tracking-wider border border-rule bg-paper-soft text-ink-soft px-3 py-1.5 rounded-sm cursor-pointer hover:border-teal/50 hover:text-ink">Leave</button>
       </form>
     </div>
   </div>
 
   <div class="absolute top-16 left-1/2 -translate-x-1/2 z-20 text-[0.78rem] text-mist text-center" id="compare-banner"></div>
 
-  <div class="absolute bottom-10 left-5 z-20 font-mono text-[0.62rem] tracking-wider text-white/40" id="readout">x 0  y 0  ×1.00</div>
+  <div class="absolute bottom-10 left-5 z-20 font-mono text-[0.62rem] tracking-wider text-mist" id="readout">x 0  y 0  ×1.00</div>
   <div class="absolute bottom-3.5 left-1/2 -translate-x-1/2 z-20 text-[0.65rem] tracking-wider text-mist-dim whitespace-nowrap">Pan · scroll to zoom · hyphae reach outward</div>
 
-  <aside class="absolute z-30 top-16 right-4 w-[min(340px,92vw)] max-h-[calc(100%-5rem)] overflow-y-auto p-5 bg-void-panel border border-white/15 backdrop-blur-md animate-panel-in" id="chamber" aria-label="Organism chamber" hidden>
+  <aside class="absolute z-30 top-16 right-4 w-[min(340px,92vw)] max-h-[calc(100%-5rem)] overflow-y-auto p-5 bg-paper border border-rule shadow-paper backdrop-blur-md animate-panel-in" id="chamber" aria-label="Organism chamber" hidden>
     <button type="button" class="absolute top-2 right-2 w-7 h-7 p-0 border-0 bg-transparent text-mist text-xl leading-none cursor-pointer" id="btn-close-chamber" aria-label="Close">×</button>
     <div class="mb-3">
-      <h2 class="m-0 font-display font-normal text-[1.35rem] text-white" id="chamber-title"></h2>
+      <h2 class="m-0 font-display font-normal text-[1.35rem] text-ink" id="chamber-title"></h2>
       <div class="italic text-[0.85rem] text-teal-bright" id="chamber-sci"></div>
     </div>
     <div class="text-[0.82rem] leading-snug text-mist" id="chamber-body"></div>

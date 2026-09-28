@@ -1,4 +1,4 @@
-/** Hyphaneural — Slow Ombre + Quiet Protomol tokens */
+/** Hyphaneural — cream chrome + Slow Ombre craft tokens */
 module.exports = {
   content: [
     "./docs/**/*.{html,js}",
@@ -16,20 +16,36 @@ module.exports = {
         indigo: "#1a2548",
         deepblue: "#0e2a4a",
         deepgreen: "#0a2e28",
+        paper: {
+          DEFAULT: "#F3EEE4",
+          soft: "#F8F3EA",
+          2: "#E8E0D2",
+        },
+        ink: {
+          DEFAULT: "#1C1916",
+          soft: "#3F3A35",
+          muted: "#6A635B",
+        },
+        rule: {
+          DEFAULT: "#D4CBBE",
+          soft: "#E4DCD0",
+        },
         teal: {
-          DEFAULT: "#3d9e8f",
-          bright: "#5ec4b4",
-          dim: "#1a4a44",
+          DEFAULT: "#0B8A8F",
+          bright: "#0B8A8F",
+          deep: "#087075",
+          dim: "#0A5C60",
+          soft: "#D7EEEE",
+          on: "#F8F3EA",
         },
         ember: {
           DEFAULT: "#c4784a",
           soft: "#a05a32",
         },
         mist: {
-          DEFAULT: "#9aabb8",
-          dim: "#5a6874",
+          DEFAULT: "#6A635B",
+          dim: "#8A8278",
         },
-        ink: "#e4eaf0",
       },
       fontFamily: {
         sans: ['"IBM Plex Sans"', "system-ui", "sans-serif"],
@@ -40,6 +56,14 @@ module.exports = {
         brand: "0.32em",
         wide2: "0.18em",
         wide3: "0.22em",
+      },
+      boxShadow: {
+        paper: "0 12px 36px rgba(28, 25, 22, 0.08)",
+        "paper-sm": "0 3px 12px rgba(28, 25, 22, 0.06)",
+        teal: "0 6px 16px rgba(11, 138, 143, 0.22)",
+      },
+      borderRadius: {
+        paper: "0.75rem",
       },
       animation: {
         "ombre-breathe": "ombre-breathe 18s ease-in-out infinite",
