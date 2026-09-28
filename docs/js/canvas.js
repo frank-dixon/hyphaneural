@@ -7,7 +7,13 @@
   'use strict';
 
   const TEAL = '#3d9e8f';
+  const TEAL_DEEP = '#1a5c54';
+  const TEAL_BRIGHT = '#5ec4b4';
+  const TEAL_MIST = '#2a7a70';
   const EMBER = '#c4784a';
+  const EMBER_SOFT = '#a05a32';
+  const EMBER_GLOW = '#e09260';
+  const VOID_HEX = 'rgba(61,158,143,0.045)';
 
   function lerp(a, b, t) { return a + (b - a) * t; }
   function easeOutCubic(t) {
@@ -54,6 +60,8 @@
     this._calm = reducedMotion();
     // Camera / field transform (world space → screen)
     this.cam = { x: 0, y: 0, scale: 0.55, tx: 0, ty: 0, ts: 0.55 };
+    this.lodLevel = 0; // 0 organism · 1 family · 2 dogma
+    this._hexPhase = 0;
     this._vx = 0;
     this._vy = 0;
     this._dragging = false;
@@ -93,6 +101,21 @@
   ChamberCanvas.prototype.setHighlight = function (id) {
     this.highlightId = id;
     if (id) this._focusGene(id);
+  };
+
+  /**
+   * Immersive LOD camera — zoom into the strand/data, not a panel swap.
+   * 0 organism overview · 1 gene/family · 2 DNA→mRNA→protein
+   */
+  ChamberCanvas.prototype.setLod = function (level, geneId) {
+    this.lodLevel = Math.max(0, Math.min(2, level | 0));
+    const zooms = this._calm ? [1, 1.08, 1.15] : [0.72, 1.38, 2.05];
+    this.cam.ts = zooms[this.lodLevel];
+    if (geneId) this._focusGene(geneId);
+    else if (this.lodLevel === 0) {
+      this.cam.tx = 0;
+      this.cam.ty = 0;
+    }
   };
 
   ChamberCanvas.prototype.pulseGene = function (id, on) {
@@ -353,21 +376,10 @@
     const t = (now - this.t0) / 1000;
     ctx.clearRect(0, 0, this.w, this.h);
 
-    // Soft ambient bloom in void (moves with breath via cam)
-    const bloomR = Math.min(this.w, this.h) * (0.55 + Math.sin(t * 0.2) * 0.06);
-    const g = ctx.createRadialGradient(
-      this.cx + this.cam.x * 0.15,
-      this.cy + this.cam.y * 0.15,
-      20,
-      this.cx + this.cam.x * 0.15,
-      this.cy + this.cam.y * 0.15,
-      bloomR
-    );
-    g.addColorStop(0, 'rgba(61,158,143,0.11)');
-    g.addColorStop(0.45, 'rgba(61,158,143,0.04)');
-    g.addColorStop(1, 'rgba(10,12,11,0)');
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, this.w, this.h);
+    // Slow pulsed purple→blue→green ombre (NO ember/orange in BG)
+    this._drawOmbreWash(ctx, t);
+    // Faint white hex lattice
+    this._drawHexLattice(ctx, t);
 
     ctx.save();
     // Camera transform: scale around chamber center + pan
@@ -400,6 +412,107 @@
     ctx.restore();
   };
 
+  /**
+   * Super-slow pulsed color-gradient ombre — purples, blues, greens only.
+   * This soft wash IS primary BG motion alongside growing hyphae.
+   */
+  ChamberCanvas.prototype._drawOmbreWash = function (ctx, t) {
+    // Period ~40–60s for a full hue wander; amplitude gentle
+    const phase = t * 0.028; // very low speed
+    const pulse = 0.5 + 0.5 * Math.sin(t * 0.11);
+    const pulse2 = 0.5 + 0.5 * Math.sin(t * 0.07 + 1.7);
+    // Corner anchors wander slowly through purple / blue / green
+    const c1 = {
+      r: Math.round(40 + 50 * (0.5 + 0.5 * Math.sin(phase))),
+      g: Math.round(20 + 40 * (0.5 + 0.5 * Math.sin(phase + 2.1))),
+      b: Math.round(70 + 80 * (0.5 + 0.5 * Math.cos(phase * 0.9))),
+    }; // purple-blue
+    const c2 = {
+      r: Math.round(15 + 30 * (0.5 + 0.5 * Math.cos(phase + 1.2))),
+      g: Math.round(50 + 70 * (0.5 + 0.5 * Math.sin(phase + 0.6))),
+      b: Math.round(90 + 70 * (0.5 + 0.5 * Math.sin(phase + 2.8))),
+    }; // blue
+    const c3 = {
+      r: Math.round(10 + 25 * (0.5 + 0.5 * Math.sin(phase + 3.0))),
+      g: Math.round(80 + 70 * (0.5 + 0.5 * Math.cos(phase + 1.4))),
+      b: Math.round(60 + 50 * (0.5 + 0.5 * Math.sin(phase + 0.3))),
+    }; // green-teal
+    const aBase = 0.10 + pulse * 0.06;
+    const aSoft = 0.05 + pulse2 * 0.04;
+
+    // Full-field linear ombre
+    const ang = phase * 0.35;
+    const x0 = this.w * (0.5 + 0.45 * Math.cos(ang));
+    const y0 = this.h * (0.5 + 0.45 * Math.sin(ang));
+    const x1 = this.w * (0.5 - 0.45 * Math.cos(ang));
+    const y1 = this.h * (0.5 - 0.45 * Math.sin(ang));
+    const lg = ctx.createLinearGradient(x0, y0, x1, y1);
+    lg.addColorStop(0, `rgba(${c1.r},${c1.g},${c1.b},${aBase})`);
+    lg.addColorStop(0.45, `rgba(${c2.r},${c2.g},${c2.b},${aSoft + 0.04})`);
+    lg.addColorStop(1, `rgba(${c3.r},${c3.g},${c3.b},${aBase * 0.9})`);
+    ctx.fillStyle = lg;
+    ctx.fillRect(0, 0, this.w, this.h);
+
+    // Soft radial pulse over core — green/blue only
+    const cx = this.cx + this.cam.x * 0.12;
+    const cy = this.cy + this.cam.y * 0.12;
+    const bloomR = Math.min(this.w, this.h) * (0.5 + pulse * 0.08);
+    const rg = ctx.createRadialGradient(cx, cy, 10, cx, cy, bloomR);
+    rg.addColorStop(0, `rgba(${c3.r},${c3.g},${c3.b},${0.12 + pulse * 0.08})`);
+    rg.addColorStop(0.4, `rgba(${c2.r},${c2.g},${c2.b},${0.06 + pulse2 * 0.04})`);
+    rg.addColorStop(1, 'rgba(10,12,11,0)');
+    ctx.fillStyle = rg;
+    ctx.fillRect(0, 0, this.w, this.h);
+  };
+
+  ChamberCanvas.prototype._drawHexLattice = function (ctx, t) {
+    const R = this._calm ? 36 : 28;
+    const h = R * Math.sqrt(3);
+    const breath = 1 + Math.sin(t * 0.15) * 0.02;
+    const ox = this.cam.x * 0.12;
+    const oy = this.cam.y * 0.12;
+    ctx.save();
+    ctx.translate(this.w * 0.5 + ox, this.h * 0.5 + oy);
+    ctx.scale(breath, breath);
+    ctx.translate(-this.w * 0.5, -this.h * 0.5);
+    const cols = Math.ceil(this.w / (R * 1.5)) + 3;
+    const rows = Math.ceil(this.h / h) + 3;
+    for (let row = -1; row < rows; row++) {
+      for (let col = -1; col < cols; col++) {
+        const x = col * R * 1.5 + (row % 2 ? R * 0.75 : 0);
+        const y = row * h;
+        // Depth cue: denser/brighter near chamber center
+        const dx = x - this.cx;
+        const dy = y - this.cy;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const near = Math.max(0, 1 - dist / (Math.min(this.w, this.h) * 0.7));
+        const a = 0.025 + near * 0.06 + (this.lodLevel >= 1 ? 0.02 : 0);
+        if (a < 0.03) continue;
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const ang = (Math.PI / 3) * i + Math.PI / 6;
+          const px = x + Math.cos(ang) * R * 0.92;
+          const py = y + Math.sin(ang) * R * 0.92;
+          if (i === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.closePath();
+        // Alternate subtle teal / deep teal / whisper ember at LOD≥1
+        if ((row + col) % 5 === 0) {
+          // sparse white fine lines
+          ctx.strokeStyle = `rgba(255,255,255,${a * 0.55})`;
+        } else if ((row + col) % 3 === 0) {
+          ctx.strokeStyle = `rgba(120,180,220,${a * 0.85})`; // blue
+        } else {
+          ctx.strokeStyle = `rgba(70,140,120,${a})`; // green
+        }
+        ctx.lineWidth = 0.7 + near * 0.6;
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  };
+
   ChamberCanvas.prototype._drawBgHypha = function (ctx, h, t, now) {
     const grow = this._grow(now, h.born, h.growDur);
     if (grow <= 0.001) return;
@@ -419,7 +532,11 @@
     // Soft glow under long strands
     ctx.beginPath();
     this._strokePartial(ctx, swayed.from, swayed.ctrl, swayed.tip, len);
-    ctx.strokeStyle = `rgba(61,158,143,${0.06 + grow * 0.08})`;
+    ctx.strokeStyle = h.layer >= 2
+      ? `rgba(130,170,220,${0.07 + grow * 0.1})`
+      : h.layer === 0
+        ? `rgba(90,70,140,${0.05 + grow * 0.07})`
+        : `rgba(61,158,143,${0.05 + grow * 0.08})`;
     ctx.lineWidth = 10 + h.layer * 3;
     ctx.stroke();
 
@@ -427,7 +544,11 @@
     ctx.beginPath();
     this._strokePartial(ctx, swayed.from, swayed.ctrl, swayed.tip, len);
     const alpha = (0.18 + h.layer * 0.08) * (0.55 + grow * 0.45);
-    ctx.strokeStyle = `rgba(61,158,143,${alpha})`;
+    ctx.strokeStyle = h.layer === 2
+      ? `rgba(140,190,230,${alpha})`
+      : h.layer === 0
+        ? `rgba(100,80,160,${alpha * 0.95})`
+        : `rgba(61,158,143,${alpha})`;
     ctx.lineWidth = layers[0].w;
     ctx.stroke();
 
@@ -438,7 +559,7 @@
         const p = bez(swayed.from, swayed.ctrl, swayed.tip, easeInOut(pt));
         ctx.beginPath();
         ctx.arc(p.x, p.y, 2.5 + h.layer * 0.8, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(61,158,143,${0.2 + h.layer * 0.12})`;
+        ctx.fillStyle = `rgba(255,255,255,${0.15 + h.layer * 0.1})`;
         ctx.fill();
       }
     }
@@ -467,7 +588,9 @@
     if (grow < 1 || len < 0.98) {
       ctx.beginPath();
       ctx.arc(tipDraw.x, tipDraw.y, 3.5, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(61,158,143,${0.25 + (1 - grow) * 0.35})`;
+      ctx.fillStyle = (h.layer === 2 && grow < 0.85)
+        ? `rgba(255,255,255,${0.28 + (1 - grow) * 0.35})`
+        : `rgba(140,210,190,${0.22 + (1 - grow) * 0.3})`;
       ctx.fill();
     }
 
@@ -506,7 +629,7 @@
     ctx.fillStyle = `rgba(212,220,226,${0.08 + pulse * 0.04})`;
     ctx.fill();
     ctx.font = '500 11px "IBM Plex Sans", sans-serif';
-    ctx.fillStyle = 'rgba(61,158,143,0.7)';
+    ctx.fillStyle = 'rgba(255,255,255,0.55)';
     ctx.textAlign = 'center';
     ctx.fillText('S. cerevisiae', this.cx, this.cy + r + 18);
   };
@@ -603,7 +726,7 @@
     ctx.stroke();
 
     ctx.font = `${active ? '500 ' : ''}12px "IBM Plex Mono", monospace`;
-    ctx.fillStyle = active ? '#e8f5f2' : 'rgba(212,220,226,0.75)';
+    ctx.fillStyle = active ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.55)';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     const ly = pos.y + r + 8;
@@ -682,8 +805,12 @@
   ChamberCanvas.prototype._onWheel = function (e) {
     e.preventDefault();
     if (this._calm) return;
-    const factor = e.deltaY < 0 ? 1.08 : 0.93;
-    this.cam.ts = clamp(this.cam.ts * factor, 0.45, 2.4);
+    const factor = e.deltaY < 0 ? 1.12 : 0.89;
+    this.cam.ts = clamp(this.cam.ts * factor, 0.4, 2.8);
+    // Wheel zoom also nudges LOD hint toward data
+    if (this.cam.ts < 0.95) this.lodLevel = 0;
+    else if (this.cam.ts < 1.7) this.lodLevel = 1;
+    else this.lodLevel = 2;
   };
 
   ChamberCanvas.prototype.geneScreenPos = function (id) {

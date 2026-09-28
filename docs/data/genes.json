@@ -2,9 +2,14 @@
   "SUC2": {
     "id": "SUC2",
     "name": "Invertase",
-    "role": "Cleaves sucrose into glucose and fructose — the classic yeast sugar story.",
+    "role": "Cleaves sucrose into glucose and fructose \u2014 the classic yeast sugar story.",
     "organisms": [
-      "bakers-yeast"
+      "ashbya-gossypii",
+      "bakers-yeast",
+      "candida-glabrata",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "Lets yeast break table sugar into fuel it can burn.",
     "guided": true,
@@ -12,36 +17,73 @@
       {
         "stage": "DNA",
         "label": "SUC2 locus",
-        "plain_english": "On chromosome IX sits a stretch of DNA that encodes invertase. This is the recipe — not the enzyme yet.",
-        "seq_hint": "ATGACGATT… (mock / simplified)"
+        "plain_english": "On chromosome IX sits a stretch of DNA that encodes invertase. This is the recipe \u2014 not the enzyme yet.",
+        "seq_hint": "ATGACGATT\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "SUC2 transcript",
-        "plain_english": "The cell copies that DNA into messenger RNA — a working draft the ribosome can read. DNA stays in the nucleus; mRNA carries the message out.",
-        "seq_hint": "AUGACGAUU… (mock / simplified)"
+        "plain_english": "The cell copies that DNA into messenger RNA \u2014 a working draft the ribosome can read. DNA stays in the nucleus; mRNA carries the message out.",
+        "seq_hint": "AUGACGAUU\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Invertase enzyme",
-        "plain_english": "Ribosomes assemble amino acids into invertase. The finished enzyme cleaves sucrose → glucose + fructose — fuel yeast can actually use.",
-        "seq_hint": "MTI… (mock / simplified)"
+        "plain_english": "Ribosomes assemble amino acids into invertase. The finished enzyme cleaves sucrose \u2192 glucose + fructose \u2014 fuel yeast can actually use.",
+        "seq_hint": "MTI\u2026 (mock / simplified)"
       }
     ],
     "stub": false,
-    "annotated": true
+    "annotated": true,
+    "family": "suc2",
+    "family_detail": {
+      "title": "suc2 family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "ACT1": {
     "id": "ACT1",
     "name": "Actin",
-    "role": "Builds the cytoskeleton — the cell's internal scaffolding. Highly conserved across fungi.",
+    "role": "Builds the cytoskeleton \u2014 the cell's internal scaffolding. Highly conserved across fungi.",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
-      "schizosaccharomyces",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
+      "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
       "neurospora",
       "oyster-mushroom",
-      "aspergillus-nidulans",
-      "candida-albicans"
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "Same job in every fungus: shape, movement, and division scaffolding.",
     "family": "actin",
@@ -51,47 +93,58 @@
         "stage": "DNA",
         "label": "ACT1 locus",
         "plain_english": "Actin is one of the most conserved genes in eukaryotes. The DNA sequence is almost a family signature across fungi.",
-        "seq_hint": "ATGTCTGAC… (mock / simplified)"
+        "seq_hint": "ATGTCTGAC\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "actin mRNA",
-        "plain_english": "Transcribed constantly — cells need a steady supply of actin monomers to rebuild filaments as they grow and divide.",
-        "seq_hint": "AUGUCUGAC… (mock / simplified)"
+        "plain_english": "Transcribed constantly \u2014 cells need a steady supply of actin monomers to rebuild filaments as they grow and divide.",
+        "seq_hint": "AUGUCUGAC\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "actin monomer",
-        "plain_english": "Monomers polymerize into filaments that push, pull, and hold the cell together. Change the sequence a little and the scaffold still works — change it a lot and the cell collapses.",
-        "seq_hint": "MSDD… (mock / simplified)"
+        "plain_english": "Monomers polymerize into filaments that push, pull, and hold the cell together. Change the sequence a little and the scaffold still works \u2014 change it a lot and the cell collapses.",
+        "seq_hint": "MSDD\u2026 (mock / simplified)"
       }
     ],
     "compare": {
       "bakers-yeast": {
         "label": "S. cerevisiae ACT1",
         "similarity": 0.92,
-        "note": "Budding yeast actin — classic lab reference."
+        "note": "Budding yeast actin \u2014 classic lab reference."
       },
       "schizosaccharomyces": {
         "label": "S. pombe act1",
         "similarity": 0.88,
-        "note": "Fission yeast — same protein job, slightly different sequence handwriting."
+        "note": "Fission yeast \u2014 same protein job, slightly different sequence handwriting."
       },
       "neurospora": {
         "label": "N. crassa act",
         "similarity": 0.85,
-        "note": "Filamentous mold — conserved core, divergent tips."
+        "note": "Filamentous mold \u2014 conserved core, divergent tips."
       }
     },
     "stub": false,
-    "annotated": true
+    "annotated": true,
+    "family_detail": {
+      "title": "Cytoskeleton actin family",
+      "plain_english": "Shape, division, and hyphal tip growth scaffolding across fungi.",
+      "why_it_matters": "Shape, division, and hyphal tip growth scaffolding across fungi.",
+      "conservation": "Extremely conserved \u2014 best multi-organism compare strand."
+    }
   },
   "HO": {
     "id": "HO",
     "name": "Homothallic endonuclease",
-    "role": "Cuts mating-type DNA so yeast can switch mating type — a yeast-specific story.",
+    "role": "Cuts mating-type DNA so yeast can switch mating type \u2014 a yeast-specific story.",
     "organisms": [
-      "bakers-yeast"
+      "ashbya-gossypii",
+      "bakers-yeast",
+      "candida-glabrata",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "Enables mating-type switching; not found the same way in fission yeast or molds.",
     "steps": [
@@ -99,37 +152,74 @@
         "stage": "DNA",
         "label": "HO endonuclease gene",
         "plain_english": "HO encodes a site-specific DNA cutter. Only budding yeast tells this particular mating-type switch story.",
-        "seq_hint": "ATGCTTTCT… (mock / simplified)"
+        "seq_hint": "ATGCTTTCT\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "HO transcript",
-        "plain_english": "Expressed in a tight window of the cell cycle — timing matters as much as the sequence.",
-        "seq_hint": "AUGCUUUCU… (mock / simplified)"
+        "plain_english": "Expressed in a tight window of the cell cycle \u2014 timing matters as much as the sequence.",
+        "seq_hint": "AUGCUUUCU\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "HO endonuclease",
         "plain_english": "The enzyme nicks mating-type DNA, triggering gene conversion. Result: a cell can change which mating partner it seeks.",
-        "seq_hint": "MLS… (mock / simplified)"
+        "seq_hint": "MLS\u2026 (mock / simplified)"
       }
     ],
     "stub": false,
-    "annotated": true
+    "annotated": true,
+    "family": "ho",
+    "family_detail": {
+      "title": "ho family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "TEF1": {
     "id": "TEF1",
-    "name": "Translation elongation factor 1-α",
+    "name": "Translation elongation factor 1-\u03b1",
     "role": "Helps ribosomes add amino acids during protein building. Conserved across fungi (also called EF1A).",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
-      "schizosaccharomyces",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
+      "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
       "neurospora",
       "oyster-mushroom",
-      "aspergillus-nidulans",
-      "candida-albicans"
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
-    "phenotype": "Without it, protein synthesis stalls — every cell needs this machinery.",
+    "phenotype": "Without it, protein synthesis stalls \u2014 every cell needs this machinery.",
     "aliases": [
       "EF1A",
       "eEF1A"
@@ -139,29 +229,35 @@
         "stage": "DNA",
         "label": "TEF1 / EF1A locus",
         "plain_english": "A housekeeping gene for translation. Yeast keeps redundant copies because the cell cannot afford to run out.",
-        "seq_hint": "ATGGGTAAA… (mock / simplified)"
+        "seq_hint": "ATGGGTAAA\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "TEF1 mRNA",
-        "plain_english": "Abundant transcript — translation factors are among the most expressed messages in a growing cell.",
-        "seq_hint": "AUGGGUAAA… (mock / simplified)"
+        "plain_english": "Abundant transcript \u2014 translation factors are among the most expressed messages in a growing cell.",
+        "seq_hint": "AUGGGUAAA\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "eEF1A",
-        "plain_english": "Shuttles aminoacyl-tRNAs into the ribosome. Same core job from yeast to humans — evolutionary handwriting with a shared ink.",
-        "seq_hint": "MGKE… (mock / simplified)"
+        "plain_english": "Shuttles aminoacyl-tRNAs into the ribosome. Same core job from yeast to humans \u2014 evolutionary handwriting with a shared ink.",
+        "seq_hint": "MGKE\u2026 (mock / simplified)"
       }
     ],
     "stub": false,
     "annotated": true,
-    "family": "tef"
+    "family": "tef",
+    "family_detail": {
+      "title": "Translation elongation (EF-1\u03b1)",
+      "plain_english": "Protein synthesis is non-negotiable; TEF strands stay mostly teal.",
+      "why_it_matters": "Protein synthesis is non-negotiable; TEF strands stay mostly teal.",
+      "conservation": "Great conserved core for compare mode."
+    }
   },
   "EF1A": {
     "id": "EF1A",
-    "name": "Elongation factor 1-α",
-    "role": "Alias family for TEF1 — translation machinery; highly conserved.",
+    "name": "Elongation factor 1-\u03b1",
+    "role": "Alias family for TEF1 \u2014 translation machinery; highly conserved.",
     "organisms": [
       "bakers-yeast",
       "schizosaccharomyces",
@@ -174,35 +270,72 @@
         "stage": "DNA",
         "label": "EF1A locus",
         "plain_english": "Annotation alias for the elongation-factor family. See TEF1 for the baker's-yeast story.",
-        "seq_hint": "ATGGGTAAA… (mock / simplified)"
+        "seq_hint": "ATGGGTAAA\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "EF1A mRNA",
-        "plain_english": "The message that keeps protein synthesis moving.",
-        "seq_hint": "AUGGGUAAA… (mock / simplified)"
+        "plain_english": "The message that keeps protein synthesis moving. This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "AUGGGUAAA\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
-        "label": "EF-1α",
-        "plain_english": "The finished elongation factor — shared core across fungi.",
-        "seq_hint": "MGKE… (mock / simplified)"
+        "label": "EF-1\u03b1",
+        "plain_english": "The finished elongation factor \u2014 shared core across fungi. This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "MGKE\u2026 (mock / simplified)"
       }
     ],
     "stub": false,
-    "annotated": true
+    "annotated": true,
+    "family": "ef1a",
+    "family_detail": {
+      "title": "ef1a family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "TUB1": {
     "id": "TUB1",
-    "name": "α-tubulin",
-    "role": "Microtubule subunit — spindle and cytoskeleton.",
+    "name": "\u03b1-tubulin",
+    "role": "Microtubule subunit \u2014 spindle and cytoskeleton.",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
-      "schizosaccharomyces",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
+      "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
       "neurospora",
       "oyster-mushroom",
-      "aspergillus-nidulans",
-      "candida-albicans"
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "cytoskeleton",
     "stub": true,
@@ -211,35 +344,71 @@
       {
         "stage": "DNA",
         "label": "TUB1 locus",
-        "plain_english": "Mock / limited annotation for TUB1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for TUB1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "TUB1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
-        "label": "α-tubulin",
-        "plain_english": "cytoskeleton",
-        "seq_hint": "M… (mock / simplified)"
+        "label": "\u03b1-tubulin",
+        "plain_english": "cytoskeleton This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "tubulin"
+    "family": "tubulin",
+    "family_detail": {
+      "title": "Microtubule tubulin",
+      "plain_english": "Spindle and transport rails inside fungal cells.",
+      "why_it_matters": "Spindle and transport rails inside fungal cells.",
+      "conservation": "Conserved core, mild tip drift."
+    }
   },
   "CDC28": {
     "id": "CDC28",
     "name": "Cyclin-dependent kinase",
     "role": "Master cell-cycle kinase (CDC2 ortholog in fission yeast).",
     "organisms": [
-      "bakers-yeast",
-      "schizosaccharomyces",
-      "neurospora",
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
       "aspergillus-nidulans",
+      "aspergillus-niger",
+      "bakers-yeast",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
       "candida-albicans",
-      "oyster-mushroom"
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
+      "neurospora",
+      "oyster-mushroom",
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "cell cycle control",
     "stub": true,
@@ -248,35 +417,71 @@
       {
         "stage": "DNA",
         "label": "CDC28 locus",
-        "plain_english": "Mock / limited annotation for CDC28. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for CDC28. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "CDC28 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Cyclin-dependent kinase",
-        "plain_english": "cell cycle control",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "cell cycle control This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "cdk"
+    "family": "cdk",
+    "family_detail": {
+      "title": "Cyclin-dependent kinase",
+      "plain_english": "Cell-cycle engine \u2014 baker's CDC28 vs fission CDC2.",
+      "why_it_matters": "Cell-cycle engine \u2014 baker's CDC28 vs fission CDC2.",
+      "conservation": "Classic yeast genetics module."
+    }
   },
   "RPL25": {
     "id": "RPL25",
     "name": "Ribosomal protein L25",
     "role": "Large-subunit ribosomal protein.",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
-      "schizosaccharomyces",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
+      "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
       "neurospora",
       "oyster-mushroom",
-      "aspergillus-nidulans",
-      "candida-albicans"
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "ribosome biogenesis",
     "stub": true,
@@ -285,35 +490,71 @@
       {
         "stage": "DNA",
         "label": "RPL25 locus",
-        "plain_english": "Mock / limited annotation for RPL25. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for RPL25. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "RPL25 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Ribosomal protein L25",
-        "plain_english": "ribosome biogenesis",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "ribosome biogenesis This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "rpl"
+    "family": "rpl",
+    "family_detail": {
+      "title": "rpl family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "RPS5": {
     "id": "RPS5",
     "name": "Ribosomal protein S5",
     "role": "Small-subunit ribosomal protein.",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
-      "schizosaccharomyces",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
+      "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
       "neurospora",
       "oyster-mushroom",
-      "aspergillus-nidulans",
-      "candida-albicans"
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "ribosome biogenesis",
     "stub": true,
@@ -322,34 +563,71 @@
       {
         "stage": "DNA",
         "label": "RPS5 locus",
-        "plain_english": "Mock / limited annotation for RPS5. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for RPS5. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "RPS5 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Ribosomal protein S5",
-        "plain_english": "ribosome biogenesis",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "ribosome biogenesis This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "rps"
+    "family": "rps",
+    "family_detail": {
+      "title": "rps family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "TDH3": {
     "id": "TDH3",
     "name": "Glyceraldehyde-3-P dehydrogenase",
     "role": "Glycolysis housekeeping enzyme (GAPDH).",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
-      "schizosaccharomyces",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
       "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
       "neurospora",
-      "oyster-mushroom"
+      "oyster-mushroom",
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "central metabolism",
     "stub": true,
@@ -358,34 +636,71 @@
       {
         "stage": "DNA",
         "label": "TDH3 locus",
-        "plain_english": "Mock / limited annotation for TDH3. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for TDH3. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "TDH3 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Glyceraldehyde-3-P dehydrogenase",
-        "plain_english": "central metabolism",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "central metabolism This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "gapdh"
+    "family": "gapdh",
+    "family_detail": {
+      "title": "gapdh family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "PGK1": {
     "id": "PGK1",
     "name": "Phosphoglycerate kinase",
     "role": "ATP-generating step in glycolysis.",
     "organisms": [
-      "bakers-yeast",
-      "schizosaccharomyces",
-      "candida-albicans",
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
       "aspergillus-nidulans",
-      "oyster-mushroom"
+      "aspergillus-niger",
+      "bakers-yeast",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
+      "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
+      "neurospora",
+      "oyster-mushroom",
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "central metabolism",
     "stub": true,
@@ -394,34 +709,71 @@
       {
         "stage": "DNA",
         "label": "PGK1 locus",
-        "plain_english": "Mock / limited annotation for PGK1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for PGK1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "PGK1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Phosphoglycerate kinase",
-        "plain_english": "central metabolism",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "central metabolism This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "pgk"
+    "family": "pgk",
+    "family_detail": {
+      "title": "pgk family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "ENO2": {
     "id": "ENO2",
     "name": "Enolase II",
     "role": "Glycolytic enolase isoform.",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
       "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
       "neurospora",
       "oyster-mushroom",
-      "aspergillus-nidulans"
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "central metabolism",
     "stub": true,
@@ -430,33 +782,71 @@
       {
         "stage": "DNA",
         "label": "ENO2 locus",
-        "plain_english": "Mock / limited annotation for ENO2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for ENO2. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "ENO2 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Enolase II",
-        "plain_english": "central metabolism",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "central metabolism This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "eno"
+    "family": "eno",
+    "family_detail": {
+      "title": "eno family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "HIS3": {
     "id": "HIS3",
     "name": "Imidazoleglycerol-phosphate dehydratase",
     "role": "Histidine biosynthesis marker.",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
-      "schizosaccharomyces",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
+      "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
       "neurospora",
-      "aspergillus-nidulans"
+      "oyster-mushroom",
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "amino-acid biosynthesis",
     "stub": true,
@@ -465,32 +855,71 @@
       {
         "stage": "DNA",
         "label": "HIS3 locus",
-        "plain_english": "Mock / limited annotation for HIS3. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for HIS3. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "HIS3 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Imidazoleglycerol-phosphate dehydratase",
-        "plain_english": "amino-acid biosynthesis",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "amino-acid biosynthesis This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "his"
+    "family": "his",
+    "family_detail": {
+      "title": "his family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "URA3": {
     "id": "URA3",
-    "name": "Orotidine-5′-phosphate decarboxylase",
-    "role": "Uracil biosynthesis — classic selectable marker.",
+    "name": "Orotidine-5\u2032-phosphate decarboxylase",
+    "role": "Uracil biosynthesis \u2014 classic selectable marker.",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
       "candida-albicans",
-      "schizosaccharomyces"
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
+      "neurospora",
+      "oyster-mushroom",
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "nucleotide biosynthesis",
     "stub": true,
@@ -499,31 +928,71 @@
       {
         "stage": "DNA",
         "label": "URA3 locus",
-        "plain_english": "Mock / limited annotation for URA3. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for URA3. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "URA3 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
-        "label": "Orotidine-5′-phosphate decarboxylase",
-        "plain_english": "nucleotide biosynthesis",
-        "seq_hint": "M… (mock / simplified)"
+        "label": "Orotidine-5\u2032-phosphate decarboxylase",
+        "plain_english": "nucleotide biosynthesis This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "ura"
+    "family": "ura",
+    "family_detail": {
+      "title": "ura family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "LEU2": {
     "id": "LEU2",
-    "name": "β-isopropylmalate dehydrogenase",
+    "name": "\u03b2-isopropylmalate dehydrogenase",
     "role": "Leucine biosynthesis marker.",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
-      "candida-albicans"
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
+      "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
+      "neurospora",
+      "oyster-mushroom",
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "amino-acid biosynthesis",
     "stub": true,
@@ -532,35 +1001,71 @@
       {
         "stage": "DNA",
         "label": "LEU2 locus",
-        "plain_english": "Mock / limited annotation for LEU2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for LEU2. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "LEU2 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
-        "label": "β-isopropylmalate dehydrogenase",
-        "plain_english": "amino-acid biosynthesis",
-        "seq_hint": "M… (mock / simplified)"
+        "label": "\u03b2-isopropylmalate dehydrogenase",
+        "plain_english": "amino-acid biosynthesis This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "leu"
+    "family": "leu",
+    "family_detail": {
+      "title": "leu family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "ATP2": {
     "id": "ATP2",
-    "name": "ATP synthase β",
+    "name": "ATP synthase \u03b2",
     "role": "Mitochondrial ATP synthase subunit.",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
-      "schizosaccharomyces",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
+      "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
       "neurospora",
       "oyster-mushroom",
-      "aspergillus-nidulans",
-      "candida-albicans"
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "oxidative phosphorylation",
     "stub": true,
@@ -569,35 +1074,71 @@
       {
         "stage": "DNA",
         "label": "ATP2 locus",
-        "plain_english": "Mock / limited annotation for ATP2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for ATP2. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "ATP2 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
-        "label": "ATP synthase β",
-        "plain_english": "oxidative phosphorylation",
-        "seq_hint": "M… (mock / simplified)"
+        "label": "ATP synthase \u03b2",
+        "plain_english": "oxidative phosphorylation This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "atp"
+    "family": "atp",
+    "family_detail": {
+      "title": "atp family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "HSP82": {
     "id": "HSP82",
     "name": "Hsp90 chaperone",
     "role": "Stress-response molecular chaperone.",
     "organisms": [
-      "bakers-yeast",
-      "schizosaccharomyces",
-      "neurospora",
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
       "aspergillus-nidulans",
+      "aspergillus-niger",
+      "bakers-yeast",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
       "candida-albicans",
-      "oyster-mushroom"
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
+      "neurospora",
+      "oyster-mushroom",
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "proteostasis",
     "stub": true,
@@ -606,35 +1147,71 @@
       {
         "stage": "DNA",
         "label": "HSP82 locus",
-        "plain_english": "Mock / limited annotation for HSP82. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for HSP82. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "HSP82 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Hsp90 chaperone",
-        "plain_english": "proteostasis",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "proteostasis This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "hsp90"
+    "family": "hsp90",
+    "family_detail": {
+      "title": "hsp90 family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "RAD51": {
     "id": "RAD51",
     "name": "DNA repair recombinase",
     "role": "Homologous recombination repair.",
     "organisms": [
-      "bakers-yeast",
-      "schizosaccharomyces",
-      "neurospora",
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
       "aspergillus-nidulans",
+      "aspergillus-niger",
+      "bakers-yeast",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
       "candida-albicans",
-      "oyster-mushroom"
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
+      "neurospora",
+      "oyster-mushroom",
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "DNA repair",
     "stub": true,
@@ -643,35 +1220,71 @@
       {
         "stage": "DNA",
         "label": "RAD51 locus",
-        "plain_english": "Mock / limited annotation for RAD51. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for RAD51. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "RAD51 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "DNA repair recombinase",
-        "plain_english": "DNA repair",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "DNA repair This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "rad51"
+    "family": "rad51",
+    "family_detail": {
+      "title": "rad51 family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "SSA1": {
     "id": "SSA1",
     "name": "Hsp70 chaperone",
-    "role": "Cytosolic Hsp70 — folding and stress.",
+    "role": "Cytosolic Hsp70 \u2014 folding and stress.",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
-      "schizosaccharomyces",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
       "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
       "neurospora",
       "oyster-mushroom",
-      "aspergillus-nidulans"
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "proteostasis",
     "stub": true,
@@ -680,32 +1293,71 @@
       {
         "stage": "DNA",
         "label": "SSA1 locus",
-        "plain_english": "Mock / limited annotation for SSA1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for SSA1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "SSA1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Hsp70 chaperone",
-        "plain_english": "proteostasis",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "proteostasis This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "hsp70"
+    "family": "hsp70",
+    "family_detail": {
+      "title": "hsp70 family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "SIR2": {
     "id": "SIR2",
     "name": "NAD+-dependent deacetylase",
     "role": "Chromatin silencing / aging genetics.",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
+      "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
+      "neurospora",
+      "oyster-mushroom",
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
       "schizosaccharomyces",
-      "candida-albicans"
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "chromatin",
     "stub": true,
@@ -714,30 +1366,41 @@
       {
         "stage": "DNA",
         "label": "SIR2 locus",
-        "plain_english": "Mock / limited annotation for SIR2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for SIR2. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "SIR2 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "NAD+-dependent deacetylase",
-        "plain_english": "chromatin",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "chromatin This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "sirtuin"
+    "family": "sirtuin",
+    "family_detail": {
+      "title": "sirtuin family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "GAL1": {
     "id": "GAL1",
     "name": "Galactokinase",
     "role": "First step of galactose utilization.",
     "organisms": [
-      "bakers-yeast"
+      "ashbya-gossypii",
+      "bakers-yeast",
+      "candida-glabrata",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "GAL network sugar switch",
     "stub": true,
@@ -746,23 +1409,29 @@
       {
         "stage": "DNA",
         "label": "GAL1 locus",
-        "plain_english": "Mock / limited annotation for GAL1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for GAL1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "GAL1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Galactokinase",
-        "plain_english": "GAL network sugar switch",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "GAL network sugar switch This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "gal"
+    "family": "gal",
+    "family_detail": {
+      "title": "gal family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "GAL10": {
     "id": "GAL10",
@@ -778,30 +1447,41 @@
       {
         "stage": "DNA",
         "label": "GAL10 locus",
-        "plain_english": "Mock / limited annotation for GAL10. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for GAL10. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "GAL10 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "UDP-epimerase",
-        "plain_english": "GAL network",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "GAL network This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "gal"
+    "family": "gal",
+    "family_detail": {
+      "title": "gal family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "MFA1": {
     "id": "MFA1",
     "name": "a-factor mating pheromone",
     "role": "Mating pheromone for MATa cells.",
     "organisms": [
-      "bakers-yeast"
+      "ashbya-gossypii",
+      "bakers-yeast",
+      "candida-glabrata",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "mating pheromone",
     "stub": true,
@@ -810,30 +1490,41 @@
       {
         "stage": "DNA",
         "label": "MFA1 locus",
-        "plain_english": "Mock / limited annotation for MFA1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for MFA1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "MFA1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "a-factor mating pheromone",
-        "plain_english": "mating pheromone",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "mating pheromone This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "mfa"
+    "family": "mfa",
+    "family_detail": {
+      "title": "mfa family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "STE2": {
     "id": "STE2",
-    "name": "α-factor receptor",
+    "name": "\u03b1-factor receptor",
     "role": "GPCR for mating pheromone response.",
     "organisms": [
-      "bakers-yeast"
+      "ashbya-gossypii",
+      "bakers-yeast",
+      "candida-glabrata",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "mating signal",
     "stub": true,
@@ -842,30 +1533,41 @@
       {
         "stage": "DNA",
         "label": "STE2 locus",
-        "plain_english": "Mock / limited annotation for STE2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for STE2. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "STE2 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
-        "label": "α-factor receptor",
-        "plain_english": "mating signal",
-        "seq_hint": "M… (mock / simplified)"
+        "label": "\u03b1-factor receptor",
+        "plain_english": "mating signal This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "ste2"
+    "family": "ste2",
+    "family_detail": {
+      "title": "ste2 family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "FLO11": {
     "id": "FLO11",
     "name": "Flocculin",
     "role": "Cell-surface adhesin; biofilm / invasive growth.",
     "organisms": [
-      "bakers-yeast"
+      "ashbya-gossypii",
+      "bakers-yeast",
+      "candida-glabrata",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "adhesion",
     "stub": true,
@@ -874,31 +1576,71 @@
       {
         "stage": "DNA",
         "label": "FLO11 locus",
-        "plain_english": "Mock / limited annotation for FLO11. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for FLO11. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "FLO11 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Flocculin",
-        "plain_english": "adhesion",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "adhesion This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "flo"
+    "family": "flo",
+    "family_detail": {
+      "title": "flo family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "PYK1": {
     "id": "PYK1",
     "name": "Pyruvate kinase",
     "role": "Final glycolytic ATP step.",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
-      "candida-albicans"
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
+      "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
+      "neurospora",
+      "oyster-mushroom",
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "central metabolism",
     "stub": true,
@@ -907,23 +1649,29 @@
       {
         "stage": "DNA",
         "label": "PYK1 locus",
-        "plain_english": "Mock / limited annotation for PYK1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for PYK1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "PYK1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Pyruvate kinase",
-        "plain_english": "central metabolism",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "central metabolism This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "pyk"
+    "family": "pyk",
+    "family_detail": {
+      "title": "pyk family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "TRP1": {
     "id": "TRP1",
@@ -939,31 +1687,71 @@
       {
         "stage": "DNA",
         "label": "TRP1 locus",
-        "plain_english": "Mock / limited annotation for TRP1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for TRP1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "TRP1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Phosphoribosylanthranilate isomerase",
-        "plain_english": "amino-acid biosynthesis",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "amino-acid biosynthesis This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "trp"
+    "family": "trp",
+    "family_detail": {
+      "title": "trp family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "ADE2": {
     "id": "ADE2",
     "name": "Phosphoribosylaminoimidazole carboxylase",
     "role": "Adenine biosynthesis; red colony marker.",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
-      "schizosaccharomyces"
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
+      "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
+      "neurospora",
+      "oyster-mushroom",
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
+      "schizosaccharomyces",
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "nucleotide biosynthesis",
     "stub": true,
@@ -972,32 +1760,71 @@
       {
         "stage": "DNA",
         "label": "ADE2 locus",
-        "plain_english": "Mock / limited annotation for ADE2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for ADE2. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "ADE2 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Phosphoribosylaminoimidazole carboxylase",
-        "plain_english": "nucleotide biosynthesis",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "nucleotide biosynthesis This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "ade"
+    "family": "ade",
+    "family_detail": {
+      "title": "ade family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "COX1": {
     "id": "COX1",
     "name": "Cytochrome c oxidase I",
     "role": "mtDNA-encoded respiratory chain subunit.",
     "organisms": [
+      "agaricus-bisporus",
+      "ashbya-gossypii",
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
       "bakers-yeast",
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "botrytis-cinerea",
+      "candida-albicans",
+      "candida-auris",
+      "candida-glabrata",
+      "coccidioides-immitis",
+      "coprinopsis-cinerea",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "histoplasma-capsulatum",
+      "kluyveromyces-lactis",
+      "komagataella-phaffii",
+      "laccaria-bicolor",
+      "magnaporthe-oryzae",
+      "mucor-circinelloides",
+      "neurospora",
+      "oyster-mushroom",
+      "penicillium-roqueforti",
+      "penicillium-rubens",
+      "phanerochaete-chrysosporium",
+      "pneumocystis-jirovecii",
+      "puccinia-graminis",
+      "rhizopus-oryzae",
       "schizosaccharomyces",
-      "neurospora"
+      "trichoderma-reesei",
+      "ustilago-maydis",
+      "yarrowia-lipolytica"
     ],
     "phenotype": "respiration",
     "stub": true,
@@ -1006,29 +1833,36 @@
       {
         "stage": "DNA",
         "label": "COX1 locus",
-        "plain_english": "Mock / limited annotation for COX1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for COX1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "COX1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Cytochrome c oxidase I",
-        "plain_english": "respiration",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "respiration This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "cox"
+    "family": "cox",
+    "family_detail": {
+      "title": "cox family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "STE11": {
     "id": "STE11",
     "name": "MAPKKK Ste11",
     "role": "Mating / meiosis MAPK cascade kinase.",
     "organisms": [
+      "pneumocystis-jirovecii",
       "schizosaccharomyces"
     ],
     "phenotype": "sexual differentiation",
@@ -1038,29 +1872,36 @@
       {
         "stage": "DNA",
         "label": "STE11 locus",
-        "plain_english": "Mock / limited annotation for STE11. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for STE11. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "STE11 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "MAPKKK Ste11",
-        "plain_english": "sexual differentiation",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "sexual differentiation This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "ste11"
+    "family": "ste11",
+    "family_detail": {
+      "title": "ste11 family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "CDC2": {
     "id": "CDC2",
     "name": "Cyclin-dependent kinase Cdc2",
     "role": "Fission-yeast CDK (CDC28 ortholog).",
     "organisms": [
+      "pneumocystis-jirovecii",
       "schizosaccharomyces"
     ],
     "phenotype": "cell cycle control",
@@ -1070,29 +1911,36 @@
       {
         "stage": "DNA",
         "label": "CDC2 locus",
-        "plain_english": "Mock / limited annotation for CDC2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for CDC2. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "CDC2 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Cyclin-dependent kinase Cdc2",
-        "plain_english": "cell cycle control",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "cell cycle control This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "cdk"
+    "family": "cdk",
+    "family_detail": {
+      "title": "Cyclin-dependent kinase",
+      "plain_english": "Cell-cycle engine \u2014 baker's CDC28 vs fission CDC2.",
+      "why_it_matters": "Cell-cycle engine \u2014 baker's CDC28 vs fission CDC2.",
+      "conservation": "Classic yeast genetics module."
+    }
   },
   "MAT1": {
     "id": "MAT1",
     "name": "Mating-type locus region",
     "role": "Fission yeast mating-type cassette region (mock).",
     "organisms": [
+      "pneumocystis-jirovecii",
       "schizosaccharomyces"
     ],
     "phenotype": "mating type",
@@ -1102,29 +1950,36 @@
       {
         "stage": "DNA",
         "label": "MAT1 locus",
-        "plain_english": "Mock / limited annotation for MAT1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for MAT1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "MAT1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Mating-type locus region",
-        "plain_english": "mating type",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "mating type This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "mat"
+    "family": "mat",
+    "family_detail": {
+      "title": "mat family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "BYR1": {
     "id": "BYR1",
     "name": "MAP kinase kinase",
     "role": "Mating pheromone pathway.",
     "organisms": [
+      "pneumocystis-jirovecii",
       "schizosaccharomyces"
     ],
     "phenotype": "mating signal",
@@ -1134,29 +1989,39 @@
       {
         "stage": "DNA",
         "label": "BYR1 locus",
-        "plain_english": "Mock / limited annotation for BYR1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for BYR1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "BYR1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "MAP kinase kinase",
-        "plain_english": "mating signal",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "mating signal This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "byr"
+    "family": "byr",
+    "family_detail": {
+      "title": "byr family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "FRQ": {
     "id": "FRQ",
     "name": "Frequency",
     "role": "Core circadian clock gene.",
     "organisms": [
+      "botrytis-cinerea",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "magnaporthe-oryzae",
       "neurospora"
     ],
     "phenotype": "circadian oscillator",
@@ -1166,29 +2031,39 @@
       {
         "stage": "DNA",
         "label": "FRQ locus",
-        "plain_english": "Mock / limited annotation for FRQ. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for FRQ. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "FRQ transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Frequency",
-        "plain_english": "circadian oscillator",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "circadian oscillator This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "frq"
+    "family": "frq",
+    "family_detail": {
+      "title": "frq family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "WC1": {
     "id": "WC1",
     "name": "White Collar-1",
     "role": "Blue-light photoreceptor / clock input.",
     "organisms": [
+      "botrytis-cinerea",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "magnaporthe-oryzae",
       "neurospora"
     ],
     "phenotype": "circadian / light",
@@ -1198,29 +2073,39 @@
       {
         "stage": "DNA",
         "label": "WC1 locus",
-        "plain_english": "Mock / limited annotation for WC1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for WC1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "WC1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "White Collar-1",
-        "plain_english": "circadian / light",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "circadian / light This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "wc"
+    "family": "wc",
+    "family_detail": {
+      "title": "wc family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "WC2": {
     "id": "WC2",
     "name": "White Collar-2",
     "role": "Clock transcription partner.",
     "organisms": [
+      "botrytis-cinerea",
+      "fusarium-graminearum",
+      "fusarium-oxysporum",
+      "magnaporthe-oryzae",
       "neurospora"
     ],
     "phenotype": "circadian oscillator",
@@ -1230,23 +2115,29 @@
       {
         "stage": "DNA",
         "label": "WC2 locus",
-        "plain_english": "Mock / limited annotation for WC2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for WC2. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "WC2 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "White Collar-2",
-        "plain_english": "circadian oscillator",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "circadian oscillator This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "wc"
+    "family": "wc",
+    "family_detail": {
+      "title": "wc family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "AL1": {
     "id": "AL1",
@@ -1262,30 +2153,40 @@
       {
         "stage": "DNA",
         "label": "AL1 locus",
-        "plain_english": "Mock / limited annotation for AL1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for AL1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "AL1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Albino-1",
-        "plain_english": "pigment",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "pigment This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "al"
+    "family": "al",
+    "family_detail": {
+      "title": "al family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "POX1": {
     "id": "POX1",
     "name": "Laccase / peroxidase",
     "role": "Lignin-modifying enzyme (mock symbol).",
     "organisms": [
-      "oyster-mushroom"
+      "agaricus-bisporus",
+      "coprinopsis-cinerea",
+      "laccaria-bicolor",
+      "oyster-mushroom",
+      "phanerochaete-chrysosporium"
     ],
     "phenotype": "wood decay",
     "stub": true,
@@ -1294,30 +2195,40 @@
       {
         "stage": "DNA",
         "label": "POX1 locus",
-        "plain_english": "Mock / limited annotation for POX1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for POX1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "POX1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Laccase / peroxidase",
-        "plain_english": "wood decay",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "wood decay This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "pox"
+    "family": "pox",
+    "family_detail": {
+      "title": "pox family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "HYD1": {
     "id": "HYD1",
     "name": "Hydrophobin",
     "role": "Aerial hypha surface protein (mock).",
     "organisms": [
-      "oyster-mushroom"
+      "agaricus-bisporus",
+      "coprinopsis-cinerea",
+      "laccaria-bicolor",
+      "oyster-mushroom",
+      "phanerochaete-chrysosporium"
     ],
     "phenotype": "surface coat",
     "stub": true,
@@ -1326,30 +2237,40 @@
       {
         "stage": "DNA",
         "label": "HYD1 locus",
-        "plain_english": "Mock / limited annotation for HYD1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for HYD1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "HYD1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Hydrophobin",
-        "plain_english": "surface coat",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "surface coat This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "hyd"
+    "family": "hyd",
+    "family_detail": {
+      "title": "hyd family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "CEL1": {
     "id": "CEL1",
     "name": "Cellulase",
     "role": "Cellulose-degrading enzyme (mock).",
     "organisms": [
-      "oyster-mushroom"
+      "agaricus-bisporus",
+      "coprinopsis-cinerea",
+      "laccaria-bicolor",
+      "oyster-mushroom",
+      "phanerochaete-chrysosporium"
     ],
     "phenotype": "wood decay",
     "stub": true,
@@ -1358,30 +2279,40 @@
       {
         "stage": "DNA",
         "label": "CEL1 locus",
-        "plain_english": "Mock / limited annotation for CEL1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for CEL1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "CEL1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Cellulase",
-        "plain_english": "wood decay",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "wood decay This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "cel"
+    "family": "cel",
+    "family_detail": {
+      "title": "cel family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "BRLE": {
     "id": "BRLE",
     "name": "BrlA",
     "role": "Conidiation transcription factor.",
     "organisms": [
-      "aspergillus-nidulans"
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
+      "penicillium-roqueforti",
+      "penicillium-rubens"
     ],
     "phenotype": "development",
     "stub": true,
@@ -1390,30 +2321,40 @@
       {
         "stage": "DNA",
         "label": "BRLE locus",
-        "plain_english": "Mock / limited annotation for BRLE. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for BRLE. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "BRLE transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "BrlA",
-        "plain_english": "development",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "development This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "brl"
+    "family": "brl",
+    "family_detail": {
+      "title": "brl family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "STCA": {
     "id": "STCA",
     "name": "Sterigmatocystin cluster stub",
     "role": "Secondary metabolism cluster marker (mock).",
     "organisms": [
-      "aspergillus-nidulans"
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
+      "penicillium-roqueforti",
+      "penicillium-rubens"
     ],
     "phenotype": "secondary metabolism",
     "stub": true,
@@ -1422,30 +2363,40 @@
       {
         "stage": "DNA",
         "label": "STCA locus",
-        "plain_english": "Mock / limited annotation for STCA. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for STCA. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "STCA transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Sterigmatocystin cluster stub",
-        "plain_english": "secondary metabolism",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "secondary metabolism This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "stc"
+    "family": "stc",
+    "family_detail": {
+      "title": "stc family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "WETA": {
     "id": "WETA",
     "name": "WetA",
     "role": "Conidiation regulator.",
     "organisms": [
-      "aspergillus-nidulans"
+      "aspergillus-fumigatus",
+      "aspergillus-nidulans",
+      "aspergillus-niger",
+      "penicillium-roqueforti",
+      "penicillium-rubens"
     ],
     "phenotype": "development",
     "stub": true,
@@ -1454,30 +2405,37 @@
       {
         "stage": "DNA",
         "label": "WETA locus",
-        "plain_english": "Mock / limited annotation for WETA. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for WETA. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "WETA transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "WetA",
-        "plain_english": "development",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "development This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "wet"
+    "family": "wet",
+    "family_detail": {
+      "title": "wet family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "EFG1": {
     "id": "EFG1",
     "name": "Enhanced filamentous growth",
     "role": "Morphogenesis transcription factor.",
     "organisms": [
-      "candida-albicans"
+      "candida-albicans",
+      "candida-auris"
     ],
     "phenotype": "dimorphism",
     "stub": true,
@@ -1486,30 +2444,37 @@
       {
         "stage": "DNA",
         "label": "EFG1 locus",
-        "plain_english": "Mock / limited annotation for EFG1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for EFG1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "EFG1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Enhanced filamentous growth",
-        "plain_english": "dimorphism",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "dimorphism This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "efg"
+    "family": "efg",
+    "family_detail": {
+      "title": "efg family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "HWP1": {
     "id": "HWP1",
     "name": "Hyphal wall protein",
     "role": "Hyphal adhesin.",
     "organisms": [
-      "candida-albicans"
+      "candida-albicans",
+      "candida-auris"
     ],
     "phenotype": "adhesion",
     "stub": true,
@@ -1518,30 +2483,37 @@
       {
         "stage": "DNA",
         "label": "HWP1 locus",
-        "plain_english": "Mock / limited annotation for HWP1. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for HWP1. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "HWP1 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Hyphal wall protein",
-        "plain_english": "adhesion",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "adhesion This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "hwp"
+    "family": "hwp",
+    "family_detail": {
+      "title": "hwp family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "ALS3": {
     "id": "ALS3",
     "name": "Agglutinin-like sequence",
     "role": "Adhesin family member.",
     "organisms": [
-      "candida-albicans"
+      "candida-albicans",
+      "candida-auris"
     ],
     "phenotype": "adhesion",
     "stub": true,
@@ -1550,27 +2522,33 @@
       {
         "stage": "DNA",
         "label": "ALS3 locus",
-        "plain_english": "Mock / limited annotation for ALS3. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for ALS3. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "ALS3 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
         "label": "Agglutinin-like sequence",
-        "plain_english": "adhesion",
-        "seq_hint": "M… (mock / simplified)"
+        "plain_english": "adhesion This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "als"
+    "family": "als",
+    "family_detail": {
+      "title": "als family",
+      "plain_english": "Recurring fungal gene family.",
+      "why_it_matters": "Recurring fungal gene family.",
+      "conservation": "Core shared, tips diverge."
+    }
   },
   "TEF2": {
     "id": "TEF2",
-    "name": "Translation elongation factor 1-α (copy 2)",
+    "name": "Translation elongation factor 1-\u03b1 (copy 2)",
     "role": "Second TEF1-family copy in budding yeast.",
     "organisms": [
       "bakers-yeast"
@@ -1582,22 +2560,381 @@
       {
         "stage": "DNA",
         "label": "TEF2 locus",
-        "plain_english": "Mock / limited annotation for TEF2. Full DNA→mRNA→protein story is sketched only for a few guided genes.",
-        "seq_hint": "ATG… (mock / simplified)"
+        "plain_english": "Mock / limited annotation for TEF2. Full DNA\u2192mRNA\u2192protein story is sketched only for a few guided genes.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
       },
       {
         "stage": "mRNA",
         "label": "TEF2 transcript",
-        "plain_english": "Stub transcript — switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
-        "seq_hint": "AUG… (mock / simplified)"
+        "plain_english": "Stub transcript \u2014 switch to Strand mode and open SUC2 or ACT1 for the full guided story.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
       },
       {
         "stage": "Protein",
-        "label": "Translation elongation factor 1-α (copy 2)",
-        "plain_english": "translation redundancy",
-        "seq_hint": "M… (mock / simplified)"
+        "label": "Translation elongation factor 1-\u03b1 (copy 2)",
+        "plain_english": "translation redundancy This is teaching-layer detail \u2014 mock / simplified sequence hints only.",
+        "seq_hint": "M\u2026 (mock / simplified)"
       }
     ],
-    "family": "tef"
+    "family": "tef",
+    "family_detail": {
+      "title": "Translation elongation (EF-1\u03b1)",
+      "plain_english": "Protein synthesis is non-negotiable; TEF strands stay mostly teal.",
+      "why_it_matters": "Protein synthesis is non-negotiable; TEF strands stay mostly teal.",
+      "conservation": "Great conserved core for compare mode."
+    }
+  },
+  "CAP59": {
+    "id": "CAP59",
+    "name": "CAP59",
+    "role": "CAP59 \u2014 mock / simplified fungal annotation for teaching.",
+    "organisms": [
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "coccidioides-immitis",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "histoplasma-capsulatum",
+      "ustilago-maydis"
+    ],
+    "phenotype": "Mock teaching phenotype \u2014 not a full literature claim.",
+    "family": "cap",
+    "family_detail": {
+      "plain_english": "The cap family is a recurring fungal toolkit piece. Orthologs share a job; tips record lineage.",
+      "why_it_matters": "Family view lets you compare the same job across mushrooms, yeasts, and molds.",
+      "conservation": "Core often teal-stable; tips ember-diverge in the compare view."
+    },
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "CAP59 locus",
+        "plain_english": "A stretch of DNA encoding CAP59. This is the recipe layer \u2014 still Quiet Protomol teaching, mock sequence.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "CAP59 transcript",
+        "plain_english": "The cell copies DNA into messenger RNA \u2014 a working draft. DNA stays put; mRNA carries the message.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "CAP59 product",
+        "plain_english": "Ribosomes build the CAP59 product. Sequence tips drift across fungi; the job often remains.",
+        "seq_hint": "M\u2026 (mock / simplified)"
+      }
+    ],
+    "stub": true,
+    "annotated": false
+  },
+  "LAC1": {
+    "id": "LAC1",
+    "name": "LAC1",
+    "role": "LAC1 \u2014 mock / simplified fungal annotation for teaching.",
+    "organisms": [
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "coccidioides-immitis",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "histoplasma-capsulatum",
+      "ustilago-maydis"
+    ],
+    "phenotype": "Mock teaching phenotype \u2014 not a full literature claim.",
+    "family": "lac",
+    "family_detail": {
+      "plain_english": "The lac family is a recurring fungal toolkit piece. Orthologs share a job; tips record lineage.",
+      "why_it_matters": "Family view lets you compare the same job across mushrooms, yeasts, and molds.",
+      "conservation": "Core often teal-stable; tips ember-diverge in the compare view."
+    },
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "LAC1 locus",
+        "plain_english": "A stretch of DNA encoding LAC1. This is the recipe layer \u2014 still Quiet Protomol teaching, mock sequence.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "LAC1 transcript",
+        "plain_english": "The cell copies DNA into messenger RNA \u2014 a working draft. DNA stays put; mRNA carries the message.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "LAC1 product",
+        "plain_english": "Ribosomes build the LAC1 product. Sequence tips drift across fungi; the job often remains.",
+        "seq_hint": "M\u2026 (mock / simplified)"
+      }
+    ],
+    "stub": true,
+    "annotated": false
+  },
+  "PLB1": {
+    "id": "PLB1",
+    "name": "PLB1",
+    "role": "PLB1 \u2014 mock / simplified fungal annotation for teaching.",
+    "organisms": [
+      "batrachochytrium-dendrobatidis",
+      "blastomyces-dermatitidis",
+      "coccidioides-immitis",
+      "cryptococcus-gattii",
+      "cryptococcus-neoformans",
+      "histoplasma-capsulatum",
+      "ustilago-maydis"
+    ],
+    "phenotype": "Mock teaching phenotype \u2014 not a full literature claim.",
+    "family": "plb",
+    "family_detail": {
+      "plain_english": "The plb family is a recurring fungal toolkit piece. Orthologs share a job; tips record lineage.",
+      "why_it_matters": "Family view lets you compare the same job across mushrooms, yeasts, and molds.",
+      "conservation": "Core often teal-stable; tips ember-diverge in the compare view."
+    },
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "PLB1 locus",
+        "plain_english": "A stretch of DNA encoding PLB1. This is the recipe layer \u2014 still Quiet Protomol teaching, mock sequence.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "PLB1 transcript",
+        "plain_english": "The cell copies DNA into messenger RNA \u2014 a working draft. DNA stays put; mRNA carries the message.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "PLB1 product",
+        "plain_english": "Ribosomes build the PLB1 product. Sequence tips drift across fungi; the job often remains.",
+        "seq_hint": "M\u2026 (mock / simplified)"
+      }
+    ],
+    "stub": true,
+    "annotated": false
+  },
+  "XYN1": {
+    "id": "XYN1",
+    "name": "XYN1",
+    "role": "XYN1 \u2014 mock / simplified fungal annotation for teaching.",
+    "organisms": [
+      "trichoderma-reesei"
+    ],
+    "phenotype": "Mock teaching phenotype \u2014 not a full literature claim.",
+    "family": "xyn",
+    "family_detail": {
+      "plain_english": "The xyn family is a recurring fungal toolkit piece. Orthologs share a job; tips record lineage.",
+      "why_it_matters": "Family view lets you compare the same job across mushrooms, yeasts, and molds.",
+      "conservation": "Core often teal-stable; tips ember-diverge in the compare view."
+    },
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "XYN1 locus",
+        "plain_english": "A stretch of DNA encoding XYN1. This is the recipe layer \u2014 still Quiet Protomol teaching, mock sequence.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "XYN1 transcript",
+        "plain_english": "The cell copies DNA into messenger RNA \u2014 a working draft. DNA stays put; mRNA carries the message.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "XYN1 product",
+        "plain_english": "Ribosomes build the XYN1 product. Sequence tips drift across fungi; the job often remains.",
+        "seq_hint": "M\u2026 (mock / simplified)"
+      }
+    ],
+    "stub": true,
+    "annotated": false
+  },
+  "CBH1": {
+    "id": "CBH1",
+    "name": "CBH1",
+    "role": "CBH1 \u2014 mock / simplified fungal annotation for teaching.",
+    "organisms": [
+      "trichoderma-reesei"
+    ],
+    "phenotype": "Mock teaching phenotype \u2014 not a full literature claim.",
+    "family": "cbh",
+    "family_detail": {
+      "plain_english": "The cbh family is a recurring fungal toolkit piece. Orthologs share a job; tips record lineage.",
+      "why_it_matters": "Family view lets you compare the same job across mushrooms, yeasts, and molds.",
+      "conservation": "Core often teal-stable; tips ember-diverge in the compare view."
+    },
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "CBH1 locus",
+        "plain_english": "A stretch of DNA encoding CBH1. This is the recipe layer \u2014 still Quiet Protomol teaching, mock sequence.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "CBH1 transcript",
+        "plain_english": "The cell copies DNA into messenger RNA \u2014 a working draft. DNA stays put; mRNA carries the message.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "CBH1 product",
+        "plain_english": "Ribosomes build the CBH1 product. Sequence tips drift across fungi; the job often remains.",
+        "seq_hint": "M\u2026 (mock / simplified)"
+      }
+    ],
+    "stub": true,
+    "annotated": false
+  },
+  "PKAR": {
+    "id": "PKAR",
+    "name": "PKAR",
+    "role": "PKAR \u2014 mock / simplified fungal annotation for teaching.",
+    "organisms": [
+      "mucor-circinelloides",
+      "rhizopus-oryzae"
+    ],
+    "phenotype": "Mock teaching phenotype \u2014 not a full literature claim.",
+    "family": "pka",
+    "family_detail": {
+      "plain_english": "The pka family is a recurring fungal toolkit piece. Orthologs share a job; tips record lineage.",
+      "why_it_matters": "Family view lets you compare the same job across mushrooms, yeasts, and molds.",
+      "conservation": "Core often teal-stable; tips ember-diverge in the compare view."
+    },
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "PKAR locus",
+        "plain_english": "A stretch of DNA encoding PKAR. This is the recipe layer \u2014 still Quiet Protomol teaching, mock sequence.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "PKAR transcript",
+        "plain_english": "The cell copies DNA into messenger RNA \u2014 a working draft. DNA stays put; mRNA carries the message.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "PKAR product",
+        "plain_english": "Ribosomes build the PKAR product. Sequence tips drift across fungi; the job often remains.",
+        "seq_hint": "M\u2026 (mock / simplified)"
+      }
+    ],
+    "stub": true,
+    "annotated": false
+  },
+  "CRGA": {
+    "id": "CRGA",
+    "name": "CRGA",
+    "role": "CRGA \u2014 mock / simplified fungal annotation for teaching.",
+    "organisms": [
+      "mucor-circinelloides",
+      "rhizopus-oryzae"
+    ],
+    "phenotype": "Mock teaching phenotype \u2014 not a full literature claim.",
+    "family": "crg",
+    "family_detail": {
+      "plain_english": "The crg family is a recurring fungal toolkit piece. Orthologs share a job; tips record lineage.",
+      "why_it_matters": "Family view lets you compare the same job across mushrooms, yeasts, and molds.",
+      "conservation": "Core often teal-stable; tips ember-diverge in the compare view."
+    },
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "CRGA locus",
+        "plain_english": "A stretch of DNA encoding CRGA. This is the recipe layer \u2014 still Quiet Protomol teaching, mock sequence.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "CRGA transcript",
+        "plain_english": "The cell copies DNA into messenger RNA \u2014 a working draft. DNA stays put; mRNA carries the message.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "CRGA product",
+        "plain_english": "Ribosomes build the CRGA product. Sequence tips drift across fungi; the job often remains.",
+        "seq_hint": "M\u2026 (mock / simplified)"
+      }
+    ],
+    "stub": true,
+    "annotated": false
+  },
+  "AVR": {
+    "id": "AVR",
+    "name": "AVR",
+    "role": "AVR \u2014 mock / simplified fungal annotation for teaching.",
+    "organisms": [
+      "puccinia-graminis"
+    ],
+    "phenotype": "Mock teaching phenotype \u2014 not a full literature claim.",
+    "family": "avr",
+    "family_detail": {
+      "plain_english": "The avr family is a recurring fungal toolkit piece. Orthologs share a job; tips record lineage.",
+      "why_it_matters": "Family view lets you compare the same job across mushrooms, yeasts, and molds.",
+      "conservation": "Core often teal-stable; tips ember-diverge in the compare view."
+    },
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "AVR locus",
+        "plain_english": "A stretch of DNA encoding AVR. This is the recipe layer \u2014 still Quiet Protomol teaching, mock sequence.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "AVR transcript",
+        "plain_english": "The cell copies DNA into messenger RNA \u2014 a working draft. DNA stays put; mRNA carries the message.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "AVR product",
+        "plain_english": "Ribosomes build the AVR product. Sequence tips drift across fungi; the job often remains.",
+        "seq_hint": "M\u2026 (mock / simplified)"
+      }
+    ],
+    "stub": true,
+    "annotated": false
+  },
+  "RTP1": {
+    "id": "RTP1",
+    "name": "RTP1",
+    "role": "RTP1 \u2014 mock / simplified fungal annotation for teaching.",
+    "organisms": [
+      "puccinia-graminis"
+    ],
+    "phenotype": "Mock teaching phenotype \u2014 not a full literature claim.",
+    "family": "rtp",
+    "family_detail": {
+      "plain_english": "The rtp family is a recurring fungal toolkit piece. Orthologs share a job; tips record lineage.",
+      "why_it_matters": "Family view lets you compare the same job across mushrooms, yeasts, and molds.",
+      "conservation": "Core often teal-stable; tips ember-diverge in the compare view."
+    },
+    "steps": [
+      {
+        "stage": "DNA",
+        "label": "RTP1 locus",
+        "plain_english": "A stretch of DNA encoding RTP1. This is the recipe layer \u2014 still Quiet Protomol teaching, mock sequence.",
+        "seq_hint": "ATG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "mRNA",
+        "label": "RTP1 transcript",
+        "plain_english": "The cell copies DNA into messenger RNA \u2014 a working draft. DNA stays put; mRNA carries the message.",
+        "seq_hint": "AUG\u2026 (mock / simplified)"
+      },
+      {
+        "stage": "Protein",
+        "label": "RTP1 product",
+        "plain_english": "Ribosomes build the RTP1 product. Sequence tips drift across fungi; the job often remains.",
+        "seq_hint": "M\u2026 (mock / simplified)"
+      }
+    ],
+    "stub": true,
+    "annotated": false
   }
 }

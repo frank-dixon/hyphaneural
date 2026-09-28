@@ -45,11 +45,19 @@
   const geneFollow = new window.HyphaGeneFollow(document.getElementById('gene-panel'), {
     onClose: function () {
       chamber.setHighlight(null);
+      if (typeof chamber.setLod === 'function') chamber.setLod(0, null);
+      showOrgOverview();
     },
     onCompare: function (g) {
       geneFollow.hide();
       openCompare(g.id);
     },
+    onLod: function (level, geneId) {
+      if (typeof chamber.setLod === 'function') chamber.setLod(level, geneId || null);
+      if (level === 0) showOrgOverview();
+      else hideOrgOverviewSoft();
+    },
+    getOrganism: function () { return yeast; },
   });
 
   const comparePanel = document.getElementById('compare-panel');
@@ -124,6 +132,27 @@
 
   [cmpA, cmpB, cmpGene].forEach((el) => el.addEventListener('change', refreshCompare));
 
+
+  function showOrgOverview() {
+    const cap = document.getElementById('chamber-caption');
+    const ov = document.getElementById('cap-overview');
+    const clade = document.getElementById('cap-clade');
+    if (cap) cap.classList.remove('dim');
+    if (ov && yeast) {
+      const o = yeast.overview || {};
+      ov.textContent = (yeast.short_blurb || '') + (o.teach ? ' — ' + o.teach : '');
+    }
+    if (clade && yeast) {
+      clade.textContent = (yeast.clade || '') + (yeast.form ? ' · ' + yeast.form : '');
+    }
+    if (locLabel) locLabel.textContent = "Inside " + (yeast.common_name || "Baker's yeast");
+  }
+
+  function hideOrgOverviewSoft() {
+    const cap = document.getElementById('chamber-caption');
+    if (cap) cap.classList.add('dim');
+  }
+
   function openGene(id) {
     const g = genes[id];
     if (!g) return;
@@ -170,7 +199,8 @@
       chamber.setHighlight(null);
       if (locLabel) locLabel.textContent = 'Genome panel · multi-organism';
     } else {
-      if (locLabel) locLabel.textContent = "Inside Baker's yeast";
+      showOrgOverview();
+      if (typeof chamber.setLod === 'function') chamber.setLod(0, null);
       // Landing back inside yeast: big mycelial grow-out + camera pull-in
       if (typeof chamber.replayGrowth === 'function') chamber.replayGrowth({ entrance: true });
     }
@@ -315,6 +345,9 @@
   if (!seen) {
     setTimeout(startTour, 700);
   }
+
+  showOrgOverview();
+  if (typeof chamber.setLod === 'function') chamber.setLod(0, null);
 
   window.HyphaApp = { openGene, openCompare, startTour, chamber, setMode, genomePanel };
 })();
