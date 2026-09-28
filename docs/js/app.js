@@ -1,138 +1,307 @@
 /**
- * Hyphaneural Pages demo — chamber · genome panel · gene follow · compare · tour
+ * Hyphaneural Pages — Slow Ombre shell · horizontal mode dial · four spaces
  */
 (function () {
   'use strict';
 
-  const TOUR_KEY = 'hypha_tour_seen_v1';
-  const orgs = (window.HYPHA_ORG && window.HYPHA_ORG.organisms) || [];
-  const genes = window.HYPHA_GENES || {};
-  const defaults = (window.HYPHA_ORG && window.HYPHA_ORG.compare_defaults) || {
-    a: 'bakers-yeast',
-    b: 'schizosaccharomyces',
-    gene: 'ACT1',
+  const MODES = ['hex', 'strand', 'atlas', 'void'];
+  const MODE_LABELS = {
+    hex: 'Hex Reach',
+    strand: 'Strand Zoom',
+    atlas: 'Fungal Atlas',
+    void: 'Void Breath',
   };
-  const panelDefaults = (window.HYPHA_ORG && window.HYPHA_ORG.panel_defaults) || {
-    selected: ['bakers-yeast', 'schizosaccharomyces'],
-    reference: 'bakers-yeast',
-    filter: 'all',
-  };
+  const TOUR_KEY = 'hypha_tour_seen_v2';
 
-  const yeast = orgs.find((o) => o.slug === 'bakers-yeast') || orgs[0];
   const appEl = document.getElementById('app');
-  const canvas = document.getElementById('chamber-canvas');
+  const track = document.getElementById('spaces-track');
+  const viewport = document.getElementById('spaces-viewport');
+  const dial = document.getElementById('mode-dial');
+  const shellBg = document.getElementById('shell-bg');
   const locLabel = document.getElementById('loc-label');
 
-  // Chamber uses a focused subset so the mycelial view stays readable
-  const chamberIds = ['SUC2', 'ACT1', 'HO', 'TEF1'].filter((id) => genes[id]);
-  const chamberGenes = chamberIds.map((id) => genes[id]).filter(Boolean);
+  let orgs = [];
+  let genes = {};
+  let defaults = { a: 'bakers-yeast', b: 'schizosaccharomyces', gene: 'ACT1' };
+  let panelDefaults = { selected: ['bakers-yeast', 'schizosaccharomyces'], reference: 'bakers-yeast', filter: 'all' };
+  let yeast = null;
+  let modeIndex = 1; // land on Strand Zoom
+  let dialPos = 1; // continuous 0..3 for parallax
+  let draggingDial = false;
+  let dragStartX = 0;
+  let dragStartPos = 0;
+  let spaces = {};
+  let geneFollow = null;
+  let genomePanel = null;
+  let compareView = null;
+  let familyIds = [];
 
-  const chamber = new window.HyphaChamber(canvas, {
-    onGeneClick: function (g) {
-      if (tour.active) {
-        if (tour.step === 1 && g.id === 'SUC2') {
-          nextTour();
+  function reducedMotion() {
+    try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+    catch (e) { return false; }
+  }
+
+  // ——— Load seed ———
+  function boot() {
+    const loadJson = (url) => fetch(url).then((r) => {
+      if (!r.ok) throw new Error(url);
+      return r.json();
+    });
+    Promise.all([
+      loadJson('data/organisms.json?v=tw1'),
+      loadJson('data/genes.json?v=tw1'),
+    ]).then(([orgData, geneData]) => {
+      orgs = orgData.organisms || [];
+      genes = geneData;
+      if (orgData.compare_defaults) defaults = orgData.compare_defaults;
+      if (orgData.panel_defaults) panelDefaults = orgData.panel_defaults;
+      yeast = orgs.find((o) => o.slug === 'bakers-yeast') || orgs[0];
+      init();
+    }).catch((err) => {
+      console.error('Hyphaneural seed load failed', err);
+      document.getElementById('loc-label').textContent = 'Seed load failed — check data/';
+    });
+  }
+
+  function init() {
+    const chamberIds = ['SUC2', 'ACT1', 'HO', 'TEF1'].filter((id) => genes[id]);
+    const chamberGenes = chamberIds.map((id) => genes[id]);
+
+    spaces.hex = new window.HyphaSpace(document.getElementById('canvas-hex'), 'hex', {
+      onGeneClick: (g) => { if (!tour.active) openGene(g.id); },
+    });
+    spaces.strand = new window.HyphaSpace(document.getElementById('canvas-strand'), 'strand', {
+      onGeneClick: (g) => {
+        if (tour.active) {
+          if (tour.step === 1 && g.id === 'SUC2') { nextTour(); return; }
           return;
         }
-        return;
+        openGene(g.id);
+      },
+      onZoom: (z) => {
+        document.querySelectorAll('#zoom-rail button').forEach((b) => {
+          b.classList.toggle('on', parseInt(b.getAttribute('data-zoom'), 10) === z);
+        });
+        const hints = [
+          'Wide field — mycelial expanse. Scroll or use the rail to zoom.',
+          'Mid zoom — hexagonal data lattice. Genes become structure.',
+          'Deep zoom — strand resolution. DNA→mRNA→protein teaching.',
+        ];
+        const h = document.getElementById('strand-hint');
+        if (h) h.textContent = hints[z] || hints[0];
+      },
+    });
+    spaces.atlas = new window.HyphaSpace(document.getElementById('canvas-atlas'), 'atlas', {
+      onOrgClick: (o) => showAtlasCard(o),
+    });
+    spaces.void = new window.HyphaSpace(document.getElementById('canvas-void'), 'void', {});
+
+    spaces.hex.setGenes(chamberGenes);
+    spaces.strand.setGenes(chamberGenes);
+    spaces.atlas.setOrgs(orgs);
+
+    Object.keys(spaces).forEach((k) => {
+      spaces[k].start();
+      spaces[k].setActive(k === MODES[modeIndex]);
+    });
+
+    document.getElementById('hex-nodes').textContent = String(chamberGenes.length);
+    document.getElementById('hex-reach').textContent = chamberGenes.length + ' loci';
+    document.getElementById('atlas-hint').textContent =
+      'Drag to explore · tap a fungus · fungi only · ' + orgs.length + ' organisms';
+
+    geneFollow = new window.HyphaGeneFollow(document.getElementById('gene-panel'), {
+      onClose: function () {
+        spaces.strand.setHighlight(null);
+        spaces.hex.setHighlight(null);
+        if (spaces.strand.setLod) spaces.strand.setLod(0, null);
+        showOrgOverview();
+      },
+      onCompare: function (g) {
+        geneFollow.hide();
+        openCompare(g.id);
+      },
+      onLod: function (level, geneId) {
+        if (spaces.strand.setLod) spaces.strand.setLod(level, geneId || null);
+        if (level === 0) showOrgOverview();
+        else hideOrgOverviewSoft();
+      },
+      getOrganism: function () { return yeast; },
+    });
+
+    genomePanel = new window.HyphaGenomePanel(document.getElementById('genome-panel'), {
+      orgs: orgs,
+      genes: genes,
+      defaults: panelDefaults,
+      onGeneClick: function (gid) { openGene(gid); },
+    });
+
+    compareView = new window.HyphaCompareView(document.getElementById('compare-canvas'));
+    setupCompare();
+    setupDial();
+    setupChrome();
+    setupTour();
+    showOrgOverview();
+    goToMode(modeIndex, false);
+
+    let seen = false;
+    try { seen = localStorage.getItem(TOUR_KEY) === '1'; } catch (e) { /* */ }
+    if (!seen) setTimeout(startTour, 800);
+
+    window.HyphaApp = { goToMode, openGene, openCompare, startTour, spaces, orgs };
+  }
+
+  // ——— Horizontal dial ———
+  function setupDial() {
+    dial.querySelectorAll('button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const m = btn.getAttribute('data-mode');
+        const i = MODES.indexOf(m);
+        if (i >= 0) goToMode(i, true);
+      });
+    });
+
+    // pointer drag: horizontal-dominant → mode dial; vertical → canvas explore
+    let ptrId = null;
+    let axisLocked = null; // 'x' | 'y' | null
+    let origin = null;
+    window.__hyphaDialGesture = false;
+    viewport.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('button, a, select, input, .panel, .atlas-card, .genome-panel, .mode-dial')) return;
+      ptrId = e.pointerId;
+      draggingDial = true;
+      axisLocked = null;
+      window.__hyphaDialGesture = false;
+      dragStartX = e.clientX;
+      dragStartPos = dialPos;
+      origin = { x: e.clientX, y: e.clientY };
+    });
+    window.addEventListener('pointermove', (e) => {
+      if (!draggingDial || e.pointerId !== ptrId) return;
+      const dx = e.clientX - dragStartX;
+      const odx = e.clientX - origin.x;
+      const ody = e.clientY - origin.y;
+      if (!axisLocked && Math.abs(odx) + Math.abs(ody) > 10) {
+        axisLocked = Math.abs(odx) > Math.abs(ody) * 1.15 ? 'x' : 'y';
+        if (axisLocked === 'x') {
+          window.__hyphaDialGesture = true;
+          track.classList.add('dragging');
+          viewport.classList.add('is-dragging');
+        }
       }
-      openGene(g.id);
-    },
-  });
-  chamber.setGenes(chamberGenes);
-  chamber.start();
-
-  const geneFollow = new window.HyphaGeneFollow(document.getElementById('gene-panel'), {
-    onClose: function () {
-      chamber.setHighlight(null);
-      if (typeof chamber.setLod === 'function') chamber.setLod(0, null);
-      showOrgOverview();
-    },
-    onCompare: function (g) {
-      geneFollow.hide();
-      openCompare(g.id);
-    },
-    onLod: function (level, geneId) {
-      if (typeof chamber.setLod === 'function') chamber.setLod(level, geneId || null);
-      if (level === 0) showOrgOverview();
-      else hideOrgOverviewSoft();
-    },
-    getOrganism: function () { return yeast; },
-  });
-
-  const comparePanel = document.getElementById('compare-panel');
-  const compareView = new window.HyphaCompareView(document.getElementById('compare-canvas'));
-  const cmpA = document.getElementById('cmp-a');
-  const cmpB = document.getElementById('cmp-b');
-  const cmpGene = document.getElementById('cmp-gene');
-  const genomePanelEl = document.getElementById('genome-panel');
-
-  const genomePanel = new window.HyphaGenomePanel(genomePanelEl, {
-    orgs: orgs,
-    genes: genes,
-    defaults: panelDefaults,
-    onGeneClick: function (gid) {
-      openGene(gid);
-    },
-  });
-
-  // Populate compare selects
-  orgs.forEach((o) => {
-    const optA = document.createElement('option');
-    optA.value = o.slug;
-    optA.textContent = o.common_name;
-    cmpA.appendChild(optA);
-    const optB = document.createElement('option');
-    optB.value = o.slug;
-    optB.textContent = o.common_name;
-    cmpB.appendChild(optB);
-  });
-  const familyIds = Object.keys(genes).filter((id) => {
-    const g = genes[id];
-    return g.organisms && g.organisms.length > 1 && !g.alias_of && !g.stub;
-  });
-  ['ACT1', 'TEF1'].forEach((id) => {
-    if (genes[id] && !familyIds.includes(id)) familyIds.unshift(id);
-  });
-  // Also allow stub families with multi-org for compare
-  Object.keys(genes).forEach((id) => {
-    const g = genes[id];
-    if (g.organisms && g.organisms.length > 1 && !g.alias_of && !familyIds.includes(id)) {
-      familyIds.push(id);
+      if (axisLocked !== 'x') return;
+      e.preventDefault();
+      const w = viewport.clientWidth || 1;
+      dialPos = clamp(dragStartPos - dx / w, 0, MODES.length - 1);
+      applyTrack(dialPos, true);
+      updateParallax(dialPos);
+    }, { passive: false });
+    function endDial(e) {
+      if (!draggingDial) return;
+      if (e && ptrId != null && e.pointerId !== ptrId) return;
+      const wasX = axisLocked === 'x';
+      draggingDial = false;
+      track.classList.remove('dragging');
+      viewport.classList.remove('is-dragging');
+      window.__hyphaDialGesture = false;
+      if (wasX) goToMode(Math.round(dialPos), true);
+      else applyTrack(modeIndex, false);
+      ptrId = null;
+      axisLocked = null;
+      origin = null;
     }
-  });
-  familyIds.forEach((id) => {
-    const opt = document.createElement('option');
-    opt.value = id;
-    opt.textContent = id + ' — ' + (genes[id].name || id);
-    cmpGene.appendChild(opt);
-  });
+    window.addEventListener('pointerup', endDial);
+    window.addEventListener('pointercancel', endDial);
 
-  cmpA.value = defaults.a;
-  cmpB.value = defaults.b;
-  cmpGene.value = defaults.gene;
+    // horizontal wheel / trackpad
+    viewport.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 4) {
+        e.preventDefault();
+        dialPos = clamp(dialPos + e.deltaX / (viewport.clientWidth || 1), 0, MODES.length - 1);
+        applyTrack(dialPos, true);
+        updateParallax(dialPos);
+        clearTimeout(viewport._wheelSnap);
+        viewport._wheelSnap = setTimeout(() => goToMode(Math.round(dialPos), true), 120);
+      }
+    }, { passive: false });
 
-  function refreshCompare() {
-    const a = orgs.find((o) => o.slug === cmpA.value);
-    const b = orgs.find((o) => o.slug === cmpB.value);
-    const g = genes[cmpGene.value];
-    if (!a || !b || !g) return;
-    compareView.draw(g, a, b);
-    const insight = document.getElementById('compare-insight');
-    if (g.id === 'ACT1') {
-      insight.textContent =
-        'Same job, different evolutionary handwriting — actin scaffolds both yeasts, but the sequence tips drifted apart.';
-    } else if (g.id === 'TEF1' || g.id === 'EF1A') {
-      insight.textContent =
-        'Translation elongation is non-negotiable. The core strand stays teal; the tips record lineage.';
-    } else {
-      insight.textContent = 'Same job, different evolutionary handwriting.';
+    // keyboard
+    document.addEventListener('keydown', (e) => {
+      if (e.target.matches('input, select, textarea')) return;
+      if (e.key === 'ArrowLeft') { e.preventDefault(); goToMode(modeIndex - 1, true); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); goToMode(modeIndex + 1, true); }
+      if (e.key === 'Escape') {
+        if (tour.active) { finishTour(); return; }
+        if (geneFollow && geneFollow.isOpen()) geneFollow.hide();
+        closeCompare();
+        closeGenome();
+        closeAtlasCard();
+        appEl.classList.remove('calm');
+      }
+    });
+  }
+
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+  function applyTrack(pos, immediateDrag) {
+    // track width = 4 * 100% of viewport; each space is 25% of track = 100% viewport
+    // translate by -pos * (100% / 4) of track = -pos * 25% of track width... 
+    // Actually spaces-track is width 400% of viewport, each space 25% of track = 100% viewport.
+    // translateX(-pos * 25%) of track ≡ -pos * 100% of viewport. Use % of track:
+    const pct = (pos / MODES.length) * 100;
+    track.style.transform = 'translate3d(-' + pct + '%, 0, 0)';
+  }
+
+  function updateParallax(pos) {
+    // SNES multiplane: layers shift at different rates with dial position
+    const centered = pos - (MODES.length - 1) / 2;
+    shellBg.querySelectorAll('.para').forEach((el) => {
+      const rate = parseFloat(el.getAttribute('data-para') || '0.3');
+      const x = -centered * rate * 48;
+      const y = Math.sin(pos * 0.7) * rate * 6;
+      el.style.transform = 'translate3d(' + x + 'px, ' + y + 'px, 0)';
+    });
+    // subtle ombre shift
+    const ombre = document.getElementById('ombre-pulse');
+    if (ombre) {
+      ombre.style.transform = 'translate3d(' + (-centered * 12) + 'px, 0, 0) scale(1.02)';
     }
   }
 
-  [cmpA, cmpB, cmpGene].forEach((el) => el.addEventListener('change', refreshCompare));
+  function goToMode(index, animate) {
+    modeIndex = clamp(index, 0, MODES.length - 1);
+    dialPos = modeIndex;
+    if (!animate) track.classList.add('dragging');
+    applyTrack(modeIndex, false);
+    updateParallax(modeIndex);
+    if (!animate) {
+      requestAnimationFrame(() => track.classList.remove('dragging'));
+    }
+    const mode = MODES[modeIndex];
+    appEl.setAttribute('data-mode', mode);
+    dial.querySelectorAll('button').forEach((b) => {
+      b.classList.toggle('on', b.getAttribute('data-mode') === mode);
+    });
+    Object.keys(spaces).forEach((k) => {
+      spaces[k].setActive(k === mode);
+    });
+    if (mode === 'strand') {
+      locLabel.textContent = "Strand Zoom · " + (yeast ? yeast.common_name : "Baker's yeast");
+      showOrgOverview();
+    } else if (mode === 'hex') {
+      locLabel.textContent = 'Hex Reach · observe · connect';
+    } else if (mode === 'atlas') {
+      locLabel.textContent = 'Fungal Atlas · ' + orgs.length + ' fungi';
+    } else {
+      locLabel.textContent = 'Void Breath · living field';
+    }
+    // light explore parallax nudge
+    if (!reducedMotion()) {
+      shellBg.style.transition = 'none';
+    }
+  }
 
-
+  // ——— Content actions ———
   function showOrgOverview() {
     const cap = document.getElementById('chamber-caption');
     const ov = document.getElementById('cap-overview');
@@ -145,9 +314,7 @@
     if (clade && yeast) {
       clade.textContent = (yeast.clade || '') + (yeast.form ? ' · ' + yeast.form : '');
     }
-    if (locLabel) locLabel.textContent = "Inside " + (yeast.common_name || "Baker's yeast");
   }
-
   function hideOrgOverviewSoft() {
     const cap = document.getElementById('chamber-caption');
     if (cap) cap.classList.add('dim');
@@ -157,65 +324,114 @@
     const g = genes[id];
     if (!g) return;
     closeCompare();
-    if (appEl.classList.contains('mode-strand')) {
-      chamber.setHighlight(id); // camera travels toward gene; BG keeps living sway/re-reach
+    // prefer Strand Zoom for gene teaching
+    if (MODES[modeIndex] !== 'strand' && MODES[modeIndex] !== 'hex') {
+      goToMode(MODES.indexOf('strand'), true);
     }
+    if (spaces.strand) spaces.strand.setHighlight(id);
+    if (spaces.hex) spaces.hex.setHighlight(id);
     geneFollow.show(g);
   }
 
+  function setupCompare() {
+    const cmpA = document.getElementById('cmp-a');
+    const cmpB = document.getElementById('cmp-b');
+    const cmpGene = document.getElementById('cmp-gene');
+    orgs.forEach((o) => {
+      [cmpA, cmpB].forEach((sel) => {
+        const opt = document.createElement('option');
+        opt.value = o.slug;
+        opt.textContent = o.common_name;
+        sel.appendChild(opt);
+      });
+    });
+    familyIds = Object.keys(genes).filter((id) => {
+      const g = genes[id];
+      return g.organisms && g.organisms.length > 1 && !g.alias_of;
+    });
+    ['ACT1', 'TEF1', 'SUC2'].forEach((id) => {
+      if (genes[id] && !familyIds.includes(id)) familyIds.unshift(id);
+    });
+    familyIds.forEach((id) => {
+      const opt = document.createElement('option');
+      opt.value = id;
+      opt.textContent = id + ' — ' + (genes[id].name || id);
+      cmpGene.appendChild(opt);
+    });
+    cmpA.value = defaults.a;
+    cmpB.value = defaults.b;
+    cmpGene.value = defaults.gene;
+    function refresh() {
+      const a = orgs.find((o) => o.slug === cmpA.value);
+      const b = orgs.find((o) => o.slug === cmpB.value);
+      const g = genes[cmpGene.value];
+      if (!a || !b || !g) return;
+      compareView.draw(g, a, b);
+      const insight = document.getElementById('compare-insight');
+      insight.textContent = 'Same job, different evolutionary handwriting.';
+    }
+    [cmpA, cmpB, cmpGene].forEach((el) => el.addEventListener('change', refresh));
+    window._hyphaRefreshCompare = refresh;
+  }
+
   function openCompare(preferGeneId) {
-    geneFollow.hide();
-    chamber.setHighlight(null);
+    if (geneFollow && geneFollow.isOpen()) geneFollow.hide();
     if (preferGeneId && familyIds.includes(preferGeneId)) {
-      cmpGene.value = preferGeneId;
-    } else if (preferGeneId === 'ACT1') {
-      cmpGene.value = 'ACT1';
+      document.getElementById('cmp-gene').value = preferGeneId;
     }
-    comparePanel.hidden = false;
-    refreshCompare();
+    document.getElementById('compare-panel').hidden = false;
+    if (window._hyphaRefreshCompare) window._hyphaRefreshCompare();
   }
-
   function closeCompare() {
-    comparePanel.hidden = true;
+    document.getElementById('compare-panel').hidden = true;
   }
 
-  // ——— View modes: Strand (chamber) | Genome panel ———
-  const btnStrand = document.getElementById('btn-mode-strand');
-  const btnPanel = document.getElementById('btn-mode-panel');
-
-  function setMode(mode) {
-    const panel = mode === 'panel';
-    appEl.classList.toggle('mode-panel', panel);
-    appEl.classList.toggle('mode-strand', !panel);
-    btnStrand.classList.toggle('on', !panel);
-    btnPanel.classList.toggle('on', panel);
-    btnStrand.setAttribute('aria-pressed', panel ? 'false' : 'true');
-    btnPanel.setAttribute('aria-pressed', panel ? 'true' : 'false');
-    genomePanel.setVisible(panel);
-    if (panel) {
-      if (tour.active) finishTour();
-      geneFollow.hide();
-      closeCompare();
-      chamber.setHighlight(null);
-      if (locLabel) locLabel.textContent = 'Genome panel · multi-organism';
-    } else {
-      showOrgOverview();
-      if (typeof chamber.setLod === 'function') chamber.setLod(0, null);
-      // Landing back inside yeast: big mycelial grow-out + camera pull-in
-      if (typeof chamber.replayGrowth === 'function') chamber.replayGrowth({ entrance: true });
-    }
+  function openGenome() {
+    document.getElementById('genome-panel').hidden = false;
+    if (genomePanel && genomePanel.setVisible) genomePanel.setVisible(true);
+    // Hex Reach is the natural home for genome compare
+    if (MODES[modeIndex] !== 'hex') goToMode(0, true);
+  }
+  function closeGenome() {
+    document.getElementById('genome-panel').hidden = true;
+    if (genomePanel && genomePanel.setVisible) genomePanel.setVisible(false);
   }
 
-  btnStrand.addEventListener('click', () => setMode('strand'));
-  btnPanel.addEventListener('click', () => setMode('panel'));
+  function showAtlasCard(o) {
+    const card = document.getElementById('atlas-card');
+    card.hidden = false;
+    document.getElementById('atlas-name').textContent = o.common_name;
+    document.getElementById('atlas-sci').textContent = o.scientific_name;
+    document.getElementById('atlas-clade').textContent = (o.clade || '') + (o.form ? ' · ' + o.form : '');
+    document.getElementById('atlas-blurb').textContent = o.short_blurb || '';
+    document.getElementById('atlas-form').textContent = o.form || 'fungus';
+    card._org = o;
+  }
+  function closeAtlasCard() {
+    document.getElementById('atlas-card').hidden = true;
+  }
 
-  document.getElementById('btn-close-compare').addEventListener('click', closeCompare);
-  document.getElementById('btn-compare').addEventListener('click', () => openCompare('ACT1'));
-  document.getElementById('btn-calm').addEventListener('click', () => {
-    appEl.classList.toggle('calm');
-  });
+  function setupChrome() {
+    document.getElementById('btn-compare').addEventListener('click', () => openCompare('ACT1'));
+    document.getElementById('btn-genome').addEventListener('click', openGenome);
+    document.getElementById('btn-close-genome').addEventListener('click', closeGenome);
+    document.getElementById('btn-close-compare').addEventListener('click', closeCompare);
+    document.getElementById('btn-calm').addEventListener('click', () => appEl.classList.toggle('calm'));
+    document.getElementById('btn-close-atlas').addEventListener('click', closeAtlasCard);
+    document.getElementById('btn-atlas-enter').addEventListener('click', () => {
+      closeAtlasCard();
+      goToMode(MODES.indexOf('strand'), true);
+      if (spaces.strand) spaces.strand.replayGrowth();
+    });
+    document.querySelectorAll('#zoom-rail button').forEach((b) => {
+      b.addEventListener('click', () => {
+        const z = parseInt(b.getAttribute('data-zoom'), 10);
+        if (spaces.strand) spaces.strand.setZoomLevel(z);
+      });
+    });
+  }
 
-  // ——— Guided tour (Chamber only) ———
+  // ——— Tour → Strand Zoom · SUC2 ———
   const tour = {
     active: false,
     step: 0,
@@ -226,23 +442,28 @@
     nextBtn: document.getElementById('btn-tour-next'),
     skipBtn: document.getElementById('btn-tour-skip'),
     spotlight: null,
-    steps: [
+    steps: [],
+  };
+
+  function setupTour() {
+    tour.steps = [
       {
-        title: 'You are inside baker\'s yeast',
-        body: 'This chamber is Saccharomyces cerevisiae. The curved teal hyphae are genes radiating from one living cell — not a spreadsheet of twelve dots.',
+        title: 'Four spaces, one shell',
+        body: 'Swipe sideways like a giant dial: Hex Reach, Strand Zoom, Fungal Atlas, Void Breath. The Slow Ombre background pulses underneath with parallax depth.',
         action: function () {
-          geneFollow.hide();
+          goToMode(MODES.indexOf('strand'), true);
+          if (geneFollow) geneFollow.hide();
           closeCompare();
-          chamber.setHighlight(null);
-          chamber.pulseGene('SUC2', false);
+          closeGenome();
+          spaces.strand.setHighlight(null);
         },
       },
       {
-        title: 'Follow SUC2',
-        body: 'That ember node is SUC2 — invertase. Tap it (or press Next) to watch the gene become a message, then a machine.',
+        title: 'You are inside baker\'s yeast',
+        body: 'Strand Zoom lands you in Saccharomyces cerevisiae. Follow the ember node — SUC2 invertase — to watch a gene become a machine.',
         action: function () {
-          chamber.pulseGene('SUC2', true);
-          chamber.setHighlight('SUC2');
+          spaces.strand.pulseGene('SUC2', true);
+          spaces.strand.setHighlight('SUC2');
           placeSpotlight('SUC2');
         },
       },
@@ -251,24 +472,27 @@
         body: 'Watch each step glow. DNA is the recipe. mRNA is the working copy. Protein is the enzyme that does the work.',
         action: function () {
           clearSpotlight();
-          chamber.pulseGene('SUC2', false);
+          spaces.strand.pulseGene('SUC2', false);
           openGene('SUC2');
         },
       },
       {
         title: 'Leave with this',
-        body: 'This gene is a recipe for invertase — the enzyme that lets yeast break table sugar into fuel. That\'s genetics you can see, not a table you memorize.',
+        body: 'This gene is a recipe for invertase — the enzyme that lets yeast break table sugar into fuel. Swipe into Atlas for more fungi, Hex for lattice compare, Void to breathe.',
         action: function () {
-          if (!geneFollow.isOpen()) openGene('SUC2');
+          if (geneFollow && !geneFollow.isOpen()) openGene('SUC2');
         },
         nextLabel: 'Done',
       },
-    ],
-  };
+    ];
+    tour.nextBtn.addEventListener('click', nextTour);
+    tour.skipBtn.addEventListener('click', finishTour);
+    document.getElementById('btn-tour').addEventListener('click', startTour);
+  }
 
   function placeSpotlight(geneId) {
     clearSpotlight();
-    const pos = chamber.geneScreenPos(geneId);
+    const pos = spaces.strand.geneScreenPos(geneId);
     if (!pos) return;
     const el = document.createElement('div');
     el.className = 'tour-spotlight';
@@ -279,14 +503,9 @@
     appEl.appendChild(el);
     tour.spotlight = el;
   }
-
   function clearSpotlight() {
-    if (tour.spotlight) {
-      tour.spotlight.remove();
-      tour.spotlight = null;
-    }
+    if (tour.spotlight) { tour.spotlight.remove(); tour.spotlight = null; }
   }
-
   function renderTourStep() {
     const s = tour.steps[tour.step];
     if (!s) return finishTour();
@@ -301,53 +520,38 @@
     });
     if (s.action) s.action();
   }
-
   function startTour() {
-    if (appEl.classList.contains('mode-panel')) setMode('strand');
+    goToMode(MODES.indexOf('strand'), true);
     tour.active = true;
     tour.step = 0;
     tour.el.hidden = false;
     renderTourStep();
   }
-
   function finishTour() {
     tour.active = false;
     tour.el.hidden = true;
     clearSpotlight();
-    chamber.pulseGene('SUC2', false);
-    try { localStorage.setItem(TOUR_KEY, '1'); } catch (e) { /* ignore */ }
+    if (spaces.strand) spaces.strand.pulseGene('SUC2', false);
+    try { localStorage.setItem(TOUR_KEY, '1'); } catch (e) { /* */ }
   }
-
   function nextTour() {
     tour.step += 1;
     if (tour.step >= tour.steps.length) finishTour();
     else renderTourStep();
   }
 
-  tour.nextBtn.addEventListener('click', nextTour);
-  tour.skipBtn.addEventListener('click', finishTour);
-  document.getElementById('btn-tour').addEventListener('click', startTour);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      if (tour.active) {
-        finishTour();
-        return;
-      }
-      if (geneFollow.isOpen()) geneFollow.hide();
-      if (!comparePanel.hidden) closeCompare();
-      if (appEl.classList.contains('calm')) appEl.classList.remove('calm');
+  // light continuous parallax while exploring (gentle)
+  let exploreT = 0;
+  function exploreLoop() {
+    exploreT += 0.004;
+    if (!draggingDial && !reducedMotion()) {
+      const base = modeIndex;
+      const wobble = Math.sin(exploreT) * 0.02;
+      updateParallax(base + wobble);
     }
-  });
-
-  let seen = false;
-  try { seen = localStorage.getItem(TOUR_KEY) === '1'; } catch (e) { /* ignore */ }
-  if (!seen) {
-    setTimeout(startTour, 700);
+    requestAnimationFrame(exploreLoop);
   }
+  requestAnimationFrame(exploreLoop);
 
-  showOrgOverview();
-  if (typeof chamber.setLod === 'function') chamber.setLod(0, null);
-
-  window.HyphaApp = { openGene, openCompare, startTour, chamber, setMode, genomePanel };
+  boot();
 })();

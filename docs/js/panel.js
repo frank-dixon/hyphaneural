@@ -165,11 +165,11 @@
       .map((o) => {
         const on = this.selected.has(o.slug);
         return (
-          '<label class="gp-check' + (on ? ' on' : '') + '">' +
+          '<label class="gp-check flex flex-col gap-0.5 text-[0.7rem] text-mist cursor-pointer px-1.5 py-1 border border-transparent rounded-sm' + (on ? ' on border-white/20 text-white' : '') + '">' +
           '<input type="checkbox" data-org-check value="' + escapeHtml(o.slug) + '"' +
           (on ? ' checked' : '') + '>' +
           '<span class="gp-check-name">' + escapeHtml(o.common_name) + '</span>' +
-          '<span class="gp-check-sci">' + escapeHtml(o.scientific_name) + '</span>' +
+          '<span class="gp-check-sci font-mono text-[0.58rem] text-mist-dim">' + escapeHtml(o.scientific_name) + '</span>' +
           '</label>'
         );
       })
@@ -184,7 +184,7 @@
       filters.innerHTML = opts
         .map(
           ([v, label]) =>
-            '<label class="gp-filter' + (this.filter === v ? ' on' : '') + '">' +
+            '<label class="gp-filter text-[0.65rem] tracking-wide text-mist cursor-pointer px-2 py-1 border border-white/10 rounded-sm' + (this.filter === v ? ' on border-white/40 text-white' : '') + '">' +
             '<input type="radio" name="gp-filter" data-filter value="' + v + '"' +
             (this.filter === v ? ' checked' : '') + '>' +
             label +
@@ -213,12 +213,12 @@
           }
         });
         chips.innerHTML =
-          '<span class="gp-chip-label">Bins</span>' +
+          '<span class="gp-chip-label text-[0.58rem] tracking-widest uppercase text-mist-dim mr-1">Bins</span>' +
           chrs
             .map((c) => {
               const on = this.chrFilter === c;
               return (
-                '<button type="button" class="gp-chip' + (on ? ' on' : '') + '" data-chr-chip="' +
+                '<button type="button" class="gp-chip font-mono text-[0.58rem] px-1.5 py-1 border border-white/15 bg-transparent text-mist rounded-sm cursor-pointer' + (on ? ' on' : '') + '" data-chr-chip="' +
                 escapeHtml(c) + '">Chr ' + escapeHtml(c) + '</button>'
               );
             })
@@ -240,8 +240,8 @@
     const selected = this._selectedOrgs();
     if (!selected.length) {
       host.innerHTML =
-        '<div class="gp-empty">Select organisms to load linear genome tracks.<br>' +
-        '<span class="gp-empty-hint">Switch to Strand for the guided story.</span></div>';
+        '<div class="gp-empty text-mist text-sm py-6">Select organisms to load linear genome tracks.<br>' +
+        '<span class="gp-empty-hint text-mist-dim text-xs">Switch to Strand Zoom for the guided story.</span></div>';
       return;
     }
 
@@ -251,13 +251,13 @@
 
     // Legend
     let html =
-      '<div class="gp-legend" aria-hidden="true">' +
-      '<span class="gp-leg shared"><i></i>Shared ortholog / family</span>' +
-      '<span class="gp-leg unique"><i></i>Organism-unique</span>' +
-      '<span class="gp-leg gap"><i></i>Missing counterpart</span>' +
+      '<div class="gp-legend flex flex-wrap gap-3 text-[0.65rem] text-mist mb-3" aria-hidden="true">' +
+      '<span class="gp-leg shared flex items-center gap-1.5"><i class="inline-block w-2.5 h-2.5 bg-teal/70"></i>Shared ortholog / family</span>' +
+      '<span class="gp-leg unique flex items-center gap-1.5"><i class="inline-block w-2.5 h-2.5 bg-ember/70"></i>Organism-unique</span>' +
+      '<span class="gp-leg gap flex items-center gap-1.5"><i class="inline-block w-2.5 h-2.5 bg-white/10"></i>Missing counterpart</span>' +
       '</div>';
 
-    html += '<div class="gp-tracks" role="list">';
+    html += '<div class="gp-tracks flex flex-col gap-2.5" role="list">';
 
     selected.forEach((org) => {
       const slots = this._linear(org);
@@ -268,14 +268,14 @@
 
       // Group by chromosome for ruler labels
       html +=
-        '<div class="gp-row" role="listitem" data-org-row="' + escapeHtml(org.slug) + '">' +
-        '<div class="gp-row-meta">' +
-        '<div class="gp-row-name">' + escapeHtml(org.common_name) + '</div>' +
-        '<div class="gp-row-sci">' + escapeHtml(org.scientific_name) + '</div>' +
-        '<div class="gp-row-count">' + slots.length + ' genes</div>' +
+        '<div class="gp-row mb-2.5" role="listitem" data-org-row="' + escapeHtml(org.slug) + '">' +
+        '<div class="gp-row-meta mb-1">' +
+        '<div class="gp-row-name text-[0.72rem] text-white/70">' + escapeHtml(org.common_name) + '</div>' +
+        '<div class="gp-row-sci text-[0.65rem] italic text-teal-bright/80">' + escapeHtml(org.scientific_name) + '</div>' +
+        '<div class="gp-row-count font-mono text-[0.58rem] text-mist-dim">' + slots.length + ' genes</div>' +
         '</div>' +
-        '<div class="gp-track-scroll">' +
-        '<div class="gp-track">';
+        '<div class="gp-track-scroll overflow-x-auto">' +
+        '<div class="gp-track relative flex h-7 bg-white/[0.03] border border-white/[0.06]">';
 
       if (multi) {
         // Aligned by family axis
@@ -294,7 +294,7 @@
             if (this.chrFilter && slot.chr !== this.chrFilter) return;
             if (!this._matchSearch(slot.id)) return;
             if (slot.chr !== lastChr) {
-              html += '<span class="gp-chr-tick" title="Chr ' + escapeHtml(slot.chr) + '">' +
+              html += '<span class="gp-chr-tick absolute -top-3 font-mono text-[0.45rem] text-mist-dim" title="Chr ' + escapeHtml(slot.chr) + '">' +
                 escapeHtml(slot.chr) + '</span>';
               lastChr = slot.chr;
             }
@@ -305,7 +305,7 @@
               '<button type="button" class="gp-block ' + kind + stub + '" data-gene-block="' +
               escapeHtml(slot.id) + '" data-org="' + escapeHtml(org.slug) + '" title="' +
               escapeHtml(slot.id + ' — ' + (g.name || slot.id)) + '">' +
-              '<span class="gp-block-id">' + escapeHtml(slot.id) + '</span>' +
+              '<span class="gp-block-id truncate">' + escapeHtml(slot.id) + '</span>' +
               '</button>';
           } else {
             // gap — only when filter allows and search empty / matches exemplar
@@ -335,7 +335,7 @@
           if (this.chrFilter && slot.chr !== this.chrFilter) return;
           if (!this._matchSearch(slot.id)) return;
           if (slot.chr !== lastChr) {
-            html += '<span class="gp-chr-tick" title="Chr ' + escapeHtml(slot.chr) + '">' +
+            html += '<span class="gp-chr-tick absolute -top-3 font-mono text-[0.45rem] text-mist-dim" title="Chr ' + escapeHtml(slot.chr) + '">' +
               escapeHtml(slot.chr) + '</span>';
             lastChr = slot.chr;
           }
@@ -346,7 +346,7 @@
             '<button type="button" class="gp-block ' + kind + stub + '" data-gene-block="' +
             escapeHtml(slot.id) + '" data-org="' + escapeHtml(org.slug) + '" title="' +
             escapeHtml(slot.id + ' — ' + (g.name || slot.id)) + '">' +
-            '<span class="gp-block-id">' + escapeHtml(slot.id) + '</span>' +
+            '<span class="gp-block-id truncate">' + escapeHtml(slot.id) + '</span>' +
             '</button>';
         });
       }
@@ -358,8 +358,8 @@
 
     if (!this.selected.size) {
       html +=
-        '<div class="gp-empty">Select organisms above.<br>' +
-        '<span class="gp-empty-hint">Switch to Strand for the guided story.</span></div>';
+        '<div class="gp-empty text-mist text-sm py-6">Select organisms above.<br>' +
+        '<span class="gp-empty-hint text-mist-dim text-xs">Switch to Strand Zoom for the guided story.</span></div>';
     }
 
     host.innerHTML = html;
@@ -408,11 +408,11 @@
     }
 
     el.innerHTML =
-      '<div class="gp-stat"><span class="gp-stat-n">' + total + '</span><span class="gp-stat-l">gene slots</span></div>' +
-      '<div class="gp-stat"><span class="gp-stat-n">' + selected.length + '</span><span class="gp-stat-l">organisms</span></div>' +
-      '<div class="gp-stat"><span class="gp-stat-n">' + pct + '%</span><span class="gp-stat-l">shared w/ ' +
+      '<div class="gp-stat inline-flex items-baseline gap-1.5 mr-4"><span class="gp-stat-n text-teal-bright">' + total + '</span><span class="gp-stat-l">gene slots</span></div>' +
+      '<div class="gp-stat inline-flex items-baseline gap-1.5 mr-4"><span class="gp-stat-n text-teal-bright">' + selected.length + '</span><span class="gp-stat-l">organisms</span></div>' +
+      '<div class="gp-stat inline-flex items-baseline gap-1.5 mr-4"><span class="gp-stat-n text-teal-bright">' + pct + '%</span><span class="gp-stat-l">shared w/ ' +
       escapeHtml(ref ? ref.common_name : 'ref') + '</span></div>' +
-      '<div class="gp-stat"><span class="gp-stat-n">' + uniqueCount + '</span><span class="gp-stat-l">unique in view</span></div>';
+      '<div class="gp-stat inline-flex items-baseline gap-1.5 mr-4"><span class="gp-stat-n text-ember">' + uniqueCount + '</span><span class="gp-stat-l">unique in view</span></div>';
   };
 
   global.HyphaGenomePanel = GenomePanel;

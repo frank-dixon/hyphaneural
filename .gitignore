@@ -11,3 +11,4 @@ node_modules/
 staticfiles/
 *.log
 .pytest_cache/
+docs/moodboards/

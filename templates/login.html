@@ -1,25 +1,28 @@
 {% extends "base.html" %}
 {% block title %}Hyphaneural — enter{% endblock %}
 {% block body %}
-<div class="auth-shell">
-  <div class="auth-card">
-    <div class="auth-mark">Hyphaneural</div>
-    <h1>See the strand</h1>
-    <p class="tagline">Genetics as living threads in a simple fungal model — not a spreadsheet.</p>
-    {% if error %}<div class="auth-error">{{ error }}</div>{% endif %}
-    <form method="post" action="{% url 'login' %}">
+<div class="min-h-screen flex items-center justify-center p-6 bg-void relative overflow-hidden">
+  <div class="ombre-pulse opacity-80 pointer-events-none" aria-hidden="true"></div>
+  <div class="relative z-10 w-full max-w-md p-8 bg-void-panel border border-white/15 backdrop-blur-md animate-panel-in">
+    <div class="text-[0.68rem] tracking-brand uppercase text-white/55 mb-3">Hyphaneural</div>
+    <h1 class="m-0 mb-2 font-display font-normal text-[1.8rem] text-white">See the strand</h1>
+    <p class="m-0 mb-5 text-[0.88rem] leading-snug text-mist">Genetics as living threads in a simple fungal model — not a spreadsheet.</p>
+    {% if error %}<div class="mb-4 text-[0.8rem] text-ember border border-ember/40 px-3 py-2">{{ error }}</div>{% endif %}
+    <form method="post" action="{% url 'login' %}" class="flex flex-col gap-4">
       {% csrf_token %}
-      <div class="field">
-        <label for="id_username">Username</label>
-        <input id="id_username" name="username" autocomplete="username" required autofocus>
+      <div class="flex flex-col gap-1.5">
+        <label for="id_username" class="text-[0.65rem] tracking-wider uppercase text-mist-dim">Username</label>
+        <input id="id_username" name="username" autocomplete="username" required autofocus
+               class="font-sans text-[0.9rem] px-3 py-2 bg-black/40 border border-white/15 text-ink rounded-sm focus:outline-none focus:border-white/40">
       </div>
-      <div class="field">
-        <label for="id_password">Password</label>
-        <input id="id_password" type="password" name="password" autocomplete="current-password" required>
+      <div class="flex flex-col gap-1.5">
+        <label for="id_password" class="text-[0.65rem] tracking-wider uppercase text-mist-dim">Password</label>
+        <input id="id_password" type="password" name="password" autocomplete="current-password" required
+               class="font-sans text-[0.9rem] px-3 py-2 bg-black/40 border border-white/15 text-ink rounded-sm focus:outline-none focus:border-white/40">
       </div>
-      <button class="btn" type="submit">Enter</button>
+      <button class="mt-1 text-[0.8rem] tracking-wider border border-white/30 bg-white/10 text-white px-4 py-2.5 rounded-sm cursor-pointer hover:bg-white/15" type="submit">Enter</button>
     </form>
-    <p class="auth-foot"><a href="{% url 'signup' %}">Create an account</a></p>
+    <p class="mt-5 mb-0 text-[0.78rem] text-mist"><a class="text-white/70 hover:text-white no-underline" href="{% url 'signup' %}">Create an account</a></p>
   </div>
 </div>
 {% endblock %}

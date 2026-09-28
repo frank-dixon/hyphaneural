@@ -2,7 +2,7 @@
 
 See the strand, not the spreadsheet.
 
-Quiet Protomol: a fungal genetics demo where you land **inside baker's yeast**, follow a gene DNA → mRNA → protein, compare conserved families, and open a **Genome panel** linear master visualizer to scan multi-organism catalogs — genetics as living hyphae, not a paper dump or cultivation guide.
+Quiet Protomol / Slow Ombre: a fungal genetics demo where four immersive **spaces** share one pulsed purple–blue–green shell — Hex Reach, Strand Zoom, Fungal Atlas, Void Breath. Land inside baker’s yeast, follow a gene DNA → mRNA → protein, compare conserved families, and open a Genome panel for multi-organism linear tracks.
 
 ## Live demo
 
@@ -10,48 +10,55 @@ Quiet Protomol: a fungal genetics demo where you land **inside baker's yeast**, 
 
 **https://frank-dixon.github.io/hyphaneural/**
 
-Start here → follow **SUC2** (invertase) → watch the recipe become the enzyme. Toggle **Genome panel** for linear chromosome tracks and multi-organism ortholog compare. Seed data is embedded (Django is not required for the demo).
+**Start here** → opens **Strand Zoom** on **SUC2** (invertase). Swipe / drag horizontally (or use the dial ticks / ← →) to enter another space. Seed data is static JSON under `docs/data/` (Django is not required for the demo).
+
+## Spaces
+
+| Space | Feel |
+|-------|------|
+| **Hex Reach** | Hex lattice + hyphal genetics · observe / connect · Genome panel secondary |
+| **Strand Zoom** | Camera zoom field → lattice → strand · DNA→mRNA→protein teaching |
+| **Fungal Atlas** | Immersive atlas of ~36 fungi (mushrooms, yeasts, molds, pathogens) |
+| **Void Breath** | Living field-dominant calm · growing hyphae across the void |
+
+Main shell: Slow Ombre purple–blue–green pulse, sparse white accents, SNES-style parallax while panning. HTML chrome is **Tailwind utility classes**; canvas stays JS.
 
 ## Stack
 
-- **Django** — session auth, thin JSON API (`/api/organisms/`, gene stub) for the full local app
-- **Vanilla canvas + CSS** — Quiet Protomol tokens; Pages demo under `docs/`
+- **Tailwind CSS 3** — `npm run build:css` → committed `docs/css/hyphaneural.css` (+ copy to `static/css/` for Django). Pages needs no Node at runtime.
+- **Django** — session auth, thin JSON API for the full local app
+- **Vanilla canvas + CSS** — Slow Ombre shell; Pages demo under `docs/`
 - **GitHub Pages** — self-contained static demo from `/docs` on `main`
+
+## CSS build
+
+```bash
+npm install
+npm run build:css   # writes docs/css/hyphaneural.css + static/css/hyphaneural.css
+```
+
+Source tokens / minimal custom: `src/input.css` + `tailwind.config.js`. Prefer utilities in HTML; keep `@layer` custom only for ombre gradients, dial track, and JS-toggled states.
 
 ## Run locally
 
 ```bash
 cd hyphaneural
 python3 -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
+source .venv/bin/activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py seed_organisms
-python manage.py createsuperuser   # or use /signup/
+python manage.py createsuperuser
 python manage.py runserver
 ```
 
-Open http://127.0.0.1:8000/ — sign up or log in, then explore.
-
-Static Pages demo (no server): open `docs/index.html` via any static file server, or use the live URL above.
-
-## What works
-
-| Feature | Status |
-|--------|--------|
-| Pages chamber inside baker's yeast | Working |
-| Gene follow DNA→mRNA→protein (SUC2, ACT1, HO, TEF1) | Working |
-| Genome panel — linear multi-organism tracks | Working |
-| Guided “Start here” tour (~60s) | Working |
-| Compare dual-strand (shared teal / divergent ember) | Working |
-| Login / Django map app | Working (local) |
-| Live NCBI fetch | Stubbed — mock-first |
+Static Pages demo: `cd docs && python3 -m http.server 8765` → http://127.0.0.1:8765/
 
 ## Anti-goals
 
-Not a paper dump. Not a cultivation guide. Sequences labeled mock / simplified where abbreviated.
+Not a paper dump. Not a cultivation guide. Sequences labeled mock / simplified where abbreviated. Fungi only.
 
 ## Deploy
 
 - **Public demo:** GitHub Pages from `/docs` on `main` → https://frank-dixon.github.io/hyphaneural/
-- Full Django app stays local / your own host; Pages cannot run Django.
+- Mood boards under `docs/moodboards/` are local visual reference only (gitignored).

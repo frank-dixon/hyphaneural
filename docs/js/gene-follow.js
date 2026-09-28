@@ -110,12 +110,12 @@
       .map((lab, i) => {
         const on = i === this._lod ? ' on' : i < this._lod ? ' done' : '';
         return (
-          '<button type="button" class="lod-chip' + on + '" data-lod="' + i + '">' +
-          '<span class="lod-n">' + (i + 1) + '</span>' + escapeHtml(lab) +
+          '<button type="button" class="lod-chip flex-1 text-[0.58rem] tracking-wider uppercase px-1.5 py-1.5 border border-white/15 bg-transparent text-mist rounded-sm cursor-pointer' + on + '" data-lod="' + i + '">' +
+          '<span class="lod-n font-mono mr-1 text-white/40">' + (i + 1) + '</span>' + escapeHtml(lab) +
           '</button>'
         );
       })
-      .join('<span class="lod-sep" aria-hidden="true">→</span>');
+      .join('<span class="lod-sep text-white/25 px-0.5 self-center" aria-hidden="true">→</span>');
   };
 
   GeneFollow.prototype._renderFamilyOrOrg = function () {
@@ -131,13 +131,13 @@
       const el = document.createElement('div');
       el.className = 'step active lod-card';
       el.innerHTML =
-        '<div class="step-stage">Organism</div>' +
-        '<div class="step-label">' + escapeHtml(org ? org.common_name : "Baker's yeast") + '</div>' +
-        '<p class="step-plain">' + escapeHtml((org && org.short_blurb) || '') + '</p>' +
-        '<p class="step-plain">' + escapeHtml(ov.why || '') + '</p>' +
-        '<p class="step-plain">' + escapeHtml(ov.habitat || '') + '</p>' +
-        '<p class="step-plain">' + escapeHtml(ov.teach || '') + '</p>' +
-        '<div class="step-seq">' + escapeHtml((org && org.clade) || '') + ' · ' +
+        '<div class="step-stage font-mono text-[0.58rem] tracking-widest text-teal-bright mb-1">Organism</div>' +
+        '<div class="step-label text-[0.88rem] text-white mb-1">' + escapeHtml(org ? org.common_name : "Baker's yeast") + '</div>' +
+        '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0 mb-1">' + escapeHtml((org && org.short_blurb) || '') + '</p>' +
+        '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0 mb-1">' + escapeHtml(ov.why || '') + '</p>' +
+        '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0 mb-1">' + escapeHtml(ov.habitat || '') + '</p>' +
+        '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0 mb-1">' + escapeHtml(ov.teach || '') + '</p>' +
+        '<div class="step-seq font-mono text-[0.62rem] text-mist-dim mt-1.5">' + escapeHtml((org && org.clade) || '') + ' · ' +
         escapeHtml((ov.genome_note) || 'mock / public-annotation style') + '</div>';
       root.appendChild(el);
       if (this.els.family) this.els.family.hidden = true;
@@ -153,12 +153,12 @@
     const el = document.createElement('div');
     el.className = 'step active lod-card';
     el.innerHTML =
-      '<div class="step-stage">Gene / family</div>' +
-      '<div class="step-label">' + escapeHtml(fd.title || (gene.family || gene.id) + ' family') + '</div>' +
-      '<p class="step-plain">' + escapeHtml(fd.plain_english || gene.role || '') + '</p>' +
-      '<p class="step-plain">' + escapeHtml(fd.why_it_matters || gene.phenotype || '') + '</p>' +
-      '<p class="step-plain">' + escapeHtml(fd.conservation || '') + '</p>' +
-      '<div class="step-seq">' +
+      '<div class="step-stage font-mono text-[0.58rem] tracking-widest text-teal-bright mb-1">Gene / family</div>' +
+      '<div class="step-label text-[0.88rem] text-white mb-1">' + escapeHtml(fd.title || (gene.family || gene.id) + ' family') + '</div>' +
+      '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0 mb-1">' + escapeHtml(fd.plain_english || gene.role || '') + '</p>' +
+      '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0 mb-1">' + escapeHtml(fd.why_it_matters || gene.phenotype || '') + '</p>' +
+      '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0 mb-1">' + escapeHtml(fd.conservation || '') + '</p>' +
+      '<div class="step-seq font-mono text-[0.62rem] text-mist-dim mt-1.5">' +
       escapeHtml((gene.organisms || []).length + ' organisms in catalog · ' + (gene.stub ? 'stub / mock' : 'teaching annotation')) +
       '</div>';
     root.appendChild(el);
@@ -192,10 +192,10 @@
       el.className = 'step';
       el.setAttribute('role', 'listitem');
       el.innerHTML =
-        '<div class="step-stage">' + escapeHtml(s.stage) + '</div>' +
-        '<div class="step-label">' + escapeHtml(s.label) + '</div>' +
-        '<p class="step-plain">' + escapeHtml(s.plain_english || '') + '</p>' +
-        '<div class="step-seq">' + escapeHtml(s.seq_hint || '') + '</div>';
+        '<div class="step-stage font-mono text-[0.58rem] tracking-widest text-teal-bright mb-1">' + escapeHtml(s.stage) + '</div>' +
+        '<div class="step-label text-[0.88rem] text-white mb-1">' + escapeHtml(s.label) + '</div>' +
+        '<p class="step-plain text-[0.78rem] leading-snug text-mist m-0">' + escapeHtml(s.plain_english || '') + '</p>' +
+        '<div class="step-seq font-mono text-[0.62rem] text-mist-dim mt-1.5">' + escapeHtml(s.seq_hint || '') + '</div>';
       root.appendChild(el);
 
       this._timers.push(setTimeout(() => {

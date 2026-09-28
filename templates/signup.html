@@ -1,35 +1,39 @@
 {% extends "base.html" %}
 {% block title %}Hyphaneural — create account{% endblock %}
 {% block body %}
-<div class="auth-shell">
-  <div class="auth-card">
-    <div class="auth-mark">Hyphaneural</div>
-    <h1>Create account</h1>
-    <p class="tagline">Session auth for the organism map prototype.</p>
-    <form method="post" action="{% url 'signup' %}">
+<div class="min-h-screen flex items-center justify-center p-6 bg-void relative overflow-hidden">
+  <div class="ombre-pulse opacity-80 pointer-events-none" aria-hidden="true"></div>
+  <div class="relative z-10 w-full max-w-md p-8 bg-void-panel border border-white/15 backdrop-blur-md animate-panel-in">
+    <div class="text-[0.68rem] tracking-brand uppercase text-white/55 mb-3">Hyphaneural</div>
+    <h1 class="m-0 mb-2 font-display font-normal text-[1.8rem] text-white">Create account</h1>
+    <p class="m-0 mb-5 text-[0.88rem] leading-snug text-mist">Session auth for the organism map prototype.</p>
+    <form method="post" action="{% url 'signup' %}" class="flex flex-col gap-4">
       {% csrf_token %}
       {% if form.errors %}
-      <div class="auth-error">Please check the fields below.</div>
+      <div class="mb-1 text-[0.8rem] text-ember border border-ember/40 px-3 py-2">Please check the fields below.</div>
       {% endif %}
-      <div class="field">
-        <label for="id_username">Username</label>
+      <div class="flex flex-col gap-1.5">
+        <label for="id_username" class="text-[0.65rem] tracking-wider uppercase text-mist-dim">Username</label>
         <input id="id_username" name="username" maxlength="150" required autofocus
-               value="{{ form.username.value|default:'' }}">
-        {% if form.username.errors %}<div class="auth-error">{{ form.username.errors.0 }}</div>{% endif %}
+               value="{{ form.username.value|default:'' }}"
+               class="font-sans text-[0.9rem] px-3 py-2 bg-black/40 border border-white/15 text-ink rounded-sm focus:outline-none focus:border-white/40">
+        {% if form.username.errors %}<div class="text-[0.75rem] text-ember">{{ form.username.errors.0 }}</div>{% endif %}
       </div>
-      <div class="field">
-        <label for="id_password1">Password</label>
-        <input id="id_password1" type="password" name="password1" required>
-        {% if form.password1.errors %}<div class="auth-error">{{ form.password1.errors.0 }}</div>{% endif %}
+      <div class="flex flex-col gap-1.5">
+        <label for="id_password1" class="text-[0.65rem] tracking-wider uppercase text-mist-dim">Password</label>
+        <input id="id_password1" type="password" name="password1" required
+               class="font-sans text-[0.9rem] px-3 py-2 bg-black/40 border border-white/15 text-ink rounded-sm focus:outline-none focus:border-white/40">
+        {% if form.password1.errors %}<div class="text-[0.75rem] text-ember">{{ form.password1.errors.0 }}</div>{% endif %}
       </div>
-      <div class="field">
-        <label for="id_password2">Confirm</label>
-        <input id="id_password2" type="password" name="password2" required>
-        {% if form.password2.errors %}<div class="auth-error">{{ form.password2.errors.0 }}</div>{% endif %}
+      <div class="flex flex-col gap-1.5">
+        <label for="id_password2" class="text-[0.65rem] tracking-wider uppercase text-mist-dim">Confirm</label>
+        <input id="id_password2" type="password" name="password2" required
+               class="font-sans text-[0.9rem] px-3 py-2 bg-black/40 border border-white/15 text-ink rounded-sm focus:outline-none focus:border-white/40">
+        {% if form.password2.errors %}<div class="text-[0.75rem] text-ember">{{ form.password2.errors.0 }}</div>{% endif %}
       </div>
-      <button class="btn" type="submit">Create &amp; enter</button>
+      <button class="mt-1 text-[0.8rem] tracking-wider border border-white/30 bg-white/10 text-white px-4 py-2.5 rounded-sm cursor-pointer hover:bg-white/15" type="submit">Create &amp; enter</button>
     </form>
-    <p class="auth-foot"><a href="{% url 'login' %}">Already have an account</a></p>
+    <p class="mt-5 mb-0 text-[0.78rem] text-mist"><a class="text-white/70 hover:text-white no-underline" href="{% url 'login' %}">Already have an account</a></p>
   </div>
 </div>
 {% endblock %}
