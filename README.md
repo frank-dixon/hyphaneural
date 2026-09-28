@@ -30,14 +30,28 @@ Main shell: Slow Ombre purple–blue–green pulse, sparse white accents, SNES-s
 - **Vanilla canvas + CSS** — Slow Ombre shell; Pages demo under `docs/`
 - **GitHub Pages** — self-contained static demo from `/docs` on `main`
 
-## CSS build
+## Local edit (zero-setup watch)
 
 ```bash
-npm install
-npm run build:css   # writes docs/css/hyphaneural.css + static/css/hyphaneural.css
+git clone https://github.com/frank-dixon/hyphaneural.git
+cd hyphaneural
+npm i
+npm run watch   # or: npm start
 ```
 
-Source tokens / minimal custom: `src/input.css` + `tailwind.config.js`. Prefer utilities in HTML; keep `@layer` custom only for ombre gradients, dial track, and JS-toggled states.
+One watcher does both:
+- **Tailwind** — `src/input.css` → `docs/css/hyphaneural.css` (and `static/css/` on `npm run build`)
+- **JS minify** — commented sources in `src/js/*.js` → minified `docs/js/*.js` (Pages) + `static/js/map.js` (Django)
+
+Edit source under `src/`; save; refresh. Ship with committed built artifacts so GitHub Pages needs **no Node at runtime**.
+
+```bash
+npm run build     # css + js once (CI / before commit)
+npm run build:css
+npm run build:js
+```
+
+Prefer Tailwind **utilities in HTML**; keep `@layer` custom only for ombre gradients, dial track, and JS-toggled states. Canvas stays vanilla JS.
 
 ## Run locally
 

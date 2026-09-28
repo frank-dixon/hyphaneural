@@ -1,13 +1,21 @@
 {
   "name": "hyphaneural",
   "private": true,
-  "version": "0.3.0",
-  "description": "Hyphaneural Slow Ombre Pages + Django — Tailwind-built static CSS",
+  "version": "0.4.0",
+  "description": "Hyphaneural Slow Ombre Pages + Django — Tailwind + minified JS",
   "scripts": {
     "build:css": "tailwindcss -i ./src/input.css -o ./docs/css/hyphaneural.css --minify && cp ./docs/css/hyphaneural.css ./static/css/hyphaneural.css",
-    "watch:css": "tailwindcss -i ./src/input.css -o ./docs/css/hyphaneural.css --watch"
+    "build:js": "node scripts/build-js.js",
+    "build": "npm run build:css && npm run build:js",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./docs/css/hyphaneural.css --watch",
+    "watch:js": "node scripts/watch-js.js",
+    "watch": "concurrently -k -n css,js -c magenta,cyan \"npm:watch:css\" \"npm:watch:js\"",
+    "start": "npm run watch"
   },
   "devDependencies": {
+    "chokidar": "^4.0.3",
+    "concurrently": "^9.1.2",
+    "esbuild": "^0.25.0",
     "tailwindcss": "^3.4.17"
   }
 }
